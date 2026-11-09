@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>브라이트웍스 - 비즈니스 성장 파트너</title>
+  <meta name="description" content="브랜딩부터 웹사이트, 마케팅까지 비즈니스 성장을 돕는 브라이트웍스입니다.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="logo">브라이트<span>웍스</span></a>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav">☰</button>
+      <nav id="nav" class="nav">
+        <a href="#services">서비스</a>
+        <a href="#about">소개</a>
+        <a href="#reviews">후기</a>
+        <a href="#contact" class="btn btn-small">문의하기</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <h1>당신의 비즈니스를<br>한 단계 더 빛나게</h1>
+        <p>브랜딩, 웹사이트, 마케팅까지. 성장에 필요한 모든 것을 한 곳에서 해결하세요.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn">무료 상담 신청</a>
+          <a href="#services" class="btn btn-outline">서비스 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <h2>서비스</h2>
+        <p class="section-sub">필요한 만큼, 가장 알맞게 제공합니다.</p>
+        <div class="cards">
+          <article class="card reveal"><div class="icon">🎨</div><h3>브랜딩</h3><p>로고부터 브랜드 가이드까지 일관된 이미지를 만듭니다.</p></article>
+          <article class="card reveal"><div class="icon">💻</div><h3>웹사이트 제작</h3><p>빠르고 보기 좋은 반응형 웹사이트를 제작합니다.</p></article>
+          <article class="card reveal"><div class="icon">📈</div><h3>마케팅</h3><p>데이터에 기반한 광고와 콘텐츠로 고객을 늘립니다.</p></article>
+          <article class="card reveal"><div class="icon">🤝</div><h3>운영 지원</h3><p>제작 이후에도 꾸준히 관리하고 개선합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section section-alt">
+      <div class="container about">
+        <div>
+          <h2>우리는 이렇게 일합니다</h2>
+          <p>작은 가게부터 성장하는 스타트업까지, 고객의 목표를 먼저 이해하고 그에 맞는 해법을 제안합니다. 투명한 일정과 비용, 빠른 소통을 약속드립니다.</p>
+        </div>
+        <ul class="stats">
+          <li><strong>120+</strong><span>완료 프로젝트</span></li>
+          <li><strong>98%</strong><span>고객 만족도</span></li>
+          <li><strong>5년</strong><span>업력</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="reviews" class="section">
+      <div class="container">
+        <h2>고객 후기</h2>
+        <div class="cards cards-3">
+          <blockquote class="card reveal">“상담부터 완성까지 정말 빠르고 친절했어요.”<cite>— 김OO 대표</cite></blockquote>
+          <blockquote class="card reveal">“웹사이트 덕분에 문의가 두 배로 늘었습니다.”<cite>— 이OO 실장</cite></blockquote>
+          <blockquote class="card reveal">“합리적인 비용에 결과물이 만족스러웠습니다.”<cite>— 박OO 원장</cite></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+      <div class="container narrow">
+        <h2>문의하기</h2>
+        <p class="section-sub">남겨주시면 영업일 기준 1일 이내 연락드립니다.</p>
+        <form id="contact-form" novalidate>
+          <label>이름<input type="text" name="name" required></label>
+          <label>이메일<input type="email" name="email" required></label>
+          <label>문의 내용<textarea name="message" rows="5" required></textarea></label>
+          <p class="form-msg" role="status" aria-live="polite"></p>
+          <button type="submit" class="btn">보내기</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 브라이트웍스. All rights reserved.</p>
+      <p>hello@example.com · 02-0000-0000</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
