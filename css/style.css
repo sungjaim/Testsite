@@ -47,8 +47,34 @@ img { display: block; max-width: 100%; }
 .eyebrow { margin: 0 0 12px; font-size: 14px; color: var(--muted); letter-spacing: .02em; }
 .hero h1 { margin: 0; font-size: 34px; line-height: 1.2; font-weight: 600; letter-spacing: -0.03em; }
 .lead { margin: 16px 0 28px; color: var(--muted); }
-.hero-photo { aspect-ratio: 4 / 5; width: 100%; max-width: 520px; margin: 0 auto; }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero h1 { text-wrap: balance; }
+
+/* 홈 슬라이드쇼 */
+.slides { margin: 0 auto; width: 100%; max-width: 520px; }
+.slides-frame { position: relative; aspect-ratio: 4 / 5; max-width: 100%; }
+.slides-frame img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 1.2s ease;
+}
+.slides-frame img.on { opacity: 1; }
+.slide-caption {
+  display: flex; align-items: baseline; justify-content: center; gap: 12px;
+  margin-top: 18px; min-height: 1.6em;
+  opacity: 0; transition: opacity .6s ease;
+}
+.slide-caption.on { opacity: 1; }
+.slide-no { font-size: 13px; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.slide-name { font-size: 17px; font-weight: 500; }
+.slide-dots { display: flex; justify-content: center; gap: 4px; margin-top: 8px; }
+.slide-dots button {
+  width: 28px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer;
+  display: grid; place-items: center;
+}
+.slide-dots button::after {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--line); transition: background .3s;
+}
+.slide-dots button[aria-current="true"]::after { background: var(--text); }
+.slide-dots button:focus-visible { outline: 1px solid var(--text); outline-offset: -4px; }
 
 /* 연회색 자리표시 */
 .ph { background: var(--placeholder); overflow: hidden; }
@@ -76,12 +102,13 @@ img { display: block; max-width: 100%; }
 .fade.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .fade { opacity: 1; transform: none; transition: none; }
+  .slides-frame img, .slide-caption { transition: none; }
 }
 
 @media (min-width: 900px) {
   .hero { grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; padding-top: 88px; padding-bottom: 112px; }
   .hero-text { text-align: left; }
   .hero h1 { font-size: 52px; }
-  .hero-photo { margin: 0; max-width: none; }
+  .slides { margin: 0; max-width: none; }
   .site-footer .inner { grid-template-columns: 1fr auto; align-items: end; }
 }
