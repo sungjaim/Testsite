@@ -6,13 +6,17 @@
   --line: #d2d2d7;
   --placeholder: #f0f0f2;
   --max: 1080px;
+  /* 글꼴: 본문과 제목. 제목 글꼴을 바꾸려면 --font-display 만 고치세요. */
+  --font-body: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-display: var(--font-body);
+  --display-weight: 600;
   --gutter: max(20px, env(safe-area-inset-left, 0px));
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
-  font-family: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-family: var(--font-body);
   font-size: 17px; line-height: 1.6; letter-spacing: -0.01em;
   word-break: keep-all;
 }
@@ -32,11 +36,33 @@ img { display: block; max-width: 100%; }
 .logo { display: flex; align-items: center; height: 100%; }
 .logo img { height: 34px; width: auto; }
 .logo .logo-fallback { font-weight: 600; letter-spacing: .04em; color: var(--muted); }
-.nav { display: flex; align-items: center; gap: 22px; font-size: 14px; }
-.nav a { color: var(--muted); padding: 12px 0; transition: color .2s; }
-.nav a:hover, .nav a[aria-current] { color: var(--text); }
-.lang { font-size: 13px; background: none; border: 0; color: var(--muted); cursor: pointer; padding: 12px 0; font-family: inherit; }
-.lang:hover { color: var(--text); }
+/* 오른쪽 위 메뉴 버튼 (두 줄 → X) */
+.menu-btn {
+  width: 44px; height: 44px; margin-right: -12px; padding: 0; border: 0; background: none; cursor: pointer;
+  display: grid; place-content: center; gap: 6px;
+}
+.menu-btn span { display: block; width: 18px; height: 1.5px; background: var(--text); transition: transform .25s ease; }
+.open .menu-btn span:first-child { transform: translateY(3.75px) rotate(45deg); }
+.open .menu-btn span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
+.menu-btn:focus-visible { outline: 1px solid var(--text); }
+
+/* 드롭다운 메뉴 */
+.menu {
+  position: absolute; left: 0; right: 0; top: 100%;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  opacity: 0; transform: translateY(-6px); transition: opacity .25s ease, transform .25s ease;
+}
+.menu.show { opacity: 1; transform: none; }
+.menu-inner { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 20px; display: grid; }
+.menu a, .menu .lang {
+  display: block; padding: 14px 0; font-size: 22px; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.02em;
+  color: var(--text); text-align: left; border-bottom: 1px solid var(--line);
+}
+.menu a[aria-current] { color: var(--muted); }
+.menu .lang { font-size: 15px; font-weight: 400; color: var(--muted); border-bottom: 0; padding-top: 18px; }
+.menu a:hover, .menu .lang:hover { opacity: .6; }
+.lang { background: none; border: 0; cursor: pointer; font-family: inherit; }
+@media (prefers-reduced-motion: reduce) { .menu, .menu-btn span { transition: none; } }
 
 /* hero */
 .hero {
@@ -45,7 +71,7 @@ img { display: block; max-width: 100%; }
 }
 .hero-text { text-align: center; }
 .eyebrow { margin: 0 0 12px; font-size: 14px; color: var(--muted); letter-spacing: .02em; }
-.hero h1 { margin: 0; font-size: 34px; line-height: 1.2; font-weight: 600; letter-spacing: -0.03em; }
+.hero h1 { margin: 0; font-size: 34px; line-height: 1.2; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.03em; }
 .lead { margin: 16px 0 28px; color: var(--muted); }
 .hero h1 { text-wrap: balance; }
 
@@ -66,7 +92,7 @@ img { display: block; max-width: 100%; }
 }
 .slide-caption.on { opacity: 1; }
 .slide-no { font-size: 13px; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
-.slide-name { font-size: 17px; font-weight: 500; }
+.slide-name { font-size: 18px; font-family: var(--font-display); font-weight: 500; }
 .slide-dots { display: flex; justify-content: center; gap: 4px; margin-top: 8px; }
 .slide-dots button {
   width: 28px; height: 28px; padding: 0; border: 0; background: none; cursor: pointer;
@@ -85,7 +111,7 @@ img { display: block; max-width: 100%; }
 .why-list li { padding: 28px 0; border-top: 1px solid var(--line); text-align: center; }
 .why-list li:last-child { border-bottom: 1px solid var(--line); }
 .why-label { margin: 0 0 6px; font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
-.why-list h3 { margin: 0 0 8px; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.why-list h3 { margin: 0 0 8px; font-size: 22px; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.02em; }
 .why-list li > p:last-child { margin: 0 auto; max-width: 30ch; color: var(--muted); font-size: 15px; }
 
 /* 연회색 자리표시 */

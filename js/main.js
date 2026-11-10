@@ -13,11 +13,14 @@
     '<header class="site-header"><div class="inner">' +
     '<a class="logo" href="index.html" aria-label="LS">' +
     '<img src="images/logo.png" alt="LS" onerror="this.outerHTML=\'<span class=&quot;logo-fallback&quot;>LS</span>\'"></a>' +
-    '<nav class="nav">' +
+    '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">' +
+    '<span></span><span></span></button>' +
+    '</div>' +
+    '<nav class="menu" id="site-menu" hidden><div class="menu-inner">' +
     '<a href="dresses.html"' + (page === 'dresses.html' ? ' aria-current="page"' : '') + ' data-i18n="nav.dresses"></a>' +
     '<a href="guide.html"' + (page === 'guide.html' ? ' aria-current="page"' : '') + ' data-i18n="nav.guide"></a>' +
     '<button class="lang" type="button" data-i18n="lang.toggle"></button>' +
-    '</nav></div></header>';
+    '</div></nav></header>';
 
   document.getElementById('site-footer').innerHTML =
     '<footer class="site-footer"><div class="inner">' +
@@ -32,6 +35,20 @@
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
   }
   apply();
+
+  // 오른쪽 위 메뉴 열기/닫기
+  var header = document.querySelector('.site-header');
+  var btn = header.querySelector('.menu-btn');
+  var menu = header.querySelector('.menu');
+  function setMenu(open) {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    header.classList.toggle('open', open);
+    if (open) { menu.hidden = false; requestAnimationFrame(function () { menu.classList.add('show'); }); }
+    else { menu.classList.remove('show'); setTimeout(function () { if (!header.classList.contains('open')) menu.hidden = true; }, 250); }
+  }
+  btn.addEventListener('click', function () { setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+  document.addEventListener('click', function (e) { if (!header.contains(e.target)) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
 
   document.querySelector('.lang').addEventListener('click', function () {
     lang = lang === 'ko' ? 'en' : 'ko';
