@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rental Guide | LS</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+KR:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+    <main class="page">
+    <header class="page-head">
+      <h1 class="page-title">Rental Guide</h1>
+      <p class="page-sub" data-i18n="guide.sub">대여 절차와 기간, 유의사항을 안내해 드려요.</p>
+    </header>
+
+    <!--
+      대여 안내 본문입니다. 한국어(data-lang="ko")와 영어(data-lang="en")가 따로 있어요.
+      <span class="tbd">확인 필요</span> 를 실제 내용으로 바꿔 주세요.
+      유의사항에 넣을 만한 것: 세탁 방법, 파손·분실 시 비용, 수선·보정 가능 여부, 반납이 늦을 때 비용.
+      항목을 늘리려면 <li>...</li> 한 줄을 복사하면 돼요.
+    -->
+    <div data-lang="ko">
+      <section class="g-sec">
+        <h2>대여 절차</h2>
+        <ol class="steps">
+          <li><strong>문의</strong><p>인스타그램 DM이나 전화·문자로 원하는 드레스 번호(No.)를 알려 주세요.</p></li>
+          <li><strong>사이즈·일정 확인</strong><p><span class="tbd">확인 필요</span></p></li>
+          <li><strong>수령</strong><p><span class="tbd">확인 필요</span></p></li>
+          <li><strong>반납</strong><p><span class="tbd">확인 필요</span></p></li>
+        </ol>
+      </section>
+      <section class="g-sec">
+        <h2>대여 기간</h2>
+        <div><p><span class="tbd">확인 필요</span></p></div>
+      </section>
+      <section class="g-sec">
+        <h2>대여료와 보증금</h2>
+        <div><p>드레스별 대여료는 각 드레스 페이지에서 확인할 수 있어요.</p><p>보증금 <span class="tbd">확인 필요</span></p></div>
+      </section>
+      <section class="g-sec">
+        <h2>수령과 반납</h2>
+        <div><p><span class="tbd">확인 필요</span></p></div>
+      </section>
+      <section class="g-sec">
+        <h2>유의사항</h2>
+        <ul class="notes"><li><span class="tbd">확인 필요</span></li></ul>
+      </section>
+      <section class="g-sec">
+        <h2>문의</h2>
+        <div>
+          <p>궁금한 점은 편하게 물어보세요.</p>
+          <div class="actions"><a class="btn btn-primary js-insta" href="#">인스타그램으로 문의</a><a class="btn btn-ghost js-tel" href="#">전화로 문의</a></div>
+          <p class="d-tel">Tel 010-4342-8908 · Instagram @loveurskating</p>
+        </div>
+      </section>
+    </div>
+    <div data-lang="en" hidden>
+      <section class="g-sec">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li><strong>Ask</strong><p>Send us the dress number (No.) you like by Instagram DM, phone or text.</p></li>
+          <li><strong>Size and dates</strong><p><span class="tbd">To be confirmed</span></p></li>
+          <li><strong>Pickup</strong><p><span class="tbd">To be confirmed</span></p></li>
+          <li><strong>Return</strong><p><span class="tbd">To be confirmed</span></p></li>
+        </ol>
+      </section>
+      <section class="g-sec">
+        <h2>Rental period</h2>
+        <div><p><span class="tbd">To be confirmed</span></p></div>
+      </section>
+      <section class="g-sec">
+        <h2>Fees and deposit</h2>
+        <div><p>Each dress page shows its rental fee.</p><p>Deposit <span class="tbd">To be confirmed</span></p></div>
+      </section>
+      <section class="g-sec">
+        <h2>Pickup and return</h2>
+        <div><p><span class="tbd">To be confirmed</span></p></div>
+      </section>
+      <section class="g-sec">
+        <h2>Please note</h2>
+        <ul class="notes"><li><span class="tbd">To be confirmed</span></li></ul>
+      </section>
+      <section class="g-sec">
+        <h2>Contact</h2>
+        <div>
+          <p>Feel free to ask us anything.</p>
+          <div class="actions"><a class="btn btn-primary js-insta" href="#">Ask on Instagram</a><a class="btn btn-ghost js-tel" href="#">Call us</a></div>
+          <p class="d-tel">Tel 010-4342-8908 · Instagram @loveurskating</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="data/dresses.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
