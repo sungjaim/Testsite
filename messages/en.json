@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "siteName": "LS (엘에스)",
+    "home": {
+      "title": "LS (엘에스) | Figure Skating Dress Rental in Korea",
+      "description": "Rent figure skating dresses for competitions and shows. Browse by size and color, then inquire on Instagram or by phone."
+    },
+    "dresses": {
+      "title": "Dresses | LS (엘에스)",
+      "description": "Find a figure skating dress by size, color, and availability."
+    },
+    "guide": {
+      "title": "Rental Guide | LS (엘에스)",
+      "description": "How renting works: process, rental period, deposit, cleaning, damage and late return policy, and FAQ."
+    },
+    "about": {
+      "title": "About & Contact | LS (엘에스)",
+      "description": "Where to find LS, our hours, and how to reach us on Instagram or by phone."
+    },
+    "notFound": "Page not found"
+  },
+  "nav": {
+    "home": "Home",
+    "dresses": "Dresses",
+    "guide": "Rental Guide",
+    "about": "About & Contact",
+    "menu": "Open menu",
+    "closeMenu": "Close menu",
+    "main": "Main navigation"
+  },
+  "lang": {
+    "label": "Language",
+    "ko": "한국어",
+    "en": "English",
+    "switchTo": "한국어로 보기"
+  },
+  "common": {
+    "instagram": "Instagram",
+    "call": "Call us",
+    "inquireInstagram": "Inquire on Instagram",
+    "inquireCall": "Inquire by phone",
+    "available": "Available",
+    "rented": "Rented out",
+    "viewAll": "View all",
+    "viewDress": "View details",
+    "currency": "KRW",
+    "perRental": "per rental (7 days)",
+    "backToDresses": "Back to dresses"
+  },
+  "fab": {
+    "open": "Inquire",
+    "close": "Close",
+    "label": "Choose how to reach us"
+  },
+  "home": {
+    "eyebrow": "Figure skating dress rental",
+    "title": "The brightest moment on the ice.<br />The dress is on us.",
+    "subtitle": "Find the right dress for your competition or show, by size and color.",
+    "ctaPrimary": "Browse dresses",
+    "ctaSecondary": "Rental guide",
+    "featuredTitle": "Featured dresses",
+    "featuredSubtitle": "Popular picks this season.",
+    "howTitle": "How renting works",
+    "steps": [
+      {
+        "title": "Get in touch",
+        "body": "Tell us the dress you like and your competition date by Instagram DM or phone."
+      },
+      {
+        "title": "Confirm and receive",
+        "body": "We check availability and size, then share the rental fee and deposit. Pick up in person or have it shipped."
+      },
+      {
+        "title": "Return after your event",
+        "body": "Send the dress back when your rental period ends. Once we check its condition, your deposit is refunded."
+      }
+    ],
+    "ctaTitle": "Questions?",
+    "ctaBody": "From sizing advice to scheduling, just ask."
+  },
+  "dresses": {
+    "title": "Dresses",
+    "subtitle": "Tap a photo for sizing, measurements, and the rental fee.",
+    "filters": "Filters",
+    "size": "Size",
+    "color": "Color",
+    "availability": "Availability",
+    "all": "All",
+    "onlyAvailable": "Available only",
+    "reset": "Reset filters",
+    "count": "{count} dresses",
+    "empty": "No dresses match these filters. Try changing them.",
+    "showFilters": "Show filters",
+    "hideFilters": "Hide filters"
+  },
+  "colors": {
+    "white": "White",
+    "pink": "Pink",
+    "blue": "Blue",
+    "navy": "Navy",
+    "purple": "Purple",
+    "champagne": "Champagne",
+    "silver": "Silver",
+    "red": "Red",
+    "black": "Black",
+    "gold": "Gold",
+    "green": "Green",
+    "yellow": "Yellow"
+  },
+  "detail": {
+    "size": "Size",
+    "height": "Recommended height",
+    "measurements": "Measurements",
+    "bust": "Bust",
+    "waist": "Waist",
+    "hip": "Hip",
+    "length": "Total length",
+    "cm": "cm",
+    "color": "Color",
+    "price": "Rental fee",
+    "deposit": "Deposit",
+    "depositNote": "Refunded once we check the dress after it is returned.",
+    "status": "Status",
+    "inquireTitle": "Love this dress?",
+    "inquireBody": "Please mention the dress name or number when you inquire.",
+    "rentedNote": "This dress is rented out right now. Ask us when it will be available next.",
+    "number": "Dress no.",
+    "gallery": "Show photo {n}",
+    "photo": "{name}, photo {n}"
+  },
+  "guide": {
+    "title": "Rental Guide",
+    "subtitle": "Everything you need to know, even if it is your first time.",
+    "processTitle": "How it works",
+    "process": [
+      "Message us on Instagram or call with the dress, your size, and your competition or show date.",
+      "We confirm availability and tell you the rental fee and how to pay the deposit.",
+      "Once payment is confirmed, pick the dress up in person or receive it by courier.",
+      "Return the dress by the date we give you after your event.",
+      "We check its condition and refund your deposit."
+    ],
+    "sections": [
+      {
+        "title": "Rental period",
+        "body": [
+          "The standard rental period is 7 days from the day you receive the dress.",
+          "To extend, tell us before the return date. Extensions are only possible when no one has booked the dress next, and an extra daily fee applies."
+        ]
+      },
+      {
+        "title": "Deposit",
+        "body": [
+          "Each dress has its own deposit, shown on its page.",
+          "We refund it within 3 business days after we check the returned dress."
+        ]
+      },
+      {
+        "title": "Cleaning",
+        "body": [
+          "You do not need to wash the dress before returning it. We handle professional cleaning and care.",
+          "Please do not machine wash, iron, or remove any decoration, as stones and lace can be damaged."
+        ]
+      },
+      {
+        "title": "Damage and loss",
+        "body": [
+          "Light wear from skating is fine.",
+          "If the dress needs repair, for example lost stones, tears, stains, or loss, the repair cost is deducted from your deposit. If it cannot be repaired, we settle based on the dress's value."
+        ]
+      },
+      {
+        "title": "Late returns",
+        "body": [
+          "If you return the dress after the due date, a late fee of 20% of the rental fee per day is deducted from your deposit.",
+          "If something comes up, please tell us before the return date."
+        ]
+      }
+    ],
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "What if the size does not fit?",
+        "a": "Tell us your height and measurements and we will recommend a size. Fittings are available by appointment."
+      },
+      {
+        "q": "Can I get the dress on the morning of the competition?",
+        "a": "We recommend receiving it 2 to 3 days before. If your schedule is tight, ask us first."
+      },
+      {
+        "q": "How early should I book?",
+        "a": "It gets busy in season, so please get in touch at least 2 weeks before your competition."
+      },
+      {
+        "q": "Can I alter the dress?",
+        "a": "Please do not alter it yourself. If the length or straps need adjusting, tell us first."
+      },
+      {
+        "q": "Can I return it by courier?",
+        "a": "Yes. Return shipping is at your cost. Please pack the dress carefully to avoid damage."
+      },
+      {
+        "q": "Do I get a refund if I cancel?",
+        "a": "If you cancel before receiving the dress, the deposit is fully refunded. The rental fee is refunded only if you cancel at least 3 days before pickup."
+      }
+    ]
+  },
+  "about": {
+    "title": "About & Contact",
+    "intro": [
+      "LS rents figure skating dresses.",
+      "A skating dress is too special to wear once and forget. Borrow the right one when you need it, spend less, and shine on the ice."
+    ],
+    "locationTitle": "Location",
+    "hoursTitle": "Hours",
+    "contactTitle": "Contact",
+    "contactBody": "Reach us by Instagram DM or phone.",
+    "address": "Address",
+    "phone": "Phone",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "tradeName": "Business name",
+    "representative": "Representative",
+    "registrationNumber": "Business reg. no.",
+    "mailOrderNumber": "Mail-order license no.",
+    "email": "Email",
+    "address": "Address",
+    "phone": "Phone",
+    "rights": "All rights reserved."
+  }
+}

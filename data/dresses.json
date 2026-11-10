@@ -1,0 +1,190 @@
+[
+  {
+    "id": "ls-001",
+    "name": {
+      "ko": "스노우 화이트",
+      "en": "Snow White"
+    },
+    "description": {
+      "ko": "차가운 빙판 위에서 더 맑게 빛나는 순백의 쉬폰 드레스입니다. 가슴과 허리선에 작은 크리스털을 촘촘히 달았습니다.",
+      "en": "A pure white chiffon dress that glows against the ice, with fine crystals along the bodice and waist."
+    },
+    "size": "150",
+    "measurements": {
+      "height": "145–155",
+      "bust": 72,
+      "waist": 58,
+      "hip": 80,
+      "length": 62
+    },
+    "colors": [
+      "white"
+    ],
+    "price": 45000,
+    "deposit": 150000,
+    "status": "available",
+    "images": [
+      "/dresses/ls-001/1.jpg",
+      "/dresses/ls-001/2.jpg",
+      "/dresses/ls-001/3.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "id": "ls-002",
+    "name": {
+      "ko": "로제 블러썸",
+      "en": "Rose Blossom"
+    },
+    "description": {
+      "ko": "은은한 핑크 그러데이션에 꽃잎 모양 장식을 더한 부드러운 분위기의 드레스입니다. 쇼트 프로그램에 잘 어울립니다.",
+      "en": "A soft pink gradient with petal appliqués. A gentle choice for short programs."
+    },
+    "size": "140",
+    "measurements": {
+      "height": "135–145",
+      "bust": 68,
+      "waist": 55,
+      "hip": 76,
+      "length": 58
+    },
+    "colors": [
+      "pink"
+    ],
+    "price": 40000,
+    "deposit": 150000,
+    "status": "available",
+    "images": [
+      "/dresses/ls-002/1.jpg",
+      "/dresses/ls-002/2.jpg",
+      "/dresses/ls-002/3.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "id": "ls-003",
+    "name": {
+      "ko": "로열 블루",
+      "en": "Royal Blue"
+    },
+    "description": {
+      "ko": "깊은 블루 컬러에 실버 스톤 포인트를 더한 드레스입니다. 몸에 잘 맞는 벨벳 소재라 움직임이 편안합니다.",
+      "en": "Deep blue velvet with silver stone accents. Close-fitting and comfortable through every jump."
+    },
+    "size": "S",
+    "measurements": {
+      "height": "158–165",
+      "bust": 80,
+      "waist": 63,
+      "hip": 88,
+      "length": 66
+    },
+    "colors": [
+      "blue"
+    ],
+    "price": 55000,
+    "deposit": 200000,
+    "status": "rented",
+    "images": [
+      "/dresses/ls-003/1.jpg",
+      "/dresses/ls-003/2.jpg",
+      "/dresses/ls-003/3.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "id": "ls-004",
+    "name": {
+      "ko": "라벤더 미스트",
+      "en": "Lavender Mist"
+    },
+    "description": {
+      "ko": "라벤더와 화이트가 겹쳐지는 오간자 스커트가 특징입니다. 스핀 때 스커트가 가볍게 퍼집니다.",
+      "en": "Layered lavender and white organza that floats open on every spin."
+    },
+    "size": "M",
+    "measurements": {
+      "height": "163–170",
+      "bust": 84,
+      "waist": 66,
+      "hip": 91,
+      "length": 68
+    },
+    "colors": [
+      "purple",
+      "white"
+    ],
+    "price": 55000,
+    "deposit": 200000,
+    "status": "available",
+    "images": [
+      "/dresses/ls-004/1.jpg",
+      "/dresses/ls-004/2.jpg",
+      "/dresses/ls-004/3.jpg"
+    ],
+    "featured": false
+  },
+  {
+    "id": "ls-005",
+    "name": {
+      "ko": "샴페인 글로우",
+      "en": "Champagne Glow"
+    },
+    "description": {
+      "ko": "은은한 샴페인 골드 톤의 새틴 드레스입니다. 등 라인의 레이스가 우아한 느낌을 더합니다.",
+      "en": "A satin dress in soft champagne gold, with an elegant lace back."
+    },
+    "size": "130",
+    "measurements": {
+      "height": "125–135",
+      "bust": 63,
+      "waist": 53,
+      "hip": 72,
+      "length": 54
+    },
+    "colors": [
+      "champagne"
+    ],
+    "price": 38000,
+    "deposit": 120000,
+    "status": "available",
+    "images": [
+      "/dresses/ls-005/1.jpg",
+      "/dresses/ls-005/2.jpg",
+      "/dresses/ls-005/3.jpg"
+    ],
+    "featured": true
+  },
+  {
+    "id": "ls-006",
+    "name": {
+      "ko": "미드나이트",
+      "en": "Midnight"
+    },
+    "description": {
+      "ko": "네이비 바탕에 은빛 스팽글을 흩뿌린 드라마틱한 드레스입니다. 프리 프로그램과 갈라에 추천합니다.",
+      "en": "Navy with scattered silver sequins. A dramatic pick for free programs and galas."
+    },
+    "size": "L",
+    "measurements": {
+      "height": "168–175",
+      "bust": 88,
+      "waist": 69,
+      "hip": 94,
+      "length": 70
+    },
+    "colors": [
+      "navy",
+      "silver"
+    ],
+    "price": 60000,
+    "deposit": 200000,
+    "status": "available",
+    "images": [
+      "/dresses/ls-006/1.jpg",
+      "/dresses/ls-006/2.jpg",
+      "/dresses/ls-006/3.jpg"
+    ],
+    "featured": false
+  }
+]
