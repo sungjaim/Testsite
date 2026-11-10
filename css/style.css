@@ -8,7 +8,8 @@
   --max: 1080px;
   /* 글꼴: 본문과 제목. 제목 글꼴을 바꾸려면 --font-display 만 고치세요. */
   --font-body: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --font-display: var(--font-body);
+  /* 제목·드레스 이름: 영문은 Cormorant Garamond, 한글은 Noto Serif KR(명조) */
+  --font-display: "Cormorant Garamond", "Noto Serif KR", "AppleMyungjo", serif;
   --display-weight: 600;
   --gutter: max(20px, env(safe-area-inset-left, 0px));
 }
@@ -72,7 +73,7 @@ img { display: block; max-width: 100%; }
 .hero-text { text-align: center; }
 .eyebrow { margin: 0 0 12px; font-size: 14px; color: var(--muted); letter-spacing: .02em; }
 .hero h1 { margin: 0; font-size: 34px; line-height: 1.2; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.03em; }
-.lead { margin: 16px 0 28px; color: var(--muted); }
+.lead { margin: 16px 0 28px; color: var(--muted); font-family: var(--font-display); font-size: 18px; }
 .hero h1 { text-wrap: balance; }
 
 /* 홈 슬라이드쇼 */
@@ -113,6 +114,9 @@ img { display: block; max-width: 100%; }
 .why-label { margin: 0 0 6px; font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
 .why-list h3 { margin: 0 0 8px; font-size: 22px; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.02em; }
 .why-list li > p:last-child { margin: 0 auto; max-width: 30ch; color: var(--muted); font-size: 15px; }
+
+/* 세리프 숫자를 본문처럼 반듯하게 */
+.hero h1, .lead, .slide-name, .why-list h3, .menu a { font-variant-numeric: lining-nums; }
 
 /* 연회색 자리표시 */
 .ph { background: var(--placeholder); overflow: hidden; }
