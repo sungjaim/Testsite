@@ -21,7 +21,6 @@
     price    대여료(숫자, 원 단위). 예: 80000. 아직 모르면 null
     photos   사진 경로 목록. 비어 있으면 연회색 자리표시가 나와요
     featured true 이면 홈 슬라이드쇼에 나와요 (4벌 정도 추천)
-    example  true 이면 예시 데이터. 실제 드레스로 바꾸거나 지운 뒤 사이트를 공개하세요
 */
 
 // 색상 이름 (필터와 상세 페이지에 쓰여요). 새 색은 여기에 한 줄 추가하세요.
@@ -31,7 +30,10 @@ window.LS_COLORS = {
   pink:   { ko: '핑크',   en: 'Pink' },
   red:    { ko: '레드',   en: 'Red' },
   blue:   { ko: '블루',   en: 'Blue' },
-  purple: { ko: '퍼플',   en: 'Purple' }
+  purple: { ko: '퍼플',   en: 'Purple' },
+  orange: { ko: '오렌지', en: 'Orange' },
+  coral:  { ko: '코랄',   en: 'Coral' },
+  yellow: { ko: '옐로',   en: 'Yellow' }
 };
 
 // 상태 이름 (화면에 보이는 글자). 순서는 필터 버튼 순서예요.
@@ -64,10 +66,48 @@ window.LS_DRESSES = [
     photos: ['images/dresses/ls-02/1.jpg'],
     featured: true
   },
-
-  // ↓ 여기부터는 예시 데이터예요. 실제 드레스로 바꾸거나 지워 주세요.
-  { id: 'ls-03', number: '03', name: 'Snow Waltz',     size: '130', color: 'white',  status: 'available', price: null, photos: [], example: true },
-  { id: 'ls-04', number: '04', name: 'Blue Hour',      size: '140', color: 'blue',   status: 'rented',    price: null, photos: [], example: true },
-  { id: 'ls-05', number: '05', name: 'Violet Etude',   size: 'S',   color: 'purple', status: 'servicing', price: null, photos: [], example: true },
-  { id: 'ls-06', number: '06', name: 'Crimson Tango',  size: 'M',   color: 'red',    status: 'available', price: null, photos: [], example: true }
+  {
+    id: 'ls-03',
+    number: '03',
+    name: 'Firebird',
+    size: null,
+    color: 'orange',
+    status: 'available',
+    price: null,
+    photos: ['images/dresses/ls-03/1.jpg'],
+    featured: false
+  },
+  {
+    id: 'ls-04',
+    number: '04',
+    name: 'Coral Blossom',
+    size: null,
+    color: 'coral',
+    status: 'available',
+    price: null,
+    photos: ['images/dresses/ls-04/1.jpg'],
+    featured: true
+  },
+  {
+    id: 'ls-05',
+    number: '05',
+    name: 'Honey Bloom',
+    size: null,
+    color: 'yellow',
+    status: 'available',
+    price: null,
+    photos: ['images/dresses/ls-05/1.jpg'],
+    featured: false
+  },
+  {
+    id: 'ls-06',
+    number: '06',
+    name: 'First Frost',
+    size: null,
+    color: 'blue',
+    status: 'available',
+    price: null,
+    photos: ['images/dresses/ls-06/1.jpg'],
+    featured: true
+  }
 ];
