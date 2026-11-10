@@ -51,6 +51,8 @@ img { display: block; max-width: 100%; }
 
 /* 홈 슬라이드쇼 */
 .slides { margin: 0 auto; width: 100%; max-width: 520px; }
+/* 미니멀 액자: 얇은 테두리 + 흰 여백(매트) */
+.mat { border: 1px solid var(--line); padding: 14px; background: var(--bg); }
 .slides-frame { position: relative; aspect-ratio: 4 / 5; max-width: 100%; }
 .slides-frame img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
@@ -76,6 +78,16 @@ img { display: block; max-width: 100%; }
 .slide-dots button[aria-current="true"]::after { background: var(--text); }
 .slide-dots button:focus-visible { outline: 1px solid var(--text); outline-offset: -4px; }
 
+/* 서비스 장점 */
+.why { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 88px; }
+.why > .eyebrow { text-align: center; margin-bottom: 8px; }
+.why-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.why-list li { padding: 28px 0; border-top: 1px solid var(--line); text-align: center; }
+.why-list li:last-child { border-bottom: 1px solid var(--line); }
+.why-label { margin: 0 0 6px; font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.why-list h3 { margin: 0 0 8px; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.why-list li > p:last-child { margin: 0 auto; max-width: 30ch; color: var(--muted); font-size: 15px; }
+
 /* 연회색 자리표시 */
 .ph { background: var(--placeholder); overflow: hidden; }
 
@@ -98,10 +110,11 @@ img { display: block; max-width: 100%; }
 .site-footer .brand { color: var(--text); font-weight: 600; margin-bottom: 4px; }
 
 /* 부드러운 페이드 */
-.fade { opacity: 0; transform: translateY(12px); transition: opacity .9s ease, transform .9s ease; }
-.fade.in { opacity: 1; transform: none; }
+/* 기본은 보이는 상태. 화면에 들어올 때만 살짝 떠오르며 나타납니다. */
+.fade.in { animation: rise .9s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .fade { opacity: 1; transform: none; transition: none; }
+  .fade.in { animation: none; }
   .slides-frame img, .slide-caption { transition: none; }
 }
 
@@ -110,5 +123,10 @@ img { display: block; max-width: 100%; }
   .hero-text { text-align: left; }
   .hero h1 { font-size: 52px; }
   .slides { margin: 0; max-width: none; }
+  .mat { padding: 22px; }
+  .why { padding-bottom: 120px; }
+  .why-list { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .why-list li, .why-list li:last-child { border: 0; padding: 40px 32px; }
+  .why-list li:not(:first-child) { border-left: 1px solid var(--line); }
   .site-footer .inner { grid-template-columns: 1fr auto; align-items: end; }
 }
