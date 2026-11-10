@@ -14,7 +14,7 @@ window.LS_TEXT = {
 
     'list.sub': '마음에 드는 드레스를 골라 문의해 주세요.',
     'list.count': '{n}벌',
-    'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
+    'filter.title': '필터', 'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
     'list.empty': '조건에 맞는 드레스가 없어요.',
     'list.reset': '필터 초기화',
 
@@ -25,6 +25,7 @@ window.LS_TEXT = {
     'd.won': '{n}원',
     'd.note': '대여 기간과 절차는 대여 안내에서 확인할 수 있어요.',
     'd.guide': '대여 안내 보기',
+    'd.back': '드레스 목록',
     'd.more': '다른 드레스',
     'd.all': '전체 드레스 보기',
     'd.notfound': '드레스를 찾을 수 없어요.',
@@ -50,7 +51,7 @@ window.LS_TEXT = {
 
     'list.sub': 'Find a dress you love and send us a message.',
     'list.count': '{n} dresses',
-    'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
+    'filter.title': 'Filter', 'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
     'list.empty': 'No dresses match these filters.',
     'list.reset': 'Clear filters',
 
@@ -61,6 +62,7 @@ window.LS_TEXT = {
     'd.won': '₩{n}',
     'd.note': 'See the rental guide for rental periods and steps.',
     'd.guide': 'Read the rental guide',
+    'd.back': 'All dresses',
     'd.more': 'More dresses',
     'd.all': 'See all dresses',
     'd.notfound': 'We couldn’t find this dress.',

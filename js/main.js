@@ -61,7 +61,8 @@
   document.getElementById('site-footer').innerHTML =
     '<footer class="site-footer"><div class="inner">' +
     '<div><div class="brand">LS</div>' +
-    '<div data-i18n="footer.inquiry"></div></div>' +
+    '<div data-i18n="footer.inquiry"></div>' +
+    '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a></nav></div>' +
     '<div>Instagram <a href="' + SITE.insta + '" target="_blank" rel="noopener">' + SITE.instaName + '</a><br>' +
     'Tel <a href="tel:' + SITE.tel.replace(/-/g, '') + '">' + SITE.tel + '</a></div>' +
     '</div></footer>';

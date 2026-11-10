@@ -37,9 +37,9 @@
       '<h1 class="d-name">' + LS.esc(d.name) + '</h1>' +
       '<dl class="specs">' +
       '<div><dt>' + LS.t('d.size') + '</dt><dd>' + LS.esc(LS.sizeText(d)) + '</dd></div>' +
-      '<div><dt>' + LS.t('d.status') + '</dt><dd>' + LS.statusTag(d) + '</dd></div>' +
       '<div><dt>' + LS.t('d.color') + '</dt><dd>' + LS.esc(LS.colorName(d.color)) + '</dd></div>' +
       '<div><dt>' + LS.t('d.price') + '</dt><dd>' + LS.esc(LS.priceText(d)) + '</dd></div>' +
+      '<div><dt>' + LS.t('d.status') + '</dt><dd>' + LS.statusTag(d) + '</dd></div>' +
       '</dl>' +
       (LS.statusKey(d) !== 'available' ? '<p class="d-status-note">' + LS.t('d.note.' + LS.statusKey(d)) + '</p>' : '') +
       '<div class="actions">' +
@@ -50,7 +50,8 @@
       '<p class="d-tel">Tel ' + LS.site.tel + ' · Instagram ' + LS.site.instaName + '</p>' +
       '</div>';
 
-    root.innerHTML = gallery + info;
+    var back = '<a class="back" href="dresses.html">' + LS.t('d.back') + '</a>';
+    root.innerHTML = back + gallery + info;
 
     // 폰에서 옆으로 넘길 때 "1 / 4" 표시 갱신
     var track = document.getElementById('track'), gcount = document.getElementById('gcount');

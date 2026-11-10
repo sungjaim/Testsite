@@ -34,8 +34,12 @@
     grid.innerHTML = list.map(LS.card).join('');
     count.textContent = LS.t('list.count', { n: list.length });
     empty.hidden = list.length > 0;
+    // 접혀 있어도 어떤 필터가 걸려 있는지 보이게
+    var on = [state.size, state.color && LS.colorName(state.color), state.status && LS.statusName(state.status)].filter(Boolean);
+    document.getElementById('active').textContent = on.join(', ');
   }
   document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; state.status = ''; render(); });
+  document.getElementById('filters').open = !!(window.matchMedia && matchMedia('(min-width: 900px)').matches);
   document.addEventListener('ls:lang', render);
   render();
 })();
