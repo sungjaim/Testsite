@@ -13,6 +13,11 @@
     name     드레스 이름 (영어)
     size     사이즈 표기. 아직 모르면 null  → 화면에 "확인 필요"로 표시
     color    아래 LS_COLORS 에 있는 키 하나. 예: 'black'
+    status   현재 상태. 아래 셋 중 하나만 적어요.
+               'available'  대여 가능
+               'rented'     대여 중
+               'servicing'  준비 중 (세탁·점검·수선 중)
+             ← 상태가 바뀔 때마다 이 한 줄만 고치면 목록, 상세, 필터에 바로 반영돼요.
     price    대여료(숫자, 원 단위). 예: 80000. 아직 모르면 null
     photos   사진 경로 목록. 비어 있으면 연회색 자리표시가 나와요
     featured true 이면 홈 슬라이드쇼에 나와요 (4벌 정도 추천)
@@ -29,6 +34,13 @@ window.LS_COLORS = {
   purple: { ko: '퍼플',   en: 'Purple' }
 };
 
+// 상태 이름 (화면에 보이는 글자). 순서는 필터 버튼 순서예요.
+window.LS_STATUS = {
+  available: { ko: '대여 가능', en: 'Available' },
+  rented:    { ko: '대여 중',   en: 'Rented out' },
+  servicing: { ko: '준비 중',   en: 'Being prepared' }
+};
+
 window.LS_DRESSES = [
   {
     id: 'ls-01',
@@ -36,6 +48,7 @@ window.LS_DRESSES = [
     name: 'Ink & Moonlight',
     size: null,
     color: 'black',
+    status: 'available',
     price: null,
     photos: ['images/dresses/ls-01/1.jpg'],
     featured: true
@@ -46,14 +59,15 @@ window.LS_DRESSES = [
     name: 'Sugar Plum',
     size: null,
     color: 'pink',
+    status: 'available',
     price: null,
     photos: ['images/dresses/ls-02/1.jpg'],
     featured: true
   },
 
   // ↓ 여기부터는 예시 데이터예요. 실제 드레스로 바꾸거나 지워 주세요.
-  { id: 'ls-03', number: '03', name: 'Snow Waltz',     size: '130', color: 'white',  price: null, photos: [], example: true },
-  { id: 'ls-04', number: '04', name: 'Blue Hour',      size: '140', color: 'blue',   price: null, photos: [], example: true },
-  { id: 'ls-05', number: '05', name: 'Violet Etude',   size: 'S',   color: 'purple', price: null, photos: [], example: true },
-  { id: 'ls-06', number: '06', name: 'Crimson Tango',  size: 'M',   color: 'red',    price: null, photos: [], example: true }
+  { id: 'ls-03', number: '03', name: 'Snow Waltz',     size: '130', color: 'white',  status: 'available', price: null, photos: [], example: true },
+  { id: 'ls-04', number: '04', name: 'Blue Hour',      size: '140', color: 'blue',   status: 'rented',    price: null, photos: [], example: true },
+  { id: 'ls-05', number: '05', name: 'Violet Etude',   size: 'S',   color: 'purple', status: 'servicing', price: null, photos: [], example: true },
+  { id: 'ls-06', number: '06', name: 'Crimson Tango',  size: 'M',   color: 'red',    status: 'available', price: null, photos: [], example: true }
 ];

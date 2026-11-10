@@ -1,7 +1,7 @@
 /* 드레스 목록 + 사이즈/색상 필터. 필터 버튼은 data/dresses.js 값으로 자동으로 만들어져요. */
 (function () {
   var all = LS.dresses;
-  var state = { size: '', color: '' };
+  var state = { size: '', color: '', status: '' };
   var grid = document.getElementById('grid');
   var count = document.getElementById('count');
   var empty = document.getElementById('empty');
@@ -25,14 +25,17 @@
   function render() {
     chips('f-size', 'size', uniq('size'), function (v) { return v; });
     chips('f-color', 'color', uniq('color'), LS.colorName);
+    var used = {}; all.forEach(function (d) { used[LS.statusKey(d)] = 1; });
+    chips('f-status', 'status', Object.keys(window.LS_STATUS || {}).filter(function (k) { return used[k]; }), LS.statusName);
     var list = all.filter(function (d) {
-      return (!state.size || d.size === state.size) && (!state.color || d.color === state.color);
+      return (!state.size || d.size === state.size) && (!state.color || d.color === state.color) &&
+        (!state.status || LS.statusKey(d) === state.status);
     });
     grid.innerHTML = list.map(LS.card).join('');
     count.textContent = LS.t('list.count', { n: list.length });
     empty.hidden = list.length > 0;
   }
-  document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; render(); });
+  document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; state.status = ''; render(); });
   document.addEventListener('ls:lang', render);
   render();
 })();

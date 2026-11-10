@@ -14,11 +14,13 @@ window.LS_TEXT = {
 
     'list.sub': '마음에 드는 드레스를 골라 문의해 주세요.',
     'list.count': '{n}벌',
-    'filter.size': '사이즈', 'filter.color': '색상', 'filter.all': '전체',
+    'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
     'list.empty': '조건에 맞는 드레스가 없어요.',
     'list.reset': '필터 초기화',
 
-    'd.size': '사이즈', 'd.color': '색상', 'd.price': '대여료',
+    'd.size': '사이즈', 'd.color': '색상', 'd.price': '대여료', 'd.status': '상태',
+    'd.note.rented': '지금은 다른 분이 대여 중이에요. 다음 대여 가능 시기는 문의해 주세요.',
+    'd.note.servicing': '지금은 세탁·점검 등 준비 중이에요. 대여 가능 시기는 문의해 주세요.',
     'd.tbd': '확인 필요',
     'd.won': '{n}원',
     'd.note': '대여 기간과 절차는 대여 안내에서 확인할 수 있어요.',
@@ -48,11 +50,13 @@ window.LS_TEXT = {
 
     'list.sub': 'Find a dress you love and send us a message.',
     'list.count': '{n} dresses',
-    'filter.size': 'Size', 'filter.color': 'Color', 'filter.all': 'All',
+    'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
     'list.empty': 'No dresses match these filters.',
     'list.reset': 'Clear filters',
 
-    'd.size': 'Size', 'd.color': 'Color', 'd.price': 'Rental fee',
+    'd.size': 'Size', 'd.color': 'Color', 'd.price': 'Rental fee', 'd.status': 'Status',
+    'd.note.rented': 'This dress is currently rented out. Ask us when it will be available again.',
+    'd.note.servicing': 'This dress is being cleaned and checked. Ask us when it will be available.',
     'd.tbd': 'To be confirmed',
     'd.won': '₩{n}',
     'd.note': 'See the rental guide for rental periods and steps.',

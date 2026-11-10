@@ -13,6 +13,10 @@
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function colorName(key) { var c = (window.LS_COLORS || {})[key]; return c ? c[lang] : (key || t('d.tbd')); }
+  // 상태가 비어 있으면 '대여 가능'으로 봐요
+  function statusKey(d) { return (window.LS_STATUS || {})[d.status] ? d.status : 'available'; }
+  function statusName(key) { var s = (window.LS_STATUS || {})[key]; return s ? s[lang] : key; }
+  function statusTag(d) { var k = statusKey(d); return '<span class="status s-' + k + '">' + esc(statusName(k)) + '</span>'; }
   function sizeText(d) { return d.size || t('d.tbd'); }
   function priceText(d) {
     if (typeof d.price !== 'number') return t('d.tbd');
@@ -29,12 +33,13 @@
       '<div class="mat mat-sm"><div class="frame ph">' + photo(d.photos[0], d.name) + '</div></div>' +
       '<div class="card-meta"><span class="card-no">No. ' + esc(d.number) + '</span>' +
       '<span class="card-name">' + esc(d.name) + '</span>' +
-      '<span class="card-sub">' + esc([d.size, d.color && colorName(d.color)].filter(Boolean).join(' · ')) + '</span></div></a>';
+      '<span class="card-sub">' + esc([d.size, d.color && colorName(d.color)].filter(Boolean).join(' · ')) + '</span>' +
+      statusTag(d) + '</div></a>';
   }
 
   window.LS = {
     t: t, esc: esc, site: SITE, getLang: function () { return lang; },
-    colorName: colorName, sizeText: sizeText, priceText: priceText, photo: photo, card: card,
+    colorName: colorName, statusKey: statusKey, statusName: statusName, statusTag: statusTag, sizeText: sizeText, priceText: priceText, photo: photo, card: card,
     dresses: window.LS_DRESSES || []
   };
 

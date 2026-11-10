@@ -37,9 +37,11 @@
       '<h1 class="d-name">' + LS.esc(d.name) + '</h1>' +
       '<dl class="specs">' +
       '<div><dt>' + LS.t('d.size') + '</dt><dd>' + LS.esc(LS.sizeText(d)) + '</dd></div>' +
+      '<div><dt>' + LS.t('d.status') + '</dt><dd>' + LS.statusTag(d) + '</dd></div>' +
       '<div><dt>' + LS.t('d.color') + '</dt><dd>' + LS.esc(LS.colorName(d.color)) + '</dd></div>' +
       '<div><dt>' + LS.t('d.price') + '</dt><dd>' + LS.esc(LS.priceText(d)) + '</dd></div>' +
       '</dl>' +
+      (LS.statusKey(d) !== 'available' ? '<p class="d-status-note">' + LS.t('d.note.' + LS.statusKey(d)) + '</p>' : '') +
       '<div class="actions">' +
       '<a class="btn btn-primary" href="' + LS.site.insta + '" target="_blank" rel="noopener">' + LS.t('btn.insta') + '</a>' +
       '<a class="btn btn-ghost" href="tel:' + LS.site.tel.replace(/-/g, '') + '">' + LS.t('btn.tel') + '</a>' +
