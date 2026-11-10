@@ -10,7 +10,7 @@ window.LS_TEXT = {
     'why.2.title': '깨끗한 정비',
     'why.2.body': '대여가 끝날 때마다 세탁과 점검을 거쳐 깨끗한 상태로 보내 드립니다.',
     'why.3.title': '간편한 문의',
-    'why.3.body': '인스타그램 DM이나 전화·문자로 편하게 물어보세요.',
+    'why.3.body': '인스타그램 DM이나 전화나 문자로 편하게 물어보세요.',
 
     'list.sub': '마음에 드는 드레스를 골라 문의해 주세요.',
     'list.count': '{n}벌',
@@ -30,6 +30,7 @@ window.LS_TEXT = {
     'btn.insta': '인스타그램으로 문의',
     'btn.tel': '전화로 문의',
 
+    'contact.body': '마음에 드는 드레스가 있으면 편하게 문의해 주세요.',
     'guide.sub': '대여 절차와 기간, 유의사항을 안내해 드려요.',
     'footer.inquiry': '문의는 인스타그램 DM 또는 전화/문자로 받습니다.',
     'lang.toggle': 'English'
@@ -63,6 +64,7 @@ window.LS_TEXT = {
     'btn.insta': 'Ask on Instagram',
     'btn.tel': 'Call us',
 
+    'contact.body': 'Found a dress you like? Send us a message.',
     'guide.sub': 'How renting works, rental periods and things to know.',
     'footer.inquiry': 'Inquiries by Instagram DM or phone / text.',
     'lang.toggle': '한국어'

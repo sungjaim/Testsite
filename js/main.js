@@ -29,7 +29,7 @@
       '<div class="mat mat-sm"><div class="frame ph">' + photo(d.photos[0], d.name) + '</div></div>' +
       '<div class="card-meta"><span class="card-no">No. ' + esc(d.number) + '</span>' +
       '<span class="card-name">' + esc(d.name) + '</span>' +
-      '<span class="card-sub">' + esc(sizeText(d)) + ' · ' + esc(colorName(d.color)) + '</span></div></a>';
+      '<span class="card-sub">' + esc([d.size, d.color && colorName(d.color)].filter(Boolean).join(' · ')) + '</span></div></a>';
   }
 
   window.LS = {

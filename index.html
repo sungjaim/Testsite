@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>LS | Figure Skating Dress Rental</title>
   <meta name="description" content="피겨 스케이팅 드레스 대여 LS">
+  <link rel="icon" href="images/logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,18 +25,20 @@
       </div>
       <!-- 슬라이드쇼: data/dresses.js 에서 featured: true 인 드레스가 자동으로 나옵니다. -->
       <figure class="slides fade" id="slides">
-        <div class="mat"><div class="slides-frame ph"></div></div>
-        <figcaption class="slide-caption">
-          <span class="slide-no"></span>
-          <span class="slide-name"></span>
-        </figcaption>
+        <a class="slide-link" href="dresses.html">
+          <div class="mat"><div class="slides-frame ph"></div></div>
+          <div class="slide-caption">
+            <span class="slide-no"></span>
+            <span class="slide-name"></span>
+          </div>
+        </a>
         <div class="slide-dots"></div>
       </figure>
     </section>
 
     <!-- 서비스 장점: 문구는 js/i18n.js 의 why.* 에서 고칩니다. -->
     <section class="why" aria-labelledby="why-title">
-      <h2 id="why-title" class="eyebrow fade">Why LS</h2>
+      <h2 id="why-title" class="section-title fade">Why LS</h2>
       <ul class="why-list">
         <li class="fade">
           <p class="why-label">Collection</p>
@@ -50,9 +53,19 @@
         <li class="fade">
           <p class="why-label">Contact</p>
           <h3 data-i18n="why.3.title">간편한 문의</h3>
-          <p data-i18n="why.3.body">인스타그램 DM이나 전화·문자로 편하게 물어보세요.</p>
+          <p data-i18n="why.3.body">인스타그램 DM이나 전화나 문자로 편하게 물어보세요.</p>
         </li>
       </ul>
+    </section>
+
+    <!-- 마무리: 문의 -->
+    <section class="contact fade">
+      <h2 class="section-title">Contact</h2>
+      <p data-i18n="contact.body">마음에 드는 드레스가 있으면 편하게 문의해 주세요.</p>
+      <div class="actions">
+        <a class="btn btn-primary js-insta" href="#" data-i18n="btn.insta">인스타그램으로 문의</a>
+        <a class="btn btn-ghost js-tel" href="#" data-i18n="btn.tel">전화로 문의</a>
+      </div>
     </section>
   </main>
 

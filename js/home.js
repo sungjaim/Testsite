@@ -10,6 +10,7 @@
   var name = box.querySelector('.slide-name');
   var caption = box.querySelector('.slide-caption');
   var dots = box.querySelector('.slide-dots');
+  var link = box.querySelector('.slide-link');
 
   items.forEach(function (d, i) {
     var img = document.createElement('img');
@@ -41,6 +42,7 @@
     setTimeout(function () {
       no.textContent = 'No. ' + items[i].number;
       name.textContent = items[i].name;
+      link.href = 'dress.html#' + items[i].id;
       caption.classList.add('on');
     }, still ? 0 : 300);
   }
