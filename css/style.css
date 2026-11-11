@@ -233,6 +233,10 @@ img { display: block; max-width: 100%; }
 .steps li::before { content: counter(step); font-variant-numeric: lining-nums; grid-row: span 2; font-family: var(--font-display); font-size: 20px; line-height: 1.4; color: var(--muted); }
 .steps strong { font-weight: 600; }
 .steps p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+.states { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.states li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; align-items: start; }
+.states .status { justify-self: start; margin-top: 2px; }
+.states p { margin: 0; color: var(--muted); font-size: 15px; }
 .notes { margin: 0; padding-left: 1.1em; color: var(--muted); }
 .tbd { display: inline-block; padding: 1px 10px; border: 1px dashed var(--line); border-radius: 980px; font-size: 13px; color: var(--muted); }
 .g-sec .actions { margin-top: 6px; max-width: 440px; }

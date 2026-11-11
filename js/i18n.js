@@ -19,8 +19,8 @@ window.LS_TEXT = {
     'list.reset': '필터 초기화',
 
     'd.size': '사이즈', 'd.color': '색상', 'd.price': '대여료', 'd.status': '상태',
-    'd.note.rented': '지금은 다른 분이 대여 중이에요. 다음 대여 가능 시기는 문의해 주세요.',
-    'd.note.servicing': '지금은 세탁·점검 등 준비 중이에요. 대여 가능 시기는 문의해 주세요.',
+    'd.note.rented': '이미 대여 일정이 잡혀 있어요. 다음 대여 가능 시기는 문의해 주세요.',
+    'd.note.servicing': '반납된 뒤 정리하고 있어요. 대여 가능 시기는 문의해 주세요.',
     'd.tbd': '확인 필요',
     'd.won': '{n}원',
     'd.note': '대여 기간과 절차는 대여 안내에서 확인할 수 있어요.',
@@ -34,7 +34,7 @@ window.LS_TEXT = {
     'btn.tel': '전화로 문의',
 
     'contact.body': '마음에 드는 드레스가 있으면 편하게 문의해 주세요.',
-    'guide.sub': '대여 절차와 기간, 유의사항을 안내해 드려요.',
+    'guide.sub': '대여 절차, 입어보기, 유의사항을 안내해 드려요.',
     'footer.inquiry': '문의는 인스타그램 DM 또는 전화/문자로 받습니다.',
     'lang.toggle': 'English'
   },
@@ -56,8 +56,8 @@ window.LS_TEXT = {
     'list.reset': 'Clear filters',
 
     'd.size': 'Size', 'd.color': 'Color', 'd.price': 'Rental fee', 'd.status': 'Status',
-    'd.note.rented': 'This dress is currently rented out. Ask us when it will be available again.',
-    'd.note.servicing': 'This dress is being cleaned and checked. Ask us when it will be available.',
+    'd.note.rented': 'A rental is already scheduled for this dress. Ask us when it will be available next.',
+    'd.note.servicing': 'This dress was returned and is being cleaned and checked. Ask us when it will be available.',
     'd.tbd': 'To be confirmed',
     'd.won': '₩{n}',
     'd.note': 'See the rental guide for rental periods and steps.',
@@ -71,7 +71,7 @@ window.LS_TEXT = {
     'btn.tel': 'Call us',
 
     'contact.body': 'Found a dress you like? Send us a message.',
-    'guide.sub': 'How renting works, rental periods and things to know.',
+    'guide.sub': 'How renting works, trying on, and things to know.',
     'footer.inquiry': 'Inquiries by Instagram DM or phone / text.',
     'lang.toggle': '한국어'
   }
