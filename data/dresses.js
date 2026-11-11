@@ -16,8 +16,7 @@
     status   드레스 전체 상태. 아래 둘 중 하나만 적어요.
                'available'  대여 가능
                'servicing'  준비 중 (세탁·점검·수선 등으로 잠시 대여 불가)
-    booked   예약이 잡힌 대회 이름 목록. 아래 LS_EVENTS 의 name 과 똑같이 적어요.
-             예: booked: ['예시 대회 A']  → 그 대회에는 "예약 마감"으로 보여요
+
     price    대여료(숫자, 원 단위). 예: 80000. 아직 모르면 null
     photos   사진 경로 목록. 비어 있으면 연회색 자리표시가 나와요
     featured true 이면 홈 슬라이드쇼에 나와요 (4벌 정도 추천)
@@ -42,12 +41,18 @@ window.LS_STATUS = {
   servicing: { ko: '준비 중',   en: 'Being prepared' }
 };
 
-// 대회 목록. 날짜(YYYY-MM-DD)가 지나면 사이트에서 자동으로 숨겨져요.
-// 구글 시트를 연결해 두면 시트의 대회 칸이 대신 쓰여요. (sheet/README.md 참고)
+// 대회 목록 (드레스 목록에서 "다가오는 대회"로 날짜를 바로 고를 때 쓰여요). 날짜가 지나면 자동으로 숨겨져요.
+// 구글 시트를 연결해 두면 시트의 "대회" 탭이 대신 쓰여요. (sheet/README.md 참고)
 window.LS_EVENTS = [
   { name: '예시 대회 A', date: '2026-12-20' },
   { name: '예시 대회 B', date: '2027-01-17' },
   { name: '예시 대회 C', date: '2027-02-21' }
+];
+
+// 예약 목록: 드레스 번호와 공연 날짜. 공연일 앞 3일, 뒤 5일은 다른 예약을 받을 수 없어요. (규칙은 js/config.js)
+// 구글 시트를 연결해 두면 시트의 "예약" 탭이 대신 쓰여요.
+window.LS_BOOKINGS = [
+  { dress: '01', date: '2026-12-20' }   // 예시
 ];
 
 window.LS_DRESSES = [
@@ -58,7 +63,6 @@ window.LS_DRESSES = [
     size: null,
     color: 'black',
     status: 'available',
-    booked: ['예시 대회 A'],
     price: null,
     photos: ['images/dresses/ls-01/1.jpg'],
     featured: true

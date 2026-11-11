@@ -40,24 +40,11 @@
     return '';
   }
 
-  // 머리글 끝에 날짜가 있으면 대회 칸이에요. 예: "회장배 2026.12.20", "꿈나무대회 2027-01-15"
-  var DATE_TAIL = /\s*\(?(\d{4})\s*[.\-\/년]\s*(\d{1,2})\s*[.\-\/월]\s*(\d{1,2})\s*일?\.?\)?\s*$/;
-  function eventFromHeader(h) {
-    var m = String(h || '').trim().match(DATE_TAIL);
-    if (!m) return null;
-    var name = String(h).trim().slice(0, m.index).trim();
-    if (!name) return null;
-    var p2 = function (x) { return (x.length < 2 ? '0' : '') + x; };
-    return { name: name, date: m[1] + '-' + p2(m[2]) + '-' + p2(m[3]) };
-  }
-
   /* rows(parseCSV 결과) → 드레스 배열.
      상태 칸이 비었거나 모르는 글자면 '준비 중'으로 보여요 (대여 가능으로 잘못 보이는 것보다 안전해요). */
   function toDresses(rows, statusMap, colorMap) {
     if (!rows.length) return [];
     var cols = rows[0].map(function (h) { return HEAD[norm(h)] || null; });
-    var events = [];                                 // { name, date, col }
-    rows[0].forEach(function (h, i) { if (!cols[i]) { var e = eventFromHeader(h); if (e) { e.col = i; events.push(e); } } });
     var out = [];
     rows.slice(1).forEach(function (r) {
       var o = {};
@@ -81,14 +68,48 @@
         status: find(statusMap, o.status) || 'servicing',
         price: isNaN(price) ? null : price,
         photos: photos,
-        featured: truthy(o.featured),
-        booked: events.filter(function (e) { return truthy(r[e.col]); }).map(function (e) { return e.name; })
+        featured: truthy(o.featured)
       });
     });
-    out.events = events.map(function (e) { return { name: e.name, date: e.date }; });
     return out;
   }
 
-  root.LS_SHEET = { parseCSV: parseCSV, toDresses: toDresses, eventFromHeader: eventFromHeader };
+  // 날짜 글자 → 'YYYY-MM-DD'. "2026-12-20", "2026. 12. 20", "2026/12/20", "2026년 12월 20일" 모두 돼요
+  function normDate(v) {
+    var m = String(v || '').match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+    if (!m) return '';
+    return m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
+  }
+  function table(rows, head) {                    // 머리글 이름으로 칸을 찾아 { key: 값 } 목록으로
+    if (!rows.length) return [];
+    var cols = rows[0].map(function (h) { return head[norm(h)] || null; });
+    return rows.slice(1).map(function (r) {
+      var o = {}; cols.forEach(function (k, i) { if (k) o[k] = String(r[i] === undefined ? '' : r[i]).trim(); }); return o;
+    });
+  }
+  function dressNo(v) { var n = String(v || '').replace(/\D/g, ''); return n ? (n.length < 2 ? '0' + n : n) : ''; }
+
+  // "예약" 탭: 드레스 번호 | 공연 날짜 | 메모
+  var BOOK_HEAD = { '드레스번호': 'dress', '번호': 'dress', '드레스': 'dress', 'dress': 'dress', 'no': 'dress',
+                    '공연날짜': 'date', '날짜': 'date', '공연일': 'date', 'date': 'date' };
+  function need(rows, head, keys) {                // 필요한 머리글이 없으면 오류 (엉뚱한 표를 "예약 없음"으로 오해하지 않게)
+    var have = (rows[0] || []).map(function (h) { return head[norm(h)]; });
+    keys.forEach(function (k) { if (have.indexOf(k) === -1) throw new Error('missing column: ' + k); });
+  }
+  function toBookings(rows) {
+    need(rows, BOOK_HEAD, ['dress', 'date']);
+    return table(rows, BOOK_HEAD).map(function (o) { return { dress: dressNo(o.dress), date: normDate(o.date) }; })
+      .filter(function (b) { return b.dress && b.date; });
+  }
+  // "대회" 탭: 대회 이름 | 날짜
+  var EVENT_HEAD = { '대회이름': 'name', '대회': 'name', '이름': 'name', 'name': 'name', 'event': 'name',
+                     '날짜': 'date', '대회날짜': 'date', 'date': 'date' };
+  function toEvents(rows) {
+    need(rows, EVENT_HEAD, ['name', 'date']);
+    return table(rows, EVENT_HEAD).map(function (o) { return { name: o.name || '', date: normDate(o.date) }; })
+      .filter(function (e) { return e.name && e.date; });
+  }
+
+  root.LS_SHEET = { parseCSV: parseCSV, toDresses: toDresses, toBookings: toBookings, toEvents: toEvents, normDate: normDate };
   if (typeof module !== 'undefined') module.exports = root.LS_SHEET;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,7 +1,7 @@
-번호,이름,사이즈,색상,대여료,상태,사진 수,홈 슬라이드,예시 대회 A 2026.12.20,예시 대회 B 2027.01.17,예시 대회 C 2027.02.21
-01,Ink & Moonlight,,블랙,,대여 가능,1,TRUE,TRUE,FALSE,FALSE
-02,Sugar Plum,,핑크,,대여 가능,1,TRUE,FALSE,FALSE,FALSE
-03,Firebird,,오렌지,,대여 가능,1,FALSE,FALSE,FALSE,FALSE
-04,Coral Blossom,,코랄,,대여 가능,1,TRUE,FALSE,FALSE,FALSE
-05,Honey Bloom,,옐로,,대여 가능,1,FALSE,FALSE,FALSE,FALSE
-06,First Frost,,블루,,대여 가능,1,TRUE,FALSE,FALSE,FALSE
+번호,이름,사이즈,색상,대여료,상태,사진 수,홈 슬라이드
+01,Ink & Moonlight,,블랙,,대여 가능,1,TRUE
+02,Sugar Plum,,핑크,,대여 가능,1,TRUE
+03,Firebird,,오렌지,,대여 가능,1,FALSE
+04,Coral Blossom,,코랄,,대여 가능,1,TRUE
+05,Honey Bloom,,옐로,,대여 가능,1,FALSE
+06,First Frost,,블루,,대여 가능,1,TRUE

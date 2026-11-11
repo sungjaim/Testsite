@@ -198,7 +198,28 @@ img { display: block; max-width: 100%; }
 .s-servicing { background: var(--placeholder); border-color: var(--line); color: var(--muted); }
 .card-meta .status { justify-self: center; margin-top: 8px; }
 .specs .status { font-size: 13px; padding: 3px 13px; }
-.events { margin: 0 0 24px; text-align: left; }
+.events, .avail { margin: 0 0 24px; text-align: left; }
+/* 공연 날짜로 찾기 */
+.datebar { max-width: 560px; margin: 0 auto 28px; display: grid; gap: 10px; text-align: center; justify-items: center; }
+.datebar-label { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 20px; }
+.date-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; }
+.date-input {
+  min-height: 44px; padding: 0 16px; border: 1px solid var(--text); border-radius: 980px; background: var(--bg); color: var(--text);
+  font: inherit; font-size: 16px; min-width: 190px; font-variant-numeric: tabular-nums;
+}
+.date-input:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.ev-pick { display: grid; gap: 6px; justify-items: center; }
+.ev-pick[hidden] { display: none; }
+.ev-pick-label { font-size: 12px; letter-spacing: .08em; color: var(--muted); }
+.ev-pick .chips { justify-content: center; }
+.date-result { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+.date-result.on { color: var(--text); font-weight: 500; }
+.avail .date-row { justify-content: flex-start; margin: 4px 0 10px; }
+.avail-result { margin: 0 0 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 15px; }
+.avail-result.muted { color: var(--muted); font-size: 14px; }
+.avail-sub { margin: 0 0 6px; font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+.rng-list li { grid-template-columns: minmax(0, 1fr) auto; }
+.rng-list .ev-name { font-variant-numeric: tabular-nums; }
 .events-title { margin: 0 0 6px; font-family: var(--font-display); font-weight: var(--display-weight); font-size: 20px; font-variant-numeric: lining-nums; }
 .ev-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .ev-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
