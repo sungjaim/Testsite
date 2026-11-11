@@ -37,9 +37,16 @@ img { display: block; max-width: 100%; }
 .logo { display: flex; align-items: center; height: 100%; }
 .logo img { height: 38px; width: auto; }
 .logo .logo-fallback { font-weight: 600; letter-spacing: .04em; color: var(--muted); }
-/* 오른쪽 위 메뉴 버튼 (두 줄 → X) */
+/* 오른쪽 위: 언어 전환 + 메뉴 버튼 */
+.head-right { display: flex; align-items: center; margin-right: -12px; }
+.lang {
+  min-width: 44px; height: 44px; padding: 0 6px; border: 0; background: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: .08em; color: var(--muted);
+}
+.lang:hover { color: var(--text); }
+.lang:focus-visible { outline: 1px solid var(--text); outline-offset: -4px; }
 .menu-btn {
-  width: 44px; height: 44px; margin-right: -12px; padding: 0; border: 0; background: none; cursor: pointer;
+  width: 44px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer;
   display: grid; place-content: center; gap: 6px;
 }
 .menu-btn span { display: block; width: 18px; height: 1.5px; background: var(--text); transition: transform .25s ease; }
@@ -55,15 +62,17 @@ img { display: block; max-width: 100%; }
 }
 .menu.show { opacity: 1; transform: none; }
 .site-header.open { background: var(--bg); }
-.menu-inner { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 20px; display: grid; }
-.menu a, .menu .lang {
-  display: block; padding: 14px 0; font-size: 22px; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.02em;
-  color: var(--text); text-align: left; border-bottom: 1px solid var(--line);
+.menu-inner { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 24px; display: grid; }
+.menu > .menu-inner > a {
+  display: block; padding: 16px 0; font-size: 26px; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.02em;
+  color: var(--text); border-bottom: 1px solid var(--line);
 }
-.menu a[aria-current] { color: var(--muted); }
-.menu .lang { font-size: 15px; font-weight: 400; color: var(--muted); border-bottom: 0; padding-top: 18px; }
-.menu a:hover, .menu .lang:hover { opacity: .6; }
-.lang { background: none; border: 0; cursor: pointer; font-family: inherit; }
+.menu > .menu-inner > a[aria-current] { color: var(--muted); }
+.menu > .menu-inner > a:hover { opacity: .6; }
+.menu-contact { display: grid; gap: 2px; padding-top: 22px; }
+.menu-contact p { margin: 0 0 6px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.menu-contact a { padding: 6px 0; font-size: 15px; color: var(--text); }
+.menu-contact a:hover { text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .menu, .menu-btn span { transition: none; } }
 
 /* hero */

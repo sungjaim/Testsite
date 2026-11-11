@@ -81,13 +81,18 @@
     '<header class="site-header"><div class="inner">' +
     '<a class="logo" href="index.html" aria-label="LS">' +
     '<img src="images/logo.png" alt="LS" onerror="this.outerHTML=\'<span class=&quot;logo-fallback&quot;>LS</span>\'"></a>' +
+    '<div class="head-right">' +
+    '<button class="lang" type="button" aria-label="Language" data-i18n="lang.toggle"></button>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">' +
-    '<span></span><span></span></button>' +
+    '<span></span><span></span></button></div>' +
     '</div>' +
     '<nav class="menu" id="site-menu" hidden><div class="menu-inner">' +
+    '<a href="index.html"' + cur('index.html') + ' data-i18n="nav.home"></a>' +
     '<a href="dresses.html"' + cur('dresses.html') + ' data-i18n="nav.dresses"></a>' +
     '<a href="guide.html"' + cur('guide.html') + ' data-i18n="nav.guide"></a>' +
-    '<button class="lang" type="button" data-i18n="lang.toggle"></button>' +
+    '<div class="menu-contact"><p data-i18n="menu.contact"></p>' +
+    '<a class="js-insta" href="#">Instagram ' + SITE.instaName + '</a>' +
+    '<a class="js-tel" href="#">Tel ' + SITE.tel + '</a></div>' +
     '</div></nav></header>';
 
   document.getElementById('site-footer').innerHTML =
