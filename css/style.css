@@ -248,10 +248,12 @@ img { display: block; max-width: 100%; }
 .states p { margin: 0; color: var(--muted); font-size: 15px; }
 .notes { margin: 0; padding-left: 1.1em; color: var(--muted); }
 .tbd { display: inline-block; padding: 1px 10px; border: 1px dashed var(--line); border-radius: 980px; font-size: 13px; color: var(--muted); }
-.g-sec .actions { margin-top: 6px; max-width: 440px; }
+.g-sec .actions { margin-top: 14px; max-width: 440px; }
 
 /* 매장 위치 */
-.place { margin: 14px 0 18px; display: grid; gap: 6px; }
+.more-link { margin: 14px 0 0 !important; font-size: 14px; }
+.text-link { text-decoration: underline; text-underline-offset: 3px; color: var(--text); }
+.place { margin: 0 0 8px; display: grid; gap: 6px; }
 .place p { margin: 0; }
 .place-name { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 20px; line-height: 1.3; }
 .place-addr { color: var(--muted); font-size: 15px; }

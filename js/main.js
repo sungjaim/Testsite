@@ -90,6 +90,7 @@
     '<a href="index.html"' + cur('index.html') + ' data-i18n="nav.home"></a>' +
     '<a href="dresses.html"' + cur('dresses.html') + ' data-i18n="nav.dresses"></a>' +
     '<a href="guide.html"' + cur('guide.html') + ' data-i18n="nav.guide"></a>' +
+    '<a href="directions.html"' + cur('directions.html') + ' data-i18n="nav.directions"></a>' +
     '<div class="menu-contact"><p data-i18n="menu.contact"></p>' +
     '<a class="js-insta" href="#">Instagram ' + SITE.instaName + '</a>' +
     '<a class="js-tel" href="#">Tel ' + SITE.tel + '</a></div>' +
@@ -100,7 +101,7 @@
     '<div><div class="brand">LS</div>' +
     '<div data-i18n="footer.inquiry"></div>' +
     '<div class="foot-addr" data-i18n="footer.addr"></div>' +
-    '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a></nav></div>' +
+    '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a><a href="directions.html" data-i18n="nav.directions"></a></nav></div>' +
     '<div>Instagram <a href="' + SITE.insta + '" target="_blank" rel="noopener">' + SITE.instaName + '</a><br>' +
     'Tel <a href="tel:' + SITE.tel.replace(/-/g, '') + '">' + SITE.tel + '</a></div>' +
     '</div></footer>';
