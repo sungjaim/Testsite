@@ -60,7 +60,8 @@ LS.whenReady(function () {
 
     var msg = !date ? LS.t('date.hint') : unknown ? LS.t('date.unknown') : LS.t('date.result', { d: LS.fmtDate(date), n: list.length });
     var soon = date && LS.toDate(date) - LS.today() < LS.rule.before * 86400000;
-    result.textContent = msg + (soon ? ' ' + LS.t('date.soon', { b: LS.rule.before }) : '');
+    var text = msg + (soon ? ' ' + LS.t('date.soon', { b: LS.rule.before }) : '');
+    if (result.textContent !== text) { result.textContent = text; result.style.animation = 'none'; void result.offsetWidth; result.style.animation = ''; }
     result.classList.toggle('on', !!date);
 
     // 접혀 있어도 어떤 필터가 걸려 있는지 보이게
