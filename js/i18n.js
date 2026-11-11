@@ -2,7 +2,7 @@
    대여 안내 페이지 본문은 guide.html 안에 한국어/영어로 따로 적혀 있어요. */
 window.LS_TEXT = {
   ko: {
-    'nav.home': '홈', 'nav.dresses': '드레스', 'nav.guide': '대여 안내', 'menu.contact': '문의',
+    'nav.home': '홈', 'nav.dresses': '드레스', 'nav.guide': '대여 안내', 'nav.directions': '오시는 길', 'menu.contact': '문의',
     'hero.lead': '대회와 공연을 위한 피겨 드레스를 대여합니다.',
     'hero.cta': '드레스 보러가기',
     'why.1.title': '100벌 이상의 드레스',
@@ -35,11 +35,13 @@ window.LS_TEXT = {
 
     'contact.body': '마음에 드는 드레스가 있으면 편하게 문의해 주세요.',
     'guide.sub': '대여 절차, 입어보기, 유의사항을 안내해 드려요.',
+    'directions.sub': '제니스아이스링크 지하 2층에 있어요.',
     'footer.inquiry': '문의는 인스타그램 DM 또는 전화/문자로 받습니다.',
+    'footer.addr': '서울특별시 구로구 안양천로539길 11, 제니스아이스링크 지하 2층',
     'lang.toggle': 'EN'
   },
   en: {
-    'nav.home': 'Home', 'nav.dresses': 'Dresses', 'nav.guide': 'Rental Guide', 'menu.contact': 'Contact',
+    'nav.home': 'Home', 'nav.dresses': 'Dresses', 'nav.guide': 'Rental Guide', 'nav.directions': 'Directions', 'menu.contact': 'Contact',
     'hero.lead': 'Competition and performance dresses, available to rent.',
     'hero.cta': 'Browse dresses',
     'why.1.title': '100+ dresses',
@@ -72,7 +74,9 @@ window.LS_TEXT = {
 
     'contact.body': 'Found a dress you like? Send us a message.',
     'guide.sub': 'How renting works, trying on, and things to know.',
+    'directions.sub': 'We are on B2 of Zenith Ice Foret.',
     'footer.inquiry': 'Inquiries by Instagram DM or phone / text.',
+    'footer.addr': 'B2, Zenith Ice Foret, 11 Anyangcheon-ro 539-gil, Guro-gu, Seoul',
     'lang.toggle': 'KO'
   }
 };
