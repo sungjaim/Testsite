@@ -14,6 +14,8 @@
   --gutter: max(20px, env(safe-area-inset-left, 0px));
 }
 * { box-sizing: border-box; }
+/* hidden 속성이 붙은 요소는 어떤 스타일이 있어도 숨겨요 (예: 날짜를 안 골랐을 때 '날짜 지우기' 버튼) */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
