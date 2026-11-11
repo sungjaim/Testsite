@@ -27,6 +27,21 @@
       ? '<img src="' + esc(src) + '" alt="' + esc(alt || '') + '" loading="lazy" data-ph="' + esc(t('photo.soon')) + '" onerror="var s=document.createElement(\'span\');s.className=\'ph-label\';s.textContent=this.getAttribute(\'data-ph\');this.replaceWith(s)">'
       : '<span class="ph-label">' + t('photo.soon') + '</span>';
   }
+  // ── 대회 ──
+  function toDate(s) { var m = String(s || '').match(/(\d{4})\D(\d{1,2})\D(\d{1,2})/); return m ? new Date(+m[1], m[2] - 1, +m[3]) : null; }
+  // 오늘 이후(오늘 포함)의 대회만, 날짜순으로
+  function upcomingEvents() {
+    var t = new Date(); t.setHours(0, 0, 0, 0);
+    return (window.LS.events || []).filter(function (e) { var d = toDate(e.date); return d && d >= t; })
+      .sort(function (a, b) { return toDate(a.date) - toDate(b.date); });
+  }
+  function isBooked(d, e) { return (d.booked || []).indexOf(e.name) !== -1; }
+  function eventDate(e, short) {
+    var d = toDate(e.date); if (!d) return '';
+    var mm = ('0' + (d.getMonth() + 1)).slice(-2), dd = ('0' + d.getDate()).slice(-2);
+    return short ? mm + '.' + dd : d.getFullYear() + '.' + mm + '.' + dd;
+  }
+
   // 목록·추천에 쓰는 드레스 카드
   function card(d) {
     return '<a class="card" href="dress.html#' + esc(d.id) + '">' +
@@ -40,7 +55,9 @@
   window.LS = {
     t: t, esc: esc, site: SITE, getLang: function () { return lang; },
     colorName: colorName, statusKey: statusKey, statusName: statusName, statusTag: statusTag, sizeText: sizeText, priceText: priceText, photo: photo, card: card,
-    dresses: window.LS_DRESSES || []
+    dresses: window.LS_DRESSES || [],
+    events: window.LS_EVENTS || [],
+    upcomingEvents: upcomingEvents, isBooked: isBooked, eventDate: eventDate
   };
 
   // ── 드레스 데이터 불러오기 ──
@@ -53,7 +70,7 @@
     document.documentElement.classList.remove('is-loading');
     waiting.splice(0).forEach(function (f) { f(); });
   }
-  var CACHE_KEY = 'ls-sheet-cache';
+  var CACHE_KEY = 'ls-sheet-cache-v2';
   function fromSheet(url) {
     var ctl = window.AbortController ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctl) ctl.abort(); }, window.LS_SHEET_TIMEOUT || 5000);
@@ -63,15 +80,19 @@
         clearTimeout(timer);
         var list = LS_SHEET.toDresses(LS_SHEET.parseCSV(text), window.LS_STATUS || {}, window.LS_COLORS || {});
         if (!list.length) throw new Error('empty sheet');
-        try { localStorage.setItem(CACHE_KEY, JSON.stringify(list)); } catch (e) {}
-        return list;
+        var data = { dresses: list, events: list.events || [] };
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch (e) {}
+        return data;
       });
   }
   if (window.LS_SHEET_URL && window.LS_SHEET) {
     document.documentElement.classList.add('is-loading');
-    fromSheet(window.LS_SHEET_URL).then(function (list) { window.LS.dresses = list; }, function () {
+    fromSheet(window.LS_SHEET_URL).then(function (data) { window.LS.dresses = data.dresses; window.LS.events = data.events; }, function () {
       // 시트를 못 읽으면: 마지막으로 읽은 시트 → data/dresses.js 순서로 대신 보여 줘요
-      try { var c = JSON.parse(localStorage.getItem(CACHE_KEY)); if (c && c.length) window.LS.dresses = c; } catch (e) {}
+      try {
+        var c = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (c && c.dresses && c.dresses.length) { window.LS.dresses = c.dresses; window.LS.events = c.events || []; }
+      } catch (e) {}
     }).then(done);
   } else done();
 

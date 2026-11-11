@@ -10,6 +10,19 @@ LS.whenReady(function () {
     return LS.dresses.filter(function (d) { return d.id === id; })[0];
   }
 
+  // 대회별 예약 현황
+  function events(d) {
+    var evs = LS.upcomingEvents();
+    var list = evs.map(function (e) {
+      var b = LS.isBooked(d, e);
+      return '<li><span class="ev-name">' + LS.esc(e.name) + '</span><span class="ev-date">' + LS.eventDate(e) + '</span>' +
+        '<span class="status ' + (b ? 's-booked' : 's-available') + '">' + LS.t(b ? 'ev.booked' : 'ev.open') + '</span></li>';
+    }).join('');
+    return '<div class="events"><h2 class="events-title">' + LS.t('ev.title') + '</h2>' +
+      (list ? '<ul class="ev-list">' + list + '</ul>' : '<p class="ev-none">' + LS.t('ev.none') + '</p>') +
+      '<p class="ev-other">' + LS.t('ev.other') + '</p></div>';
+  }
+
   function render() {
     var d = find();
     if (!d) {
@@ -41,6 +54,7 @@ LS.whenReady(function () {
       '<div><dt>' + LS.t('d.price') + '</dt><dd>' + LS.esc(LS.priceText(d)) + '</dd></div>' +
       '<div><dt>' + LS.t('d.status') + '</dt><dd>' + LS.statusTag(d) + '</dd></div>' +
       '</dl>' +
+      events(d) +
       (LS.statusKey(d) !== 'available' ? '<p class="d-status-note">' + LS.t('d.note.' + LS.statusKey(d)) + '</p>' : '') +
       '<div class="actions">' +
       '<a class="btn btn-primary" href="' + LS.site.insta + '" target="_blank" rel="noopener">' + LS.t('btn.insta') + '</a>' +

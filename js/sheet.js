@@ -40,11 +40,24 @@
     return '';
   }
 
+  // 머리글 끝에 날짜가 있으면 대회 칸이에요. 예: "회장배 2026.12.20", "꿈나무대회 2027-01-15"
+  var DATE_TAIL = /\s*\(?(\d{4})\s*[.\-\/년]\s*(\d{1,2})\s*[.\-\/월]\s*(\d{1,2})\s*일?\.?\)?\s*$/;
+  function eventFromHeader(h) {
+    var m = String(h || '').trim().match(DATE_TAIL);
+    if (!m) return null;
+    var name = String(h).trim().slice(0, m.index).trim();
+    if (!name) return null;
+    var p2 = function (x) { return (x.length < 2 ? '0' : '') + x; };
+    return { name: name, date: m[1] + '-' + p2(m[2]) + '-' + p2(m[3]) };
+  }
+
   /* rows(parseCSV 결과) → 드레스 배열.
      상태 칸이 비었거나 모르는 글자면 '준비 중'으로 보여요 (대여 가능으로 잘못 보이는 것보다 안전해요). */
   function toDresses(rows, statusMap, colorMap) {
     if (!rows.length) return [];
     var cols = rows[0].map(function (h) { return HEAD[norm(h)] || null; });
+    var events = [];                                 // { name, date, col }
+    rows[0].forEach(function (h, i) { if (!cols[i]) { var e = eventFromHeader(h); if (e) { e.col = i; events.push(e); } } });
     var out = [];
     rows.slice(1).forEach(function (r) {
       var o = {};
@@ -68,12 +81,14 @@
         status: find(statusMap, o.status) || 'servicing',
         price: isNaN(price) ? null : price,
         photos: photos,
-        featured: truthy(o.featured)
+        featured: truthy(o.featured),
+        booked: events.filter(function (e) { return truthy(r[e.col]); }).map(function (e) { return e.name; })
       });
     });
+    out.events = events.map(function (e) { return { name: e.name, date: e.date }; });
     return out;
   }
 
-  root.LS_SHEET = { parseCSV: parseCSV, toDresses: toDresses };
+  root.LS_SHEET = { parseCSV: parseCSV, toDresses: toDresses, eventFromHeader: eventFromHeader };
   if (typeof module !== 'undefined') module.exports = root.LS_SHEET;
 })(typeof window !== 'undefined' ? window : globalThis);
