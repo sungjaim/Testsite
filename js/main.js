@@ -75,6 +75,14 @@
   }
   function setDate(v) { try { if (v) sessionStorage.setItem('ls-date', v); else sessionStorage.removeItem('ls-date'); } catch (e) {} }
 
+  /* 카드의 상태 표시: 날짜를 고르기 전에는 "대여 가능"을 보여 주지 않아요 (언제 가능한지 알 수 없어서).
+     "준비 중"은 지금 대여를 쉬는 중이라 항상 보여 주고, 날짜를 골랐을 때만 "예약 가능"을 보여 줘요. */
+  function cardBadge(d) {
+    if (statusKey(d) !== 'available') return statusTag(d);
+    var date = getDate();
+    return date && availableOn(d, date) === true ? '<span class="status s-available">' + esc(t('av.yes')) + '</span>' : '';
+  }
+
   // 목록·추천에 쓰는 드레스 카드
   function card(d) {
     return '<a class="card" href="dress.html#' + esc(d.id) + '">' +
@@ -82,7 +90,7 @@
       '<div class="card-meta"><span class="card-no">No. ' + esc(d.number) + '</span>' +
       '<span class="card-name">' + esc(d.name) + '</span>' +
       '<span class="card-sub">' + esc([d.size, d.color && colorName(d.color)].filter(Boolean).join(' · ')) + '</span>' +
-      statusTag(d) + '</div></a>';
+      cardBadge(d) + '</div></a>';
   }
 
   var useSheet = !!(window.LS_SHEET_URL && window.LS_SHEET);

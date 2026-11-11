@@ -64,7 +64,7 @@ img { display: block; max-width: 100%; }
 .site-header.open { background: var(--bg); }
 .menu-inner { max-width: var(--max); margin: 0 auto; padding: 8px var(--gutter) 24px; display: grid; }
 .menu > .menu-inner > a {
-  display: block; padding: 16px 0; font-size: 26px; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.02em;
+  display: block; padding: 14px 0; font-size: 20px; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.02em;
   color: var(--text); border-bottom: 1px solid var(--line);
 }
 .menu > .menu-inner > a[aria-current] { color: var(--muted); }
@@ -359,6 +359,7 @@ button.btn:hover { background: var(--placeholder); }
 
 @media (min-width: 900px) {
   .faq-item > summary { font-size: 22px; min-height: 72px; }
+  .menu > .menu-inner > a { font-size: 22px; }
   .hero { grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; padding-top: 88px; padding-bottom: 112px; }
   .hero-text { text-align: left; }
   .hero h1 { font-size: 68px; }
