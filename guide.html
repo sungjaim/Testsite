@@ -24,7 +24,7 @@
     <!--
       대여 안내 본문입니다. 한국어(data-lang="ko")와 영어(data-lang="en")가 따로 있어요.
       <span class="tbd">확인 필요</span> 를 실제 내용으로 바꿔 주세요. (아직 정해지지 않은 내용: 대여 기간, 보증금 금액, 입금 시점, 보증금 환불 시점, 택배비,
-      반납이 늦을 때, 파손·분실, 일정 변경·취소, 매장 위치)
+      반납이 늦을 때, 파손·분실, 일정 변경·취소)
       항목을 늘리려면 <li>...</li> 한 줄을 복사하면 돼요.
     -->
     <div data-lang="ko">
@@ -51,7 +51,17 @@
         <div>
           <p>입어보실 수 있어요. 입어보려면 매장을 방문하셔야 해요.</p>
           <p>매장에 직원이 계속 있지 않아서, 방문하기 전에 <strong>꼭 전화로 시간을 예약</strong>해 주세요.</p>
-          <p>매장 위치 <span class="tbd">확인 필요</span></p>
+          <div class="place">
+            <p class="place-name">제니스아이스링크 지하 2층</p>
+            <p class="place-addr">서울특별시 구로구 안양천로539길 11 (08220)</p>
+            <div class="map ph" data-label="지도"><iframe title="지도" src="https://www.google.com/maps?q=%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC%20%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B5%AC%EB%A1%9C%EA%B5%AC%20%EC%95%88%EC%96%91%EC%B2%9C%EB%A1%9C539%EA%B8%B8%2011&output=embed&hl=ko" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div class="map-links">
+              <a class="btn btn-ghost btn-sm" href="https://map.naver.com/p/search/%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC" target="_blank" rel="noopener">네이버지도</a>
+              <a class="btn btn-ghost btn-sm" href="https://map.kakao.com/?q=%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC" target="_blank" rel="noopener">카카오맵</a>
+              <a class="btn btn-ghost btn-sm" href="https://www.google.com/maps/search/?api=1&query=%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC%20%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B5%AC%EB%A1%9C%EA%B5%AC%20%EC%95%88%EC%96%91%EC%B2%9C%EB%A1%9C539%EA%B8%B8%2011" target="_blank" rel="noopener">구글 지도</a>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="서울특별시 구로구 안양천로539길 11 제니스아이스링크 지하 2층" data-done="복사됨">주소 복사</button>
+            </div>
+          </div>
           <div class="actions"><a class="btn btn-primary js-tel" href="#">전화로 시간 예약</a></div>
         </div>
       </section>
@@ -113,7 +123,17 @@
         <div>
           <p>You can try dresses on. To do so, you need to visit our shop.</p>
           <p>There is not always someone at the shop, so please <strong>call to book a time</strong> before you come.</p>
-          <p>Shop location <span class="tbd">To be confirmed</span></p>
+          <div class="place">
+            <p class="place-name">B2, Zenith Ice Foret</p>
+            <p class="place-addr">11 Anyangcheon-ro 539-gil, Guro-gu, Seoul (08220)</p>
+            <div class="map ph" data-label="Map"><iframe title="Map" src="https://www.google.com/maps?q=%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC%20%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B5%AC%EB%A1%9C%EA%B5%AC%20%EC%95%88%EC%96%91%EC%B2%9C%EB%A1%9C539%EA%B8%B8%2011&output=embed&hl=en" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div class="map-links">
+              <a class="btn btn-ghost btn-sm" href="https://map.naver.com/p/search/%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC" target="_blank" rel="noopener">Naver Map</a>
+              <a class="btn btn-ghost btn-sm" href="https://map.kakao.com/?q=%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC" target="_blank" rel="noopener">Kakao Map</a>
+              <a class="btn btn-ghost btn-sm" href="https://www.google.com/maps/search/?api=1&query=%EC%A0%9C%EB%8B%88%EC%8A%A4%EC%95%84%EC%9D%B4%EC%8A%A4%EB%A7%81%ED%81%AC%20%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B5%AC%EB%A1%9C%EA%B5%AC%20%EC%95%88%EC%96%91%EC%B2%9C%EB%A1%9C539%EA%B8%B8%2011" target="_blank" rel="noopener">Google Maps</a>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="B2, Zenith Ice Foret, 11 Anyangcheon-ro 539-gil, Guro-gu, Seoul" data-done="Copied">Copy address</button>
+            </div>
+          </div>
           <div class="actions"><a class="btn btn-primary js-tel" href="#">Call to book a time</a></div>
         </div>
       </section>

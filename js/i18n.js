@@ -36,6 +36,7 @@ window.LS_TEXT = {
     'contact.body': '마음에 드는 드레스가 있으면 편하게 문의해 주세요.',
     'guide.sub': '대여 절차, 입어보기, 유의사항을 안내해 드려요.',
     'footer.inquiry': '문의는 인스타그램 DM 또는 전화/문자로 받습니다.',
+    'footer.addr': '서울특별시 구로구 안양천로539길 11, 제니스아이스링크 지하 2층',
     'lang.toggle': 'EN'
   },
   en: {
@@ -73,6 +74,7 @@ window.LS_TEXT = {
     'contact.body': 'Found a dress you like? Send us a message.',
     'guide.sub': 'How renting works, trying on, and things to know.',
     'footer.inquiry': 'Inquiries by Instagram DM or phone / text.',
+    'footer.addr': 'B2, Zenith Ice Foret, 11 Anyangcheon-ro 539-gil, Guro-gu, Seoul',
     'lang.toggle': 'KO'
   }
 };

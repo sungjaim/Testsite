@@ -99,6 +99,7 @@
     '<footer class="site-footer"><div class="inner">' +
     '<div><div class="brand">LS</div>' +
     '<div data-i18n="footer.inquiry"></div>' +
+    '<div class="foot-addr" data-i18n="footer.addr"></div>' +
     '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a></nav></div>' +
     '<div>Instagram <a href="' + SITE.insta + '" target="_blank" rel="noopener">' + SITE.instaName + '</a><br>' +
     'Tel <a href="tel:' + SITE.tel.replace(/-/g, '') + '">' + SITE.tel + '</a></div>' +
@@ -107,6 +108,18 @@
   // 문의 버튼(.js-insta, .js-tel)에 연락처 연결
   document.querySelectorAll('.js-insta').forEach(function (a) { a.href = SITE.insta; a.target = '_blank'; a.rel = 'noopener'; });
   document.querySelectorAll('.js-tel').forEach(function (a) { a.href = 'tel:' + SITE.tel.replace(/-/g, ''); });
+
+  // "주소 복사" 버튼
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-copy]'); if (!b) return;
+    var text = b.getAttribute('data-copy'), label = b.textContent;
+    function ok() { b.textContent = b.getAttribute('data-done'); setTimeout(function () { b.textContent = label; }, 1600); }
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (x) {} document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+  });
 
   function apply() {
     document.documentElement.lang = lang;
