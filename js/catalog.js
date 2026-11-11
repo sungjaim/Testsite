@@ -1,7 +1,7 @@
 /* 드레스 목록: 공연 날짜로 찾기 + 사이즈/색상/상태 필터.
    날짜를 고르지 않으면 모든 드레스가 보이고, 고르면 그 날짜 공연에 예약 가능한 드레스만 보여요. */
 LS.whenReady(function () {
-  var state = { size: '', color: '', status: '' };
+  var state = { size: '', color: '' };
   var grid = document.getElementById('grid');
   var count = document.getElementById('count');
   var empty = document.getElementById('empty');
@@ -48,13 +48,10 @@ LS.whenReady(function () {
 
     chips('f-size', 'size', uniq('size'), function (v) { return v; });
     chips('f-color', 'color', uniq('color'), LS.colorName);
-    var used = {}; LS.dresses.forEach(function (d) { used[LS.statusKey(d)] = 1; });
-    chips('f-status', 'status', Object.keys(window.LS_STATUS || {}).filter(function (k) { return used[k]; }), LS.statusName);
 
     var unknown = !!date && LS.bookings === null;      // 예약 현황을 못 읽었으면 날짜로 거르지 않아요
     var list = LS.dresses.filter(function (d) {
       return (!state.size || d.size === state.size) && (!state.color || d.color === state.color) &&
-        (!state.status || LS.statusKey(d) === state.status) &&
         (!date || unknown || LS.availableOn(d, date) === true);
     });
     grid.innerHTML = list.map(LS.card).join('');
@@ -67,12 +64,12 @@ LS.whenReady(function () {
     result.classList.toggle('on', !!date);
 
     // 접혀 있어도 어떤 필터가 걸려 있는지 보이게
-    var on = [state.size, state.color && LS.colorName(state.color), state.status && LS.statusName(state.status)].filter(Boolean);
+    var on = [state.size, state.color && LS.colorName(state.color)].filter(Boolean);
     document.getElementById('active').textContent = on.join(', ');
   }
   input.addEventListener('change', function () { LS.setDate(input.value); render(); });
   clearBtn.addEventListener('click', function () { LS.setDate(''); render(); });
-  document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; state.status = ''; LS.setDate(''); render(); });
+  document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; LS.setDate(''); render(); });
   document.getElementById('filters').open = !!(window.matchMedia && matchMedia('(min-width: 900px)').matches);
   document.addEventListener('ls:lang', render);
   render();

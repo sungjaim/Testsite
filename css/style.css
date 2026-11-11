@@ -217,6 +217,7 @@ img { display: block; max-width: 100%; }
 .avail .date-row { justify-content: flex-start; margin: 4px 0 10px; }
 .avail-result { margin: 0 0 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 15px; }
 .avail-result.muted { color: var(--muted); font-size: 14px; }
+.avail-why { margin: -6px 0 14px; font-size: 13px; color: var(--muted); }
 .avail-sub { margin: 0 0 6px; font-size: 12px; letter-spacing: .06em; color: var(--muted); }
 .rng-list li { grid-template-columns: minmax(0, 1fr) auto; }
 .rng-list .ev-name { font-variant-numeric: tabular-nums; }

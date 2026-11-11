@@ -21,6 +21,7 @@ LS.whenReady(function () {
       h += '<p class="avail-result">' + LS.t('av.result', { d: LS.fmtDate(date) }) + ' ' +
         (ok === null ? '<span class="status s-servicing">' + LS.t('av.unknownTag') + '</span>'
           : '<span class="status ' + (ok ? 's-available' : 's-booked') + '">' + LS.t(ok ? 'av.yes' : 'av.no') + '</span>') + '</p>';
+      if (LS.statusKey(d) !== 'available') h += '<p class="avail-why">' + LS.t('av.servicing') + '</p>';   // 정리·수선 중이라 불가
     } else {
       h += '<p class="avail-result muted">' + LS.t('av.pickHint') + '</p>';
     }
@@ -62,10 +63,8 @@ LS.whenReady(function () {
       '<div><dt>' + LS.t('d.size') + '</dt><dd>' + LS.esc(LS.sizeText(d)) + '</dd></div>' +
       '<div><dt>' + LS.t('d.color') + '</dt><dd>' + LS.esc(LS.colorName(d.color)) + '</dd></div>' +
       '<div><dt>' + LS.t('d.price') + '</dt><dd>' + LS.esc(LS.priceText(d)) + '</dd></div>' +
-      (LS.statusKey(d) !== 'available' ? '<div><dt>' + LS.t('d.status') + '</dt><dd>' + LS.statusTag(d) + '</dd></div>' : '') +
       '</dl>' +
       avail(d) +
-      (LS.statusKey(d) !== 'available' ? '<p class="d-status-note">' + LS.t('d.note.' + LS.statusKey(d)) + '</p>' : '') +
       '<div class="actions">' +
       '<a class="btn btn-primary" href="' + LS.site.insta + '" target="_blank" rel="noopener">' + LS.t('btn.insta') + '</a>' +
       '<a class="btn btn-ghost" href="tel:' + LS.site.tel.replace(/-/g, '') + '">' + LS.t('btn.tel') + '</a>' +
