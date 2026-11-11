@@ -14,6 +14,36 @@
   --gutter: max(20px, env(safe-area-inset-left, 0px));
 }
 * { box-sizing: border-box; }
+/* ── 부드러운 전환 (0.2~0.4초). '동작 줄이기' 설정이면 모두 꺼져요 ── */
+/* 페이지 이동: 화면이 겹치며 바뀌고, 헤더는 그대로 */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .4s; animation-timing-function: ease; }
+.site-header { view-transition-name: site-header; }
+::view-transition-group(site-header) { animation-duration: 0s; }
+/* 버튼을 누르면 살짝 눌리는 느낌 */
+.btn, .chip, .lang, .menu-btn, .slide-dots button { transition: transform .15s ease, opacity .2s, background .2s, border-color .2s, color .2s; }
+.btn:active, .chip:active { transform: scale(.95); }
+/* 드레스 카드가 나타날 때 살짝 떠오르며 (앞의 몇 개는 조금씩 늦게) */
+@keyframes card-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.grid .card { animation: card-in .55s cubic-bezier(.2, .7, .2, 1) both; }
+.grid .card:nth-child(2) { animation-delay: .07s; } .grid .card:nth-child(3) { animation-delay: .14s; }
+.grid .card:nth-child(4) { animation-delay: .21s; } .grid .card:nth-child(5) { animation-delay: .28s; }
+.grid .card:nth-child(n+6) { animation-delay: .35s; }
+/* 사진은 로딩되면 서서히 */
+.frame img { opacity: 0; transition: opacity .6s ease; }
+.frame img.in { opacity: 1; }
+/* 바뀐 글·결과는 부드럽게 */
+@keyframes soft-in { from { opacity: 0; } to { opacity: 1; } }
+.avail.swap .avail-result, .avail.swap .avail-why, .avail.swap .ev-list, .date-result { animation: soft-in .3s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  .grid .card, .avail.swap *, .date-result { animation: none !important; }
+  .frame img { opacity: 1; transition: none; }
+  .btn:active, .chip:active { transform: none; }
+}
+
+/* hidden 속성이 붙은 요소는 어떤 스타일이 있어도 숨겨요 (예: 날짜를 안 골랐을 때 '날짜 지우기' 버튼) */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
@@ -283,6 +313,12 @@ img { display: block; max-width: 100%; }
 .faq-item > summary:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 .faq-body { padding: 0 0 26px; }
 .faq-item[open] .faq-body { animation: faq-in .35s ease; }
+@supports (interpolate-size: allow-keywords) {
+  .faq { interpolate-size: allow-keywords; }
+  .faq-item::details-content { block-size: 0; overflow: clip; transition: block-size .35s ease, content-visibility .35s allow-discrete; }
+  .faq-item[open]::details-content { block-size: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .faq-item::details-content { transition: none; } }
 @keyframes faq-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 .faq-body > p { margin: 0 0 8px; }
 .faq-body .states { margin-top: 16px; }

@@ -24,7 +24,7 @@
   }
   function photo(src, alt) {
     return src
-      ? '<img src="' + esc(src) + '" alt="' + esc(alt || '') + '" loading="lazy" data-ph="' + esc(t('photo.soon')) + '" onerror="var s=document.createElement(\'span\');s.className=\'ph-label\';s.textContent=this.getAttribute(\'data-ph\');this.replaceWith(s)">'
+      ? '<img src="' + esc(src) + '" alt="' + esc(alt || '') + '" loading="lazy" onload="this.classList.add(\'in\')" data-ph="' + esc(t('photo.soon')) + '" onerror="var s=document.createElement(\'span\');s.className=\'ph-label\';s.textContent=this.getAttribute(\'data-ph\');this.replaceWith(s)">'
       : '<span class="ph-label">' + t('photo.soon') + '</span>';
   }
   // ── 날짜와 예약 ──

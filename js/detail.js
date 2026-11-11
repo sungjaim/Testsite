@@ -34,6 +34,20 @@ LS.whenReady(function () {
     return h + '<p class="ev-other">' + LS.t('av.rule', { b: LS.rule.before, a: LS.rule.after }) + '</p></div>';
   }
 
+  // 날짜를 바꾸면 "예약 가능 날짜" 부분만 바꿔요 (사진·글이 다시 그려지며 깜빡이지 않게)
+  function bindAvail(d) {
+    var di = document.getElementById('d-date'), dc = document.getElementById('d-date-clear');
+    function refresh() {
+      var box = root.querySelector('.avail'), tmp = document.createElement('div');
+      tmp.innerHTML = avail(d); var nb = tmp.firstChild;
+      nb.classList.add('swap'); box.parentNode.replaceChild(nb, box); bindAvail(d);
+      var more = document.getElementById('more-grid');                      // 아래 "다른 드레스" 표시도 새 날짜로
+      if (more) more.innerHTML = LS.dresses.filter(function (x) { return x.id !== d.id; }).slice(0, 3).map(LS.card).join('');
+    }
+    di.addEventListener('change', function () { LS.setDate(di.value); refresh(); });
+    if (dc) dc.addEventListener('click', function () { LS.setDate(''); refresh(); });
+  }
+
   function render() {
     var d = find();
     if (!d) {
@@ -75,9 +89,7 @@ LS.whenReady(function () {
 
     var back = '<a class="back" href="dresses.html">' + LS.t('d.back') + '</a>';
     root.innerHTML = back + gallery + info;
-    var di = document.getElementById('d-date'), dc = document.getElementById('d-date-clear');
-    di.addEventListener('change', function () { LS.setDate(di.value); render(); });
-    if (dc) dc.addEventListener('click', function () { LS.setDate(''); render(); });
+    bindAvail(d);
 
     // 폰에서 옆으로 넘길 때 "1 / 4" 표시 갱신
     var track = document.getElementById('track'), gcount = document.getElementById('gcount');
