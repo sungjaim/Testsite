@@ -1,6 +1,6 @@
 /* 드레스 상세. 주소 끝의 #ls-01 같은 id 로 data/dresses.js 에서 드레스를 찾아 그립니다.
    사진이 4장보다 적으면 남는 칸은 연회색 자리표시로 채워요. */
-(function () {
+LS.whenReady(function () {
   var MIN_SLOTS = 4;
   var root = document.getElementById('detail');
 
@@ -68,4 +68,4 @@
   window.addEventListener('hashchange', function () { render(); window.scrollTo(0, 0); });
   document.addEventListener('ls:lang', render);
   render();
-})();
+});

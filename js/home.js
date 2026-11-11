@@ -1,8 +1,8 @@
 /* 홈 슬라이드쇼: data/dresses.js 에서 featured: true 인 드레스를 자동으로 돌립니다. */
-(function () {
+LS.whenReady(function () {
   var box = document.getElementById('slides');
   if (!box) return;
-  var items = (window.LS_DRESSES || []).filter(function (d) { return d.featured && d.photos.length; });
+  var items = (LS.dresses || []).filter(function (d) { return d.featured && d.photos.length; });
   if (!items.length) return;
 
   var frame = box.querySelector('.slides-frame');
@@ -56,4 +56,4 @@
   });
   show(0);
   restart();
-})();
+});

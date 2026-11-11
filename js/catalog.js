@@ -1,5 +1,5 @@
 /* 드레스 목록 + 사이즈/색상 필터. 필터 버튼은 data/dresses.js 값으로 자동으로 만들어져요. */
-(function () {
+LS.whenReady(function () {
   var all = LS.dresses;
   var state = { size: '', color: '', status: '' };
   var grid = document.getElementById('grid');
@@ -42,4 +42,4 @@
   document.getElementById('filters').open = !!(window.matchMedia && matchMedia('(min-width: 900px)').matches);
   document.addEventListener('ls:lang', render);
   render();
-})();
+});

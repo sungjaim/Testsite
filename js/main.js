@@ -24,7 +24,7 @@
   }
   function photo(src, alt) {
     return src
-      ? '<img src="' + esc(src) + '" alt="' + esc(alt || '') + '" loading="lazy">'
+      ? '<img src="' + esc(src) + '" alt="' + esc(alt || '') + '" loading="lazy" data-ph="' + esc(t('photo.soon')) + '" onerror="var s=document.createElement(\'span\');s.className=\'ph-label\';s.textContent=this.getAttribute(\'data-ph\');this.replaceWith(s)">'
       : '<span class="ph-label">' + t('photo.soon') + '</span>';
   }
   // 목록·추천에 쓰는 드레스 카드
@@ -42,6 +42,38 @@
     colorName: colorName, statusKey: statusKey, statusName: statusName, statusTag: statusTag, sizeText: sizeText, priceText: priceText, photo: photo, card: card,
     dresses: window.LS_DRESSES || []
   };
+
+  // ── 드레스 데이터 불러오기 ──
+  // js/config.js 의 LS_SHEET_URL 이 있으면 구글 시트에서, 없거나 실패하면 data/dresses.js 에서 가져와요.
+  var ready = false, waiting = [];
+  window.LS.whenReady = function (fn) { if (ready) fn(); else waiting.push(fn); };
+  function done() {
+    if (ready) return;
+    ready = true;
+    document.documentElement.classList.remove('is-loading');
+    waiting.splice(0).forEach(function (f) { f(); });
+  }
+  var CACHE_KEY = 'ls-sheet-cache';
+  function fromSheet(url) {
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, window.LS_SHEET_TIMEOUT || 5000);
+    return fetch(url, ctl ? { signal: ctl.signal } : {})
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(function (text) {
+        clearTimeout(timer);
+        var list = LS_SHEET.toDresses(LS_SHEET.parseCSV(text), window.LS_STATUS || {}, window.LS_COLORS || {});
+        if (!list.length) throw new Error('empty sheet');
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify(list)); } catch (e) {}
+        return list;
+      });
+  }
+  if (window.LS_SHEET_URL && window.LS_SHEET) {
+    document.documentElement.classList.add('is-loading');
+    fromSheet(window.LS_SHEET_URL).then(function (list) { window.LS.dresses = list; }, function () {
+      // 시트를 못 읽으면: 마지막으로 읽은 시트 → data/dresses.js 순서로 대신 보여 줘요
+      try { var c = JSON.parse(localStorage.getItem(CACHE_KEY)); if (c && c.length) window.LS.dresses = c; } catch (e) {}
+    }).then(done);
+  } else done();
 
   var page = location.pathname.split('/').pop() || 'index.html';
   function cur(p) { return page === p || (p === 'dresses.html' && page === 'dress.html') ? ' aria-current="page"' : ''; }
