@@ -22,133 +22,158 @@
     </header>
 
     <!--
-      대여 안내 본문입니다. 한국어(data-lang="ko")와 영어(data-lang="en")가 따로 있어요.
-      <span class="tbd">확인 필요</span> 를 실제 내용으로 바꿔 주세요. (아직 정해지지 않은 내용: 대여 기간, 보증금 금액, 입금 시점, 보증금 환불 시점, 택배비,
-      반납이 늦을 때, 파손·분실, 일정 변경·취소)
-      항목을 늘리려면 <li>...</li> 한 줄을 복사하면 돼요.
+      대여 안내 본문입니다. 질문을 누르면 답이 펼쳐져요. 한국어(data-lang="ko")와 영어(data-lang="en")가 따로 있어요.
+      처음부터 펼쳐 두고 싶은 질문은 <details class="faq-item" open> 처럼 open 을 붙여요.
+      <span class="tbd">확인 필요</span> 를 실제 내용으로 바꿔 주세요. (아직 정해지지 않은 내용: 대여 기간, 보증금 금액,
+      입금 시점, 보증금 환불 시점, 택배비, 반납이 늦을 때, 파손·분실, 일정 변경·취소)
+      질문을 늘리려면 <details class="faq-item"> ... </details> 한 덩어리를 복사하면 돼요.
     -->
     <div data-lang="ko">
-      <section class="g-sec">
-        <h2>대여 절차</h2>
-        <ol class="steps">
-          <li><strong>드레스 고르고 문의</strong><p>마음에 드는 드레스를 골라, 인스타그램 DM이나 전화·문자로 <strong>공연 일자</strong>를 알려 주세요.</p></li>
-          <li><strong>대여 준비 시작</strong><p>공연 일자를 알려 주시면 그때부터 대여 준비를 시작해요. 그 드레스는 다른 분이 대여할 수 없게 되고, 사이트에서도 "대여 중"으로 바뀌어요.</p></li>
-          <li><strong>택배로 받기</strong><p>공연 일자에 맞춰 택배로 받아요.</p></li>
-          <li><strong>공연 후 반납</strong><p>공연이 끝나면 택배로 다시 보내 주세요. 매장에 직접 가져다주셔도 돼요. 반납하시면 보증금을 다시 보내 드려요.</p></li>
-          <li><strong>정리 후 다시 대여 가능</strong><p>반납된 드레스는 정리를 거쳐 다시 "대여 가능"으로 바뀌어요.</p></li>
-        </ol>
-      </section>
-      <section class="g-sec">
-        <h2>드레스 상태</h2>
-        <ul class="states">
-          <li><span class="status s-available">대여 가능</span><p>바로 문의하실 수 있어요. 공연 일자를 알려 주시면 대여 준비를 시작해요.</p></li>
-          <li><span class="status s-rented">대여 중</span><p>이미 대여 일정이 잡혀 있어요. 다음에 대여할 수 있는 시기는 문의해 주세요.</p></li>
-          <li><span class="status s-servicing">준비 중</span><p>반납된 뒤 정리하고 있어요. 정리가 끝나면 "대여 가능"으로 바뀌어요.</p></li>
-        </ul>
-      </section>
-      <section class="g-sec">
-        <h2>입어보기</h2>
-        <div>
-          <p>입어보실 수 있어요. 입어보려면 매장을 방문하셔야 해요.</p>
-          <p>매장에 직원이 계속 있지 않아서, 방문하기 전에 <strong>꼭 전화로 시간을 예약</strong>해 주세요.</p>
-          <div class="actions"><a class="btn btn-primary js-tel" href="#">전화로 시간 예약</a></div>
-          <p class="more-link"><a class="text-link" href="directions.html">오시는 길 보기</a></p>
-        </div>
-      </section>
-      <section class="g-sec">
-        <h2>대여 기간</h2>
-        <div><p><span class="tbd">확인 필요</span></p></div>
-      </section>
-      <section class="g-sec">
-        <h2>결제와 보증금</h2>
-        <div>
-          <p>드레스별 대여료는 각 드레스 페이지에서 확인할 수 있어요.</p>
-          <p>결제는 <strong>보증금과 대여료를 함께</strong> 보내 주시는 방식이에요. 대부분 계좌이체로 진행해요.</p>
-          <p>드레스를 반납하시면 보증금을 다시 보내 드려요.</p>
-          <p>보증금 금액 <span class="tbd">확인 필요</span></p>
-          <p>입금 시점 <span class="tbd">확인 필요</span></p>
-          <p>보증금을 돌려받는 시점 <span class="tbd">확인 필요</span></p>
-          <p>택배비 (왕복) <span class="tbd">확인 필요</span></p>
-        </div>
-      </section>
-      <section class="g-sec">
-        <h2>유의사항</h2>
-        <ul class="notes">
-          <li>한 번에 한 분에게만 대여해요. 공연 일자를 알려 주시면 그 일정으로 드레스를 비워 둬요.</li>
-          <li>반납이 늦을 때 <span class="tbd">확인 필요</span></li>
-          <li>파손·분실 시 <span class="tbd">확인 필요</span></li>
-          <li>일정 변경·취소 <span class="tbd">확인 필요</span></li>
-        </ul>
-      </section>
-      <section class="g-sec">
-        <h2>문의</h2>
-        <div>
-          <p>궁금한 점은 편하게 물어보세요.</p>
-          <div class="actions"><a class="btn btn-primary js-insta" href="#">인스타그램으로 문의</a><a class="btn btn-ghost js-tel" href="#">전화로 문의</a></div>
-          <p class="d-tel">Tel 010-4342-8908 · Instagram @loveurskating</p>
-        </div>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>대여는 어떻게 하나요?</summary>
+          <div class="faq-body">
+            <ol class="steps">
+              <li><strong>드레스 고르고 문의</strong><p>마음에 드는 드레스를 골라, 인스타그램 DM이나 전화·문자로 <strong>공연 일자</strong>를 알려 주세요.</p></li>
+              <li><strong>대여 준비 시작</strong><p>공연 일자를 알려 주시면 그때부터 대여 준비를 시작해요. 공연일 앞 3일부터 뒤 5일까지는 다른 분이 예약할 수 없고, 사이트에서도 그 기간이 "예약 불가"로 보여요.</p></li>
+              <li><strong>택배로 받기</strong><p>공연 일자에 맞춰 택배로 받아요.</p></li>
+              <li><strong>공연 후 반납</strong><p>공연이 끝나면 택배로 다시 보내 주세요. 매장에 직접 가져다주셔도 돼요. 반납하시면 보증금을 다시 보내 드려요.</p></li>
+              <li><strong>정리 후 다음 대여 준비</strong><p>반납된 드레스는 세탁·점검 등 정리를 거쳐 다음 대여를 준비해요.</p></li>
+            </ol>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>예약 가능한 날짜는 어떻게 확인하나요?</summary>
+          <div class="faq-body">
+            <p>드레스 목록 맨 위의 <strong>"공연 날짜로 찾기"</strong>에서 날짜를 고르면, 그날 공연에 예약 가능한 드레스만 보여요. 다가오는 대회를 누르면 날짜가 바로 들어가요.</p>
+            <p>드레스 페이지의 <strong>"예약 가능 날짜"</strong>에서도 날짜를 고를 수 있고, 이미 예약이 잡힌 기간도 볼 수 있어요.</p>
+            <p>한 번의 대여는 <strong>공연일 앞 3일부터 뒤 5일까지</strong>예요. 택배 발송, 반납, 세탁·점검에 필요한 기간이라, 이 기간이 다른 예약과 겹치면 예약할 수 없어요.</p>
+            <p>날짜가 촉박하거나 궁금한 점이 있으면 문의해 주세요. 예약은 문의로 확정돼요.</p>
+            <ul class="states">
+              <li><span class="status s-available">예약 가능</span><p>고른 날짜에 예약할 수 있어요. 바로 문의하실 수 있어요.</p></li>
+              <li><span class="status s-booked">예약 불가</span><p>고른 날짜가 다른 분의 대여 기간과 겹치거나, 드레스가 세탁·수선 중이에요. 다른 날짜는 따로 확인해 주세요.</p></li>
+            </ul>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>입어볼 수 있나요?</summary>
+          <div class="faq-body">
+            <p>입어보실 수 있어요. 입어보려면 매장을 방문하셔야 해요.</p>
+            <p>매장에 직원이 계속 있지 않아서, 방문하기 전에 <strong>꼭 전화로 시간을 예약</strong>해 주세요.</p>
+            <div class="actions"><a class="btn btn-primary js-tel" href="#">전화로 시간 예약</a></div>
+            <p class="more-link"><a class="text-link" href="directions.html">오시는 길 보기</a></p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>대여 기간은 얼마나 되나요?</summary>
+          <div class="faq-body">
+            <p><span class="tbd">확인 필요</span></p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>결제와 보증금은 어떻게 하나요?</summary>
+          <div class="faq-body">
+            <p>드레스별 대여료는 각 드레스 페이지에서 확인할 수 있어요.</p>
+            <p>결제는 <strong>보증금과 대여료를 함께</strong> 보내 주시는 방식이에요. 대부분 계좌이체로 진행해요.</p>
+            <p>드레스를 반납하시면 보증금을 다시 보내 드려요.</p>
+            <p>보증금 금액 <span class="tbd">확인 필요</span></p>
+            <p>입금 시점 <span class="tbd">확인 필요</span></p>
+            <p>보증금을 돌려받는 시점 <span class="tbd">확인 필요</span></p>
+            <p>택배비 (왕복) <span class="tbd">확인 필요</span></p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>유의할 점이 있나요?</summary>
+          <div class="faq-body">
+            <ul class="notes">
+              <li>공연 일자를 알려 주시면 공연일 앞 3일부터 뒤 5일까지 드레스를 비워 둬요. 이 기간에는 한 분에게만 대여해요.</li>
+              <li>반납이 늦을 때 <span class="tbd">확인 필요</span></li>
+              <li>파손·분실 시 <span class="tbd">확인 필요</span></li>
+              <li>일정 변경·취소 <span class="tbd">확인 필요</span></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <section class="faq-contact">
+        <h2 class="section-title">문의</h2>
+        <p>궁금한 점은 편하게 물어보세요.</p>
+        <div class="actions"><a class="btn btn-primary js-insta" href="#">인스타그램으로 문의</a><a class="btn btn-ghost js-tel" href="#">전화로 문의</a></div>
+        <p class="d-tel">Tel 010-4342-8908 · Instagram @loveurskating</p>
       </section>
     </div>
     <div data-lang="en" hidden>
-      <section class="g-sec">
-        <h2>How it works</h2>
-        <ol class="steps">
-          <li><strong>Choose and get in touch</strong><p>Pick a dress you like and tell us your <strong>performance date</strong> by Instagram DM, phone or text.</p></li>
-          <li><strong>We start preparing</strong><p>Once we know your date, we start preparing the dress. Nobody else can rent it for that time, and the site shows it as "Rented out".</p></li>
-          <li><strong>Receive it by courier</strong><p>The dress is delivered by courier in time for your performance.</p></li>
-          <li><strong>Return after the show</strong><p>After your performance, send it back by courier. You can also bring it to our shop. Once it is returned, we send your deposit back.</p></li>
-          <li><strong>Cleaned and available again</strong><p>Returned dresses are cleaned and checked, then marked "Available" again.</p></li>
-        </ol>
-      </section>
-      <section class="g-sec">
-        <h2>Dress status</h2>
-        <ul class="states">
-          <li><span class="status s-available">Available</span><p>You can ask about it right away. Tell us your performance date and we start preparing.</p></li>
-          <li><span class="status s-rented">Rented out</span><p>A rental is already scheduled. Ask us when it will be available next.</p></li>
-          <li><span class="status s-servicing">Being prepared</span><p>Returned and being cleaned and checked. It becomes "Available" once that is done.</p></li>
-        </ul>
-      </section>
-      <section class="g-sec">
-        <h2>Trying on</h2>
-        <div>
-          <p>You can try dresses on. To do so, you need to visit our shop.</p>
-          <p>There is not always someone at the shop, so please <strong>call to book a time</strong> before you come.</p>
-          <div class="actions"><a class="btn btn-primary js-tel" href="#">Call to book a time</a></div>
-          <p class="more-link"><a class="text-link" href="directions.html">See directions</a></p>
-        </div>
-      </section>
-      <section class="g-sec">
-        <h2>Rental period</h2>
-        <div><p><span class="tbd">To be confirmed</span></p></div>
-      </section>
-      <section class="g-sec">
-        <h2>Payment and deposit</h2>
-        <div>
-          <p>Each dress page shows its rental fee.</p>
-          <p>You pay the <strong>deposit and the rental fee together</strong>. Payment is usually by bank transfer.</p>
-          <p>When you return the dress, we send your deposit back.</p>
-          <p>Deposit amount <span class="tbd">To be confirmed</span></p>
-          <p>When to pay <span class="tbd">To be confirmed</span></p>
-          <p>When the deposit is returned <span class="tbd">To be confirmed</span></p>
-          <p>Courier fee (both ways) <span class="tbd">To be confirmed</span></p>
-        </div>
-      </section>
-      <section class="g-sec">
-        <h2>Please note</h2>
-        <ul class="notes">
-          <li>A dress is rented to one person at a time. Once you tell us your performance date, we keep the dress free for that date.</li>
-          <li>If returned late <span class="tbd">To be confirmed</span></li>
-          <li>If damaged or lost <span class="tbd">To be confirmed</span></li>
-          <li>Changes and cancellations <span class="tbd">To be confirmed</span></li>
-        </ul>
-      </section>
-      <section class="g-sec">
-        <h2>Contact</h2>
-        <div>
-          <p>Feel free to ask us anything.</p>
-          <div class="actions"><a class="btn btn-primary js-insta" href="#">Ask on Instagram</a><a class="btn btn-ghost js-tel" href="#">Call us</a></div>
-          <p class="d-tel">Tel 010-4342-8908 · Instagram @loveurskating</p>
-        </div>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>How does renting work?</summary>
+          <div class="faq-body">
+            <ol class="steps">
+              <li><strong>Choose and get in touch</strong><p>Pick a dress you like and tell us your <strong>performance date</strong> by Instagram DM, phone or text.</p></li>
+              <li><strong>We start preparing</strong><p>Once we know your date, we start preparing the dress. From 3 days before to 5 days after your performance, nobody else can book it, and the site shows that period as "Unavailable".</p></li>
+              <li><strong>Receive it by courier</strong><p>The dress is delivered by courier in time for your performance.</p></li>
+              <li><strong>Return after the show</strong><p>After your performance, send it back by courier. You can also bring it to our shop. Once it is returned, we send your deposit back.</p></li>
+              <li><strong>Cleaned for the next rental</strong><p>Returned dresses are cleaned and checked before the next rental.</p></li>
+            </ol>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I check which dates are open?</summary>
+          <div class="faq-body">
+            <p>At the top of the dress list, use <strong>"Find by performance date"</strong>. Pick a date and only the dresses open for it remain. Tap an upcoming event to fill in its date.</p>
+            <p>Each dress page also has <strong>"Availability"</strong>, where you can pick a date and see the periods already booked.</p>
+            <p>A rental runs from <strong>3 days before to 5 days after</strong> the performance, for delivery, return and cleaning. If that period overlaps another booking, the dress cannot be booked.</p>
+            <p>If your date is close or you have questions, please ask us. Bookings are confirmed when you contact us.</p>
+            <ul class="states">
+              <li><span class="status s-available">Available</span><p>Open for your date. You can ask about it right away.</p></li>
+              <li><span class="status s-booked">Unavailable</span><p>Your date overlaps someone else's rental period, or the dress is being cleaned or repaired. Other dates may still be open.</p></li>
+            </ul>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I try a dress on?</summary>
+          <div class="faq-body">
+            <p>You can try dresses on. To do so, you need to visit our shop.</p>
+            <p>There is not always someone at the shop, so please <strong>call to book a time</strong> before you come.</p>
+            <div class="actions"><a class="btn btn-primary js-tel" href="#">Call to book a time</a></div>
+            <p class="more-link"><a class="text-link" href="directions.html">See directions</a></p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>How long is the rental period?</summary>
+          <div class="faq-body">
+            <p><span class="tbd">To be confirmed</span></p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>How do payment and the deposit work?</summary>
+          <div class="faq-body">
+            <p>Each dress page shows its rental fee.</p>
+            <p>You pay the <strong>deposit and the rental fee together</strong>. Payment is usually by bank transfer.</p>
+            <p>When you return the dress, we send your deposit back.</p>
+            <p>Deposit amount <span class="tbd">To be confirmed</span></p>
+            <p>When to pay <span class="tbd">To be confirmed</span></p>
+            <p>When the deposit is returned <span class="tbd">To be confirmed</span></p>
+            <p>Courier fee (both ways) <span class="tbd">To be confirmed</span></p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Anything else I should know?</summary>
+          <div class="faq-body">
+            <ul class="notes">
+              <li>Once you tell us your performance date, we keep the dress for you from 3 days before to 5 days after it.</li>
+              <li>If returned late <span class="tbd">To be confirmed</span></li>
+              <li>If damaged or lost <span class="tbd">To be confirmed</span></li>
+              <li>Changes and cancellations <span class="tbd">To be confirmed</span></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <section class="faq-contact">
+        <h2 class="section-title">Contact</h2>
+        <p>Feel free to ask us anything.</p>
+        <div class="actions"><a class="btn btn-primary js-insta" href="#">Ask on Instagram</a><a class="btn btn-ghost js-tel" href="#">Call us</a></div>
+        <p class="d-tel">Tel 010-4342-8908 · Instagram @loveurskating</p>
       </section>
     </div>
   </main>

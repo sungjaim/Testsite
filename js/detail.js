@@ -10,6 +10,30 @@ LS.whenReady(function () {
     return LS.dresses.filter(function (d) { return d.id === id; })[0];
   }
 
+  // 날짜별 예약 가능 여부: 고른 공연 날짜의 결과 + 예약이 잡힌 기간
+  function avail(d) {
+    var date = LS.getDate(), ranges = LS.blockedRanges(d);
+    var h = '<div class="avail"><h2 class="events-title">' + LS.t('av.title') + '</h2>' +
+      '<div class="date-row"><input type="date" class="date-input" id="d-date" value="' + date + '" min="' + LS.iso(LS.today()) + '" aria-label="' + LS.t('av.pick') + '">' +
+      (date ? '<button type="button" class="btn btn-ghost btn-sm" id="d-date-clear">' + LS.t('date.clear') + '</button>' : '') + '</div>';
+    if (date) {
+      var ok = LS.availableOn(d, date);
+      h += '<p class="avail-result">' + LS.t('av.result', { d: LS.fmtDate(date) }) + ' ' +
+        (ok === null ? '<span class="status s-servicing">' + LS.t('av.unknownTag') + '</span>'
+          : '<span class="status ' + (ok ? 's-available' : 's-booked') + '">' + LS.t(ok ? 'av.yes' : 'av.no') + '</span>') + '</p>';
+      if (LS.statusKey(d) !== 'available') h += '<p class="avail-why">' + LS.t('av.servicing') + '</p>';   // 정리·수선 중이라 불가
+    } else {
+      h += '<p class="avail-result muted">' + LS.t('av.pickHint') + '</p>';
+    }
+    h += '<p class="avail-sub">' + LS.t('av.ranges') + '</p>';
+    if (ranges === null) h += '<p class="ev-none">' + LS.t('av.unknown') + '</p>';
+    else if (!ranges.length) h += '<p class="ev-none">' + LS.t('av.none') + '</p>';
+    else h += '<ul class="ev-list rng-list">' + ranges.map(function (r) {
+      return '<li><span class="ev-name">' + LS.dot(r.from) + ' ~ ' + LS.dot(r.to) + '</span><span class="status s-booked">' + LS.t('av.no') + '</span></li>';
+    }).join('') + '</ul>';
+    return h + '<p class="ev-other">' + LS.t('av.rule', { b: LS.rule.before, a: LS.rule.after }) + '</p></div>';
+  }
+
   function render() {
     var d = find();
     if (!d) {
@@ -39,9 +63,8 @@ LS.whenReady(function () {
       '<div><dt>' + LS.t('d.size') + '</dt><dd>' + LS.esc(LS.sizeText(d)) + '</dd></div>' +
       '<div><dt>' + LS.t('d.color') + '</dt><dd>' + LS.esc(LS.colorName(d.color)) + '</dd></div>' +
       '<div><dt>' + LS.t('d.price') + '</dt><dd>' + LS.esc(LS.priceText(d)) + '</dd></div>' +
-      '<div><dt>' + LS.t('d.status') + '</dt><dd>' + LS.statusTag(d) + '</dd></div>' +
       '</dl>' +
-      (LS.statusKey(d) !== 'available' ? '<p class="d-status-note">' + LS.t('d.note.' + LS.statusKey(d)) + '</p>' : '') +
+      avail(d) +
       '<div class="actions">' +
       '<a class="btn btn-primary" href="' + LS.site.insta + '" target="_blank" rel="noopener">' + LS.t('btn.insta') + '</a>' +
       '<a class="btn btn-ghost" href="tel:' + LS.site.tel.replace(/-/g, '') + '">' + LS.t('btn.tel') + '</a>' +
@@ -52,6 +75,9 @@ LS.whenReady(function () {
 
     var back = '<a class="back" href="dresses.html">' + LS.t('d.back') + '</a>';
     root.innerHTML = back + gallery + info;
+    var di = document.getElementById('d-date'), dc = document.getElementById('d-date-clear');
+    di.addEventListener('change', function () { LS.setDate(di.value); render(); });
+    if (dc) dc.addEventListener('click', function () { LS.setDate(''); render(); });
 
     // 폰에서 옆으로 넘길 때 "1 / 4" 표시 갱신
     var track = document.getElementById('track'), gcount = document.getElementById('gcount');

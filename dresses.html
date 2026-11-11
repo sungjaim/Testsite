@@ -21,6 +21,20 @@
       <p class="page-sub" data-i18n="list.sub">마음에 드는 드레스를 골라 문의해 주세요.</p>
     </header>
 
+    <!-- 공연 날짜로 찾기: 날짜를 고르면 그 날짜 공연에 예약 가능한 드레스만 보여요 -->
+    <section class="datebar" aria-labelledby="date-label">
+      <label class="datebar-label" id="date-label" for="date" data-i18n="date.label">공연 날짜로 찾기</label>
+      <div class="date-row">
+        <input type="date" id="date" class="date-input">
+        <button type="button" class="btn btn-ghost btn-sm" id="date-clear" data-i18n="date.clear" hidden>날짜 지우기</button>
+      </div>
+      <div class="ev-pick" id="ev-pick" hidden>
+        <span class="ev-pick-label" data-i18n="date.events">다가오는 대회</span>
+        <div class="chips" id="ev-chips"></div>
+      </div>
+      <p class="date-result" id="date-result" aria-live="polite"></p>
+    </section>
+
     <!-- 필터: 폰에서는 접혀 있고 "필터"를 누르면 펼쳐져요. 컴퓨터에서는 펼쳐진 채로 나와요. -->
     <details class="filters" id="filters">
       <summary>
@@ -35,10 +49,6 @@
       <div class="filter-row">
         <span class="filter-label" data-i18n="filter.color">색상</span>
         <div class="chips" id="f-color"></div>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label" data-i18n="filter.status">상태</span>
-        <div class="chips" id="f-status"></div>
       </div>
       </div>
     </details>

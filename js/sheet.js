@@ -74,6 +74,42 @@
     return out;
   }
 
-  root.LS_SHEET = { parseCSV: parseCSV, toDresses: toDresses };
+  // 날짜 글자 → 'YYYY-MM-DD'. "2026-12-20", "2026. 12. 20", "2026/12/20", "2026년 12월 20일" 모두 돼요
+  function normDate(v) {
+    var m = String(v || '').match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+    if (!m) return '';
+    return m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
+  }
+  function table(rows, head) {                    // 머리글 이름으로 칸을 찾아 { key: 값 } 목록으로
+    if (!rows.length) return [];
+    var cols = rows[0].map(function (h) { return head[norm(h)] || null; });
+    return rows.slice(1).map(function (r) {
+      var o = {}; cols.forEach(function (k, i) { if (k) o[k] = String(r[i] === undefined ? '' : r[i]).trim(); }); return o;
+    });
+  }
+  function dressNo(v) { var n = String(v || '').replace(/\D/g, ''); return n ? (n.length < 2 ? '0' + n : n) : ''; }
+
+  // "예약" 탭: 드레스 번호 | 공연 날짜 | 메모
+  var BOOK_HEAD = { '드레스번호': 'dress', '번호': 'dress', '드레스': 'dress', 'dress': 'dress', 'no': 'dress',
+                    '공연날짜': 'date', '날짜': 'date', '공연일': 'date', 'date': 'date' };
+  function need(rows, head, keys) {                // 필요한 머리글이 없으면 오류 (엉뚱한 표를 "예약 없음"으로 오해하지 않게)
+    var have = (rows[0] || []).map(function (h) { return head[norm(h)]; });
+    keys.forEach(function (k) { if (have.indexOf(k) === -1) throw new Error('missing column: ' + k); });
+  }
+  function toBookings(rows) {
+    need(rows, BOOK_HEAD, ['dress', 'date']);
+    return table(rows, BOOK_HEAD).map(function (o) { return { dress: dressNo(o.dress), date: normDate(o.date) }; })
+      .filter(function (b) { return b.dress && b.date; });
+  }
+  // "대회" 탭: 대회 이름 | 날짜
+  var EVENT_HEAD = { '대회이름': 'name', '대회': 'name', '이름': 'name', 'name': 'name', 'event': 'name',
+                     '날짜': 'date', '대회날짜': 'date', 'date': 'date' };
+  function toEvents(rows) {
+    need(rows, EVENT_HEAD, ['name', 'date']);
+    return table(rows, EVENT_HEAD).map(function (o) { return { name: o.name || '', date: normDate(o.date) }; })
+      .filter(function (e) { return e.name && e.date; });
+  }
+
+  root.LS_SHEET = { parseCSV: parseCSV, toDresses: toDresses, toBookings: toBookings, toEvents: toEvents, normDate: normDate };
   if (typeof module !== 'undefined') module.exports = root.LS_SHEET;
 })(typeof window !== 'undefined' ? window : globalThis);
