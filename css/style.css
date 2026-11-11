@@ -237,6 +237,13 @@ img { display: block; max-width: 100%; }
   min-height: 44px; padding: 0 16px; border: 1px solid var(--text); border-radius: 980px; background: var(--bg); color: var(--text);
   font: inherit; font-size: 16px; min-width: 190px; font-variant-numeric: tabular-nums;
 }
+.date-input { -webkit-appearance: none; appearance: none; }
+/* 날짜가 비어 있을 때 "날짜 선택" 안내 (아이폰은 빈 칸으로, 다른 폰은 mm/dd/yyyy 로 보여서) */
+.date-wrap { position: relative; display: inline-flex; }
+.date-wrap:has(.date-input:invalid)::before {
+  content: attr(data-ph); position: absolute; left: 17px; right: 46px; top: 2px; bottom: 2px;
+  display: flex; align-items: center; background: var(--bg); color: var(--muted); font-size: 16px; pointer-events: none;
+}
 .date-input:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 .ev-pick { display: grid; gap: 6px; justify-items: center; }
 .ev-pick[hidden] { display: none; }
