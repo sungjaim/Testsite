@@ -355,6 +355,7 @@ img { display: block; max-width: 100%; }
 
 /* 매장 위치 */
 .more-link { margin: 14px 0 0 !important; font-size: 14px; }
+.nowrap { white-space: nowrap; }
 .text-link { text-decoration: underline; text-underline-offset: 3px; color: var(--text); }
 .place { margin: 0 0 8px; display: grid; gap: 6px; }
 .place p { margin: 0; }

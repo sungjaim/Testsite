@@ -28,7 +28,7 @@
       : '<span class="ph-label">' + t('photo.soon') + '</span>';
   }
   // ── 날짜와 예약 ──
-  var BEFORE = window.LS_BLOCK_BEFORE == null ? 3 : +window.LS_BLOCK_BEFORE;   // 공연일 앞으로 막는 날 수
+  var BEFORE = window.LS_BLOCK_BEFORE == null ? 8 : +window.LS_BLOCK_BEFORE;   // 공연일 앞으로 막는 날 수
   var AFTER = window.LS_BLOCK_AFTER == null ? 5 : +window.LS_BLOCK_AFTER;      // 공연일 뒤로 막는 날 수
   function pad(n) { return ('0' + n).slice(-2); }
   function toDate(s) { var m = String(s || '').match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/); return m ? new Date(+m[1], m[2] - 1, +m[3]) : null; }
@@ -61,7 +61,7 @@
       .sort(function (a, b) { return a.from - b.from; });
   }
   /* 그 날짜 공연으로 예약할 수 있는지: true / false / null(예약 현황을 몰라서 확인 불가)
-     새 예약의 기간(공연일 앞 3일 ~ 뒤 5일)이 기존 예약의 기간과 겹치면 안 돼요 → 두 공연일이 8일 이내면 불가 */
+     새 예약의 기간(공연일 앞 8일 ~ 뒤 5일)이 기존 예약의 기간과 겹치면 안 돼요 → 두 공연일이 13일 이내면 불가 */
   function availableOn(d, dateStr) {
     var x = toDate(dateStr); if (!x) return true;
     if (statusKey(d) !== 'available') return false;
