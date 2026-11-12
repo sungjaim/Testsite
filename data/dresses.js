@@ -20,6 +20,7 @@
     price    대여료(숫자, 원 단위). 예: 80000. 아직 모르면 null
     photos   사진 경로 목록. 비어 있으면 연회색 자리표시가 나와요
     featured true 이면 홈 슬라이드쇼에 나와요 (4벌 정도 추천)
+    kind     'men' 이면 '남자 의상' 탭에 따로 나와요. 없으면 드레스예요.
 */
 
 // 색상 이름 (필터와 상세 페이지에 쓰여요). 새 색은 여기에 한 줄 추가하세요.
@@ -219,23 +220,23 @@ window.LS_DRESSES = [
   { id: 'ls-79', number: '79', name: 'Flamant Rose', size: null, color: 'pink', status: 'available', price: null,
     photos: ['images/dresses/ls-79/1.jpg', 'images/dresses/ls-79/2.jpg'], featured: false },   // 홍학
   { id: 'ls-101', number: '101', name: 'Ruban Rouge', size: null, color: 'white', status: 'available', price: null,
-    photos: ['images/dresses/ls-101/1.jpg', 'images/dresses/ls-101/2.jpg'], featured: false },   // 빨간 리본
+    photos: ['images/dresses/ls-101/1.jpg', 'images/dresses/ls-101/2.jpg'], featured: false, kind: 'men' },   // 빨간 리본
   { id: 'ls-102', number: '102', name: 'Ombre', size: null, color: 'black', status: 'available', price: null,
-    photos: ['images/dresses/ls-102/1.jpg', 'images/dresses/ls-102/2.jpg'], featured: false },   // 그림자
+    photos: ['images/dresses/ls-102/1.jpg', 'images/dresses/ls-102/2.jpg'], featured: false, kind: 'men' },   // 그림자
   { id: 'ls-103', number: '103', name: 'Prince Noir', size: null, color: 'black', status: 'available', price: null,
-    photos: ['images/dresses/ls-103/1.jpg', 'images/dresses/ls-103/2.jpg'], featured: false },   // 검은 왕자
+    photos: ['images/dresses/ls-103/1.jpg', 'images/dresses/ls-103/2.jpg'], featured: false, kind: 'men' },   // 검은 왕자
   { id: 'ls-104', number: '104', name: 'Chevalier', size: null, color: 'black', status: 'available', price: null,
-    photos: ['images/dresses/ls-104/1.jpg', 'images/dresses/ls-104/2.jpg'], featured: false },   // 기사
+    photos: ['images/dresses/ls-104/1.jpg', 'images/dresses/ls-104/2.jpg'], featured: false, kind: 'men' },   // 기사
   { id: 'ls-105', number: '105', name: 'Mousquetaire', size: null, color: 'black', status: 'available', price: null,
-    photos: ['images/dresses/ls-105/1.jpg', 'images/dresses/ls-105/2.jpg', 'images/dresses/ls-105/3.jpg', 'images/dresses/ls-105/4.jpg'], featured: false },   // 삼총사
+    photos: ['images/dresses/ls-105/1.jpg', 'images/dresses/ls-105/2.jpg', 'images/dresses/ls-105/3.jpg', 'images/dresses/ls-105/4.jpg'], featured: false, kind: 'men' },   // 삼총사
   { id: 'ls-106', number: '106', name: 'Gilet Marine', size: null, color: 'navy', status: 'available', price: null,
-    photos: ['images/dresses/ls-106/1.jpg', 'images/dresses/ls-106/2.jpg', 'images/dresses/ls-106/3.jpg', 'images/dresses/ls-106/4.jpg'], featured: false },   // 네이비 조끼
+    photos: ['images/dresses/ls-106/1.jpg', 'images/dresses/ls-106/2.jpg', 'images/dresses/ls-106/3.jpg', 'images/dresses/ls-106/4.jpg'], featured: false, kind: 'men' },   // 네이비 조끼
   { id: 'ls-107', number: '107', name: 'Capitaine', size: null, color: 'white', status: 'available', price: null,
-    photos: ['images/dresses/ls-107/1.jpg', 'images/dresses/ls-107/2.jpg'], featured: false },   // 선장
+    photos: ['images/dresses/ls-107/1.jpg', 'images/dresses/ls-107/2.jpg'], featured: false, kind: 'men' },   // 선장
   { id: 'ls-108', number: '108', name: 'Jardin Royal', size: null, color: 'white', status: 'available', price: null,
-    photos: ['images/dresses/ls-108/1.jpg', 'images/dresses/ls-108/2.jpg', 'images/dresses/ls-108/3.jpg', 'images/dresses/ls-108/4.jpg'], featured: false },   // 왕실 정원
+    photos: ['images/dresses/ls-108/1.jpg', 'images/dresses/ls-108/2.jpg', 'images/dresses/ls-108/3.jpg', 'images/dresses/ls-108/4.jpg'], featured: false, kind: 'men' },   // 왕실 정원
   { id: 'ls-109', number: '109', name: 'Abricot', size: null, color: 'orange', status: 'available', price: null,
-    photos: ['images/dresses/ls-109/1.jpg', 'images/dresses/ls-109/2.jpg', 'images/dresses/ls-109/3.jpg'], featured: false },   // 살구
+    photos: ['images/dresses/ls-109/1.jpg', 'images/dresses/ls-109/2.jpg', 'images/dresses/ls-109/3.jpg'], featured: false, kind: 'men' },   // 살구
   { id: 'ls-110', number: '110', name: 'Hussard', size: null, color: 'wine', status: 'available', price: null,
-    photos: ['images/dresses/ls-110/1.jpg', 'images/dresses/ls-110/2.jpg', 'images/dresses/ls-110/3.jpg', 'images/dresses/ls-110/4.jpg'], featured: false }   // 경기병
+    photos: ['images/dresses/ls-110/1.jpg', 'images/dresses/ls-110/2.jpg', 'images/dresses/ls-110/3.jpg', 'images/dresses/ls-110/4.jpg'], featured: false, kind: 'men' }   // 경기병
 ];

@@ -50,10 +50,10 @@ LS.whenReady(function () {
 
   // 아래 추천: 날짜를 골랐으면 그 날짜에 예약 가능한 드레스를 보여 줘요
   function others(d) {
-    var list = LS.dresses.filter(function (x) { return x.id !== d.id; }), date = LS.getDate();
+    var list = LS.dresses.filter(function (x) { return x.id !== d.id && (x.kind || 'dress') === (d.kind || 'dress'); }), date = LS.getDate();
     var open = date ? list.filter(function (x) { return LS.availableOn(x, date) === true; }) : [];
     var show = (open.length ? open : list).slice(0, 3);
-    document.getElementById('more-title').textContent = open.length ? LS.t('d.moreDate', { d: LS.fmtDate(date) }) : LS.t('d.more');
+    document.getElementById('more-title').textContent = open.length ? LS.t('d.moreDate', { d: LS.fmtDate(date) }) : LS.t(d.kind === 'men' ? 'd.moreMen' : 'd.more');
     document.getElementById('more-grid').innerHTML = show.map(LS.card).join('');
     document.getElementById('more').hidden = !show.length;
   }
@@ -97,7 +97,8 @@ LS.whenReady(function () {
       '<p class="d-tel">Tel ' + LS.site.tel + ' · Instagram ' + LS.site.instaName + '</p>' +
       '</div>';
 
-    var back = '<a class="back" href="dresses.html">' + LS.t('d.back') + '</a>';
+    var men = d.kind === 'men';
+    var back = '<a class="back" href="dresses.html' + (men ? '#men' : '') + '">' + LS.t(men ? 'd.backMen' : 'd.back') + '</a>';
     root.innerHTML = back + gallery + info;
     bindAvail(d);
 

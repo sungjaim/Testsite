@@ -29,7 +29,8 @@
     '대여료': 'price', 'price': 'price',
     '상태': 'status', 'status': 'status',
     '사진수': 'photoCount', '사진': 'photoCount', 'photos': 'photoCount',
-    '홈슬라이드': 'featured', '홈': 'featured', 'featured': 'featured'
+    '홈슬라이드': 'featured', '홈': 'featured', 'featured': 'featured',
+    '종류': 'kind', '구분': 'kind', 'kind': 'kind', 'type': 'kind'
   };
   function norm(h) { return String(h || '').replace(/\s+/g, '').toLowerCase(); }
   function truthy(v) { return /^(true|o|y|yes|1|v|예|네|✓|✔)$/i.test(String(v || '').trim()); }
@@ -68,7 +69,8 @@
         status: find(statusMap, o.status) || 'servicing',
         price: isNaN(price) ? null : price,
         photos: photos,
-        featured: truthy(o.featured)
+        featured: truthy(o.featured),
+        kind: /남|men|male|boy/i.test(o.kind || '') ? 'men' : 'dress'   // 종류 칸: '남자 의상'이면 따로 보여요
       });
     });
     return out;

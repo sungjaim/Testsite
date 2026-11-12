@@ -178,6 +178,7 @@
     '<nav class="menu" id="site-menu" hidden><div class="menu-inner">' +
     '<a href="index.html"' + cur('index.html') + ' data-i18n="nav.home"></a>' +
     '<a href="dresses.html"' + cur('dresses.html') + ' data-i18n="nav.dresses"></a>' +
+    '<a href="dresses.html#men" data-i18n="nav.men"></a>' +
     '<a href="guide.html"' + cur('guide.html') + ' data-i18n="nav.guide"></a>' +
     '<a href="directions.html"' + cur('directions.html') + ' data-i18n="nav.directions"></a>' +
     '<div class="menu-contact"><p data-i18n="menu.contact"></p>' +
@@ -232,6 +233,18 @@
   btn.addEventListener('click', function () { setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
   document.addEventListener('click', function (e) { if (!header.contains(e.target)) setMenu(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  // 같은 페이지 안에서 탭만 바뀌는 링크(드레스 ↔ 남자 의상)도 메뉴를 닫고 현재 위치 표시를 맞춰요
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  function markKind() {
+    if (page !== 'dresses.html' && page !== 'dress.html') return;
+    var men = page === 'dresses.html' ? location.hash === '#men' : null;
+    if (men === null) return;
+    var dl = menu.querySelector('a[href="dresses.html"]'), ml = menu.querySelector('a[href="dresses.html#men"]');
+    if (men) { dl.removeAttribute('aria-current'); ml.setAttribute('aria-current', 'page'); }
+    else { ml.removeAttribute('aria-current'); dl.setAttribute('aria-current', 'page'); }
+  }
+  markKind();
+  window.addEventListener('hashchange', markKind);
 
   document.querySelector('.lang').addEventListener('click', function () {
     lang = lang === 'ko' ? 'en' : 'ko';
