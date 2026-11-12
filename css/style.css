@@ -21,7 +21,7 @@
 .site-header { view-transition-name: site-header; }
 ::view-transition-group(site-header) { animation-duration: 0s; }
 /* 버튼을 누르면 살짝 눌리는 느낌 */
-.btn, .chip, .lang, .menu-btn, .slide-dots button { transition: transform .15s ease, opacity .2s, background .2s, border-color .2s, color .2s; }
+.btn, .chip, .lang, .menu-btn { transition: transform .15s ease, opacity .2s, background .2s, border-color .2s, color .2s; }
 .btn:active, .chip:active { transform: scale(.95); }
 /* 드레스 카드가 나타날 때 살짝 떠오르며 (앞의 몇 개는 조금씩 늦게) */
 @keyframes card-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -67,6 +67,11 @@ img { display: block; max-width: 100%; }
 .logo { display: flex; align-items: center; height: 100%; }
 .logo img { height: 38px; width: auto; }
 .logo .logo-fallback { font-weight: 600; letter-spacing: .04em; color: var(--muted); }
+/* 로고 옆 이름: 로고의 L·S 가 무엇의 약자인지 보여 줘요 */
+.logo { gap: 10px; }
+.logo-name { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 19px; letter-spacing: -0.005em; white-space: nowrap; }
+/* 상단 메뉴: 컴퓨터 화면(900px 이상)에서만 보여요 */
+.top-nav { display: none; }
 /* 오른쪽 위: 언어 전환 + 메뉴 버튼 */
 .head-right { display: flex; align-items: center; margin-right: -12px; }
 .lang {
@@ -105,49 +110,37 @@ img { display: block; max-width: 100%; }
 .menu-contact a:hover { text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .menu, .menu-btn span { transition: none; } }
 
-/* hero */
-.hero {
-  max-width: var(--max); margin: 0 auto; padding: 56px var(--gutter) 72px;
-  display: grid; gap: 40px;
-}
-.hero-text { text-align: center; }
+/* hero: 가운데 제목 + 공연 날짜 찾기, 그 아래로 화면 끝에서 끝까지 흐르는 의상 레일 */
+.hero { padding: 52px 0 72px; display: grid; gap: 44px; }
+.hero > * { min-width: 0; }
+.hero-text { width: 100%; max-width: 720px; margin: 0 auto; padding: 0 var(--gutter); text-align: center; }
 .eyebrow { margin: 0 0 14px; font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
-.hero h1 { margin: 0; font-size: 44px; line-height: 1.08; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.015em; }
-.lead { margin: 18px 0 28px; color: var(--muted); font-family: var(--font-display); font-size: 18px; text-wrap: balance; }
-.hero h1 { text-wrap: balance; }
+.hero h1 { margin: 0; font-size: 46px; line-height: 1.06; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.015em; text-wrap: balance; }
+.lead { margin: 18px 0 0; color: var(--muted); font-family: var(--font-display); font-size: 18px; text-wrap: balance; }
+.hero-find { margin: 30px auto 0; max-width: 400px; display: grid; gap: 10px; }
+.hero-find-label { font-size: 13px; color: var(--muted); letter-spacing: 0; }
+.hero-find-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.hero-find-row .date-wrap { flex: 1 1 170px; min-width: 0; }
+.hero-find-row .date-input { width: 100%; min-width: 0; }
+.hero-find-row .btn { flex: 1 1 auto; padding: 0 22px; white-space: nowrap; }
 
-/* 홈 슬라이드쇼 */
-.slides { margin: 0 auto; width: 100%; max-width: 520px; }
+/* 의상 레일 */
+.rail-head { max-width: var(--max); margin: 0 auto 14px; padding: 0 var(--gutter); display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.rail-head .eyebrow { margin: 0; }
+.rail-head .text-link { font-size: 14px; white-space: nowrap; }
+.rail { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.rail::-webkit-scrollbar { display: none; }
+.rail:focus-visible { outline: 2px solid var(--text); outline-offset: -2px; }
+.rail-track { display: flex; width: max-content; }
+.rail-card { flex: none; width: min(44vw, 200px); margin-right: 12px; text-align: center; }
+.rail-card .mat { transition: border-color .3s; }
+.rail-card:hover .mat { border-color: var(--muted); }
+.rail-no { display: block; margin-top: 12px; font-size: 12px; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.rail-name { display: block; font-size: 17px; line-height: 1.3; font-family: var(--font-display); font-weight: 500; font-variant-numeric: lining-nums; }
+
 /* 미니멀 액자: 얇은 테두리 + 흰 여백(매트) */
 .mat { border: 1px solid var(--line); padding: 14px; background: var(--bg); }
 .mat-sm { padding: 8px; }
-.slides-frame { position: relative; aspect-ratio: 4 / 5; max-width: 100%; }
-.slides-frame img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transition: opacity 1.2s ease;
-}
-.slides-frame img.on { opacity: 1; }
-.slide-link { display: block; }
-.slide-link .mat { transition: border-color .3s; }
-.slide-link:hover .mat { border-color: var(--muted); }
-.slide-caption {
-  display: flex; align-items: baseline; justify-content: center; gap: 12px;
-  margin-top: 18px; min-height: 1.6em;
-  opacity: 0; transition: opacity .6s ease;
-}
-.slide-caption.on { opacity: 1; }
-.slide-no { font-size: 13px; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
-.slide-name { font-size: 18px; font-family: var(--font-display); font-weight: 500; }
-.slide-dots { display: flex; justify-content: center; margin-top: 4px; }
-.slide-dots button {
-  width: 36px; height: 36px; padding: 0; border: 0; background: none; cursor: pointer;
-  display: grid; place-items: center;
-}
-.slide-dots button::after {
-  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--line); transition: background .3s;
-}
-.slide-dots button[aria-current="true"]::after { background: var(--text); }
-.slide-dots button:focus-visible { outline: 1px solid var(--text); outline-offset: -4px; }
 
 /* 서비스 장점 */
 .why { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 88px; }
@@ -164,7 +157,7 @@ img { display: block; max-width: 100%; }
 .contact .actions { max-width: 440px; margin: 0 auto; }
 
 /* 세리프 숫자를 본문처럼 반듯하게 */
-.hero h1, .lead, .slide-name, .why-list h3, .menu a,
+.hero h1, .lead, .why-list h3, .menu a,
 .page-title, .page-sub, .card-name, .d-name, .section-title, .g-sec h2, .place-name { font-variant-numeric: lining-nums; }
 
 /* 시트에서 불러오는 동안 푸터가 위로 딸려 올라오지 않게 */
@@ -398,6 +391,7 @@ button.btn:hover { background: var(--placeholder); }
 .site-footer a:hover { text-decoration: underline; }
 .foot-addr { margin-top: 2px; }
 .site-footer .brand { color: var(--text); font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.2; margin-bottom: 6px; }
+.site-footer .brand span { font-weight: 500; color: var(--muted); margin-left: 6px; }
 .foot-nav { display: flex; gap: 18px; margin-top: 12px; }
 
 /* 부드러운 페이드 */
@@ -406,17 +400,29 @@ button.btn:hover { background: var(--placeholder); }
 @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .fade.in { animation: none; }
-  .slides-frame img, .slide-caption { transition: none; }
 }
 
 @media (min-width: 900px) {
+  /* 상단 메뉴를 한 줄로 펼치고, 메뉴 버튼은 숨겨요 */
+  .site-header .inner { height: 64px; }
+  .top-nav { display: flex; align-items: center; gap: 36px; margin-left: auto; margin-right: 20px; }
+  .top-nav a { position: relative; padding: 8px 0; font-size: 15px; color: var(--muted); transition: color .2s; }
+  .top-nav a:hover, .top-nav a[aria-current] { color: var(--text); }
+  .top-nav a[aria-current]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 1px; background: var(--text); }
+  .top-nav a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
+  .menu-btn, .menu { display: none; }
+  .head-right { margin-right: -6px; }
+  .logo-name { font-size: 21px; }
   .faq-item > summary { font-size: 22px; min-height: 72px; }
   .menu > .menu-inner > a { font-size: 22px; }
-  .hero { grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; padding-top: 88px; padding-bottom: 112px; }
-  .hero-text { text-align: left; }
-  .hero h1 { font-size: 68px; }
-  .slides { margin: 0; max-width: none; }
-  .slides .mat, .gallery-item.main .mat { padding: 22px; }
+  .hero { gap: 64px; padding-top: 88px; padding-bottom: 112px; }
+  .hero h1 { font-size: 84px; }
+  .lead { font-size: 21px; margin-top: 22px; }
+  .hero-find { margin-top: 38px; }
+  .rail-card { width: 236px; margin-right: 20px; }
+  .rail-card .mat-sm { padding: 12px; }
+  .rail-name { font-size: 20px; }
+  .gallery-item.main .mat { padding: 22px; }
   .why { padding-bottom: 120px; }
   .contact { padding-bottom: 136px; }
   .why-list { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }

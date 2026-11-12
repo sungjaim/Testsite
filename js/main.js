@@ -168,8 +168,16 @@
   function cur(p) { return page === p || (p === 'dresses.html' && page === 'dress.html') ? ' aria-current="page"' : ''; }
   document.getElementById('site-header').innerHTML =
     '<header class="site-header"><div class="inner">' +
-    '<a class="logo" href="index.html" aria-label="LS">' +
-    '<img src="images/logo.png" alt="LS" onerror="this.outerHTML=\'<span class=&quot;logo-fallback&quot;>LS</span>\'"></a>' +
+    '<a class="logo" href="index.html" aria-label="LS · Love Ur Skating">' +
+    '<img src="images/logo.png" alt="" onerror="this.outerHTML=\'<span class=&quot;logo-fallback&quot;>LS</span>\'">' +
+    '<span class="logo-name">Love Ur Skating</span></a>' +
+    // 컴퓨터 화면에서는 메뉴가 상단에 한 줄로 나와요 (폰에서는 오른쪽 위 메뉴 버튼)
+    '<nav class="top-nav" aria-label="Menu">' +
+    '<a href="dresses.html"' + cur('dresses.html') + ' data-i18n="nav.dresses"></a>' +
+    '<a href="dresses.html#men" data-i18n="nav.men"></a>' +
+    '<a href="guide.html"' + cur('guide.html') + ' data-i18n="nav.guide"></a>' +
+    '<a href="directions.html"' + cur('directions.html') + ' data-i18n="nav.directions"></a>' +
+    '</nav>' +
     '<div class="head-right">' +
     '<button class="lang" type="button" aria-label="Language" data-i18n="lang.toggle"></button>' +
     '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">' +
@@ -188,7 +196,7 @@
 
   document.getElementById('site-footer').innerHTML =
     '<footer class="site-footer"><div class="inner">' +
-    '<div><div class="brand">LS</div>' +
+    '<div><div class="brand">LS <span>Love Ur Skating</span></div>' +
     '<div data-i18n="footer.inquiry"></div>' +
     '<div class="foot-addr" data-i18n="footer.addr"></div>' +
     '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a><a href="directions.html" data-i18n="nav.directions"></a></nav></div>' +
@@ -239,9 +247,10 @@
     if (page !== 'dresses.html' && page !== 'dress.html') return;
     var men = page === 'dresses.html' ? location.hash === '#men' : null;
     if (men === null) return;
-    var dl = menu.querySelector('a[href="dresses.html"]'), ml = menu.querySelector('a[href="dresses.html#men"]');
-    if (men) { dl.removeAttribute('aria-current'); ml.setAttribute('aria-current', 'page'); }
-    else { ml.removeAttribute('aria-current'); dl.setAttribute('aria-current', 'page'); }
+    header.querySelectorAll('nav a[href="dresses.html"], nav a[href="dresses.html#men"]').forEach(function (a) {
+      var on = (a.getAttribute('href') === 'dresses.html#men') === men;
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
   }
   markKind();
   window.addEventListener('hashchange', markKind);
