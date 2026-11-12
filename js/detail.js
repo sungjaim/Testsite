@@ -1,7 +1,7 @@
 /* 드레스 상세. 주소 끝의 #ls-01 같은 id 로 data/dresses.js 에서 드레스를 찾아 그립니다.
    사진이 4장보다 적으면 남는 칸은 연회색 자리표시로 채워요. */
 LS.whenReady(function () {
-  var MIN_SLOTS = 4;
+  var MIN_SLOTS = 1;   // 사진이 없을 때만 회색 칸 1개. 있으면 사진 수만큼만 보여요
   var root = document.getElementById('detail');
 
   function find() {
@@ -72,7 +72,7 @@ LS.whenReady(function () {
     while (slots.length < MIN_SLOTS) slots.push(null);
     var rest = slots.length - 1;
 
-    var gallery = '<div class="gallery" style="--rest:' + Math.min(rest, 3) + '">' +
+    var gallery = '<div class="gallery' + (slots.length === 1 ? ' single' : '') + '" style="--rest:' + Math.max(1, Math.min(rest, 3)) + '">' +
       '<div class="gallery-track" id="track">' +
       slots.map(function (src, i) {
         return '<div class="gallery-item' + (i === 0 ? ' main' : '') + '"><div class="mat' + (i === 0 ? '' : ' mat-sm') + '">' +

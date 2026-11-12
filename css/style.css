@@ -288,6 +288,8 @@ img { display: block; max-width: 100%; }
 .gallery-track::-webkit-scrollbar { display: none; }
 .gallery-item { flex: 0 0 86%; scroll-snap-align: start; }
 .gallery-item .mat, .gallery-item.main .mat { padding: 10px; }
+.gallery.single .gallery-item { flex-basis: 100%; }
+.gallery.single .gallery-count { display: none; }
 .gallery-count { margin: 10px 0 0; text-align: center; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .info { text-align: center; }
 .d-name { margin: 2px 0 20px; font-family: var(--font-display); font-weight: var(--display-weight); font-size: 34px; line-height: 1.15; letter-spacing: -0.02em; }
