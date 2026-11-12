@@ -12,10 +12,10 @@ window.LS_TEXT = {
     'why.3.title': '간편한 문의',
     'why.3.body': '인스타그램 DM이나 전화나 문자로 편하게 물어보세요.',
 
-    'list.sub': '마음에 드는 드레스를 골라 문의해 주세요.',
+    'list.sub': '마음에 드는 의상을 골라 문의해 주세요.',
     'list.count': '{n}벌',
     'filter.title': '필터', 'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
-    'list.empty': '조건에 맞는 드레스가 없어요.',
+    'list.empty': '조건에 맞는 의상이 없어요.',
     'list.reset': '필터 초기화',
 
     'd.size': '사이즈', 'd.color': '색상', 'd.price': '대여료', 'd.status': '상태',
@@ -63,10 +63,10 @@ window.LS_TEXT = {
     'why.3.title': 'Easy to reach',
     'why.3.body': 'Ask us anything by Instagram DM, phone or text.',
 
-    'list.sub': 'Find a dress you love and send us a message.',
+    'list.sub': 'Find a costume you love and send us a message.',
     'list.count': '{n} dresses',
     'filter.title': 'Filter', 'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
-    'list.empty': 'No dresses match these filters.',
+    'list.empty': 'Nothing matches these filters.',
     'list.reset': 'Clear filters',
 
     'd.size': 'Size', 'd.color': 'Color', 'd.price': 'Rental fee', 'd.status': 'Status',
