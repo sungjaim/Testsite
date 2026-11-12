@@ -42,6 +42,7 @@ LS.whenReady(function () {
   function render() {
     var date = LS.getDate();
     input.value = date;
+    input.parentNode.setAttribute('data-ph', LS.t('date.ph'));
     input.min = LS.iso(LS.today());
     clearBtn.hidden = !date;
     eventChips(date);
@@ -73,5 +74,6 @@ LS.whenReady(function () {
   document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; LS.setDate(''); render(); });
   document.getElementById('filters').open = !!(window.matchMedia && matchMedia('(min-width: 900px)').matches);
   document.addEventListener('ls:lang', render);
+  document.addEventListener('ls:data', render);     // 시트에서 새 내용이 오면 다시 그려요
   render();
 });

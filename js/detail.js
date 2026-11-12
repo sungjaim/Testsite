@@ -14,7 +14,7 @@ LS.whenReady(function () {
   function avail(d) {
     var date = LS.getDate(), ranges = LS.blockedRanges(d);
     var h = '<div class="avail"><h2 class="events-title">' + LS.t('av.title') + '</h2>' +
-      '<div class="date-row"><input type="date" class="date-input" id="d-date" value="' + date + '" min="' + LS.iso(LS.today()) + '" aria-label="' + LS.t('av.pick') + '">' +
+      '<div class="date-row"><span class="date-wrap" data-ph="' + LS.t('date.ph') + '"><input type="date" class="date-input" id="d-date" required value="' + date + '" min="' + LS.iso(LS.today()) + '" aria-label="' + LS.t('av.pick') + '"></span>' +
       (date ? '<button type="button" class="btn btn-ghost btn-sm" id="d-date-clear">' + LS.t('date.clear') + '</button>' : '') + '</div>';
     if (date) {
       var ok = LS.availableOn(d, date);
@@ -22,6 +22,7 @@ LS.whenReady(function () {
         (ok === null ? '<span class="status s-servicing">' + LS.t('av.unknownTag') + '</span>'
           : '<span class="status ' + (ok ? 's-available' : 's-booked') + '">' + LS.t(ok ? 'av.yes' : 'av.no') + '</span>') + '</p>';
       if (LS.statusKey(d) !== 'available') h += '<p class="avail-why">' + LS.t('av.servicing') + '</p>';   // 정리·수선 중이라 불가
+      else if (ok && LS.toDate(date) - LS.today() < LS.rule.before * 86400000) h += '<p class="avail-why">' + LS.t('date.soon', { b: LS.rule.before }) + '</p>';
     } else {
       h += '<p class="avail-result muted">' + LS.t('av.pickHint') + '</p>';
     }
@@ -41,11 +42,20 @@ LS.whenReady(function () {
       var box = root.querySelector('.avail'), tmp = document.createElement('div');
       tmp.innerHTML = avail(d); var nb = tmp.firstChild;
       nb.classList.add('swap'); box.parentNode.replaceChild(nb, box); bindAvail(d);
-      var more = document.getElementById('more-grid');                      // 아래 "다른 드레스" 표시도 새 날짜로
-      if (more) more.innerHTML = LS.dresses.filter(function (x) { return x.id !== d.id; }).slice(0, 3).map(LS.card).join('');
+      others(d);                                                            // 아래 추천도 새 날짜로
     }
     di.addEventListener('change', function () { LS.setDate(di.value); refresh(); });
     if (dc) dc.addEventListener('click', function () { LS.setDate(''); refresh(); });
+  }
+
+  // 아래 추천: 날짜를 골랐으면 그 날짜에 예약 가능한 드레스를 보여 줘요
+  function others(d) {
+    var list = LS.dresses.filter(function (x) { return x.id !== d.id; }), date = LS.getDate();
+    var open = date ? list.filter(function (x) { return LS.availableOn(x, date) === true; }) : [];
+    var show = (open.length ? open : list).slice(0, 3);
+    document.getElementById('more-title').textContent = open.length ? LS.t('d.moreDate', { d: LS.fmtDate(date) }) : LS.t('d.more');
+    document.getElementById('more-grid').innerHTML = show.map(LS.card).join('');
+    document.getElementById('more').hidden = !show.length;
   }
 
   function render() {
@@ -98,12 +108,11 @@ LS.whenReady(function () {
       gcount.textContent = Math.min(i + 1, slots.length) + ' / ' + slots.length;
     }, { passive: true });
 
-    var others = LS.dresses.filter(function (x) { return x.id !== d.id; }).slice(0, 3);
-    document.getElementById('more-grid').innerHTML = others.map(LS.card).join('');
-    document.getElementById('more').hidden = !others.length;
+    others(d);
   }
 
   window.addEventListener('hashchange', function () { render(); window.scrollTo(0, 0); });
   document.addEventListener('ls:lang', render);
+  document.addEventListener('ls:data', render);     // 시트에서 새 내용이 오면 다시 그려요
   render();
 });

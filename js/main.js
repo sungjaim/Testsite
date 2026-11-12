@@ -28,7 +28,7 @@
       : '<span class="ph-label">' + t('photo.soon') + '</span>';
   }
   // ── 날짜와 예약 ──
-  var BEFORE = window.LS_BLOCK_BEFORE == null ? 3 : +window.LS_BLOCK_BEFORE;   // 공연일 앞으로 막는 날 수
+  var BEFORE = window.LS_BLOCK_BEFORE == null ? 8 : +window.LS_BLOCK_BEFORE;   // 공연일 앞으로 막는 날 수
   var AFTER = window.LS_BLOCK_AFTER == null ? 5 : +window.LS_BLOCK_AFTER;      // 공연일 뒤로 막는 날 수
   function pad(n) { return ('0' + n).slice(-2); }
   function toDate(s) { var m = String(s || '').match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/); return m ? new Date(+m[1], m[2] - 1, +m[3]) : null; }
@@ -61,7 +61,7 @@
       .sort(function (a, b) { return a.from - b.from; });
   }
   /* 그 날짜 공연으로 예약할 수 있는지: true / false / null(예약 현황을 몰라서 확인 불가)
-     새 예약의 기간(공연일 앞 3일 ~ 뒤 5일)이 기존 예약의 기간과 겹치면 안 돼요 → 두 공연일이 8일 이내면 불가 */
+     새 예약의 기간(공연일 앞 8일 ~ 뒤 5일)이 기존 예약의 기간과 겹치면 안 돼요 → 두 공연일이 13일 이내면 불가 */
   function availableOn(d, dateStr) {
     var x = toDate(dateStr); if (!x) return true;
     if (statusKey(d) !== 'available') return false;
@@ -115,7 +115,7 @@
     document.documentElement.classList.remove('is-loading');
     waiting.splice(0).forEach(function (f) { f(); });
   }
-  var CACHE_KEY = 'ls-sheet-cache-v3';
+  var CACHE_KEY = 'ls-sheet-cache-v4';
   function fetchCSV(url) {
     var ctl = window.AbortController ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctl) ctl.abort(); }, window.LS_SHEET_TIMEOUT || 5000);
@@ -128,8 +128,21 @@
       });
   }
   if (useSheet) {
-    document.documentElement.classList.add('is-loading');
     var cache = {}; try { cache = JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch (e) {}
+    // 저장해 둔 예약은 하루가 지나면 믿지 않아요 (오래된 내용으로 "예약 가능"이라고 잘못 보여 주지 않게)
+    var bookingsFresh = cache.bookings && cache.bookedAt && Date.now() - cache.bookedAt < 24 * 3600 * 1000;
+    var shown = '';
+    function use(dr, bk, ev) {
+      if (dr && dr.length) window.LS.dresses = dr;
+      window.LS.bookings = bk || null;
+      window.LS.events = ev || [];
+      var sig = JSON.stringify([window.LS.dresses, window.LS.bookings, window.LS.events]);
+      var changed = sig !== shown; shown = sig; return changed;
+    }
+    // 1) 전에 읽어 둔 내용이 있으면 기다리지 않고 바로 보여 줘요
+    if (cache.dresses && cache.dresses.length) { use(cache.dresses, bookingsFresh ? cache.bookings : null, cache.events); done(); }
+    else document.documentElement.classList.add('is-loading');
+    // 2) 시트에서 새로 읽어 와서, 달라졌으면 화면을 바꿔요
     var none = function () { return null; };
     Promise.all([
       fetchCSV(window.LS_SHEET_URL).then(function (rows) {
@@ -139,13 +152,16 @@
       window.LS_BOOKINGS_URL ? fetchCSV(window.LS_BOOKINGS_URL).then(LS_SHEET.toBookings).catch(none) : null,
       window.LS_EVENTS_URL ? fetchCSV(window.LS_EVENTS_URL).then(LS_SHEET.toEvents).catch(none) : null
     ]).then(function (res) {
-      // 못 읽은 것은 마지막으로 읽은 시트 내용으로 대신해요 (드레스는 그것도 없으면 data/dresses.js)
-      var dr = res[0] || cache.dresses, bk = res[1] || (window.LS_BOOKINGS_URL ? cache.bookings : null), ev = res[2] || cache.events;
-      if (dr && dr.length) window.LS.dresses = dr;
-      if (bk) window.LS.bookings = bk;
-      if (ev) window.LS.events = ev;
-      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ dresses: res[0] || cache.dresses, bookings: res[1] || cache.bookings, events: res[2] || cache.events })); } catch (e) {}
-    }).then(done, done);
+      // 못 읽은 것은 저장해 둔 내용으로 대신해요 (드레스는 그것도 없으면 data/dresses.js)
+      var changed = use(res[0] || cache.dresses, res[1] || (bookingsFresh ? cache.bookings : null), res[2] || cache.events);
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          dresses: res[0] || cache.dresses, events: res[2] || cache.events,
+          bookings: res[1] || cache.bookings, bookedAt: res[1] ? Date.now() : cache.bookedAt
+        }));
+      } catch (e) {}
+      if (!ready) done(); else if (changed) document.dispatchEvent(new Event('ls:data'));
+    }).catch(function () { done(); });
   } else done();
 
   var page = location.pathname.split('/').pop() || 'index.html';
