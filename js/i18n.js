@@ -4,7 +4,7 @@ window.LS_TEXT = {
   ko: {
     'nav.home': '홈', 'nav.dresses': '드레스', 'nav.men': '남자 의상', 'kind.dress': '드레스', 'kind.men': '남자 의상', 'd.backMen': '남자 의상 목록', 'd.moreMen': '다른 남자 의상', 'nav.guide': '대여 안내', 'nav.directions': '오시는 길', 'menu.contact': '문의',
     'hero.lead': '대회와 공연을 위한 피겨 드레스를 대여합니다.',
-    'hero.cta': '드레스 보러가기',
+    'hero.cta': '의상 보러가기',
     'why.1.title': '100벌 이상의 드레스',
     'why.1.body': '대회와 공연에 맞는 드레스를 100벌 넘게 갖추고 있습니다.',
     'why.2.title': '깨끗한 정비',
@@ -55,7 +55,7 @@ window.LS_TEXT = {
   en: {
     'nav.home': 'Home', 'nav.dresses': 'Dresses', 'nav.men': "Men's", 'kind.dress': 'Dresses', 'kind.men': "Men's", 'd.backMen': "All men's costumes", 'd.moreMen': "More men's costumes", 'nav.guide': 'Rental Guide', 'nav.directions': 'Directions', 'menu.contact': 'Contact',
     'hero.lead': 'Competition and performance dresses, available to rent.',
-    'hero.cta': 'Browse dresses',
+    'hero.cta': 'Browse costumes',
     'why.1.title': '100+ dresses',
     'why.1.body': 'Over a hundred dresses for competitions and shows.',
     'why.2.title': 'Cleaned and checked',
