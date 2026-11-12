@@ -2,7 +2,7 @@
    대여 안내 페이지 본문은 guide.html 안에 한국어/영어로 따로 적혀 있어요. */
 window.LS_TEXT = {
   ko: {
-    'nav.home': '홈', 'nav.dresses': '드레스', 'nav.guide': '대여 안내', 'nav.directions': '오시는 길', 'menu.contact': '문의',
+    'nav.home': '홈', 'nav.dresses': '드레스', 'nav.men': '남자 의상', 'kind.dress': '드레스', 'kind.men': '남자 의상', 'd.backMen': '남자 의상 목록', 'd.moreMen': '다른 남자 의상', 'nav.guide': '대여 안내', 'nav.directions': '오시는 길', 'menu.contact': '문의',
     'hero.lead': '대회와 공연을 위한 피겨 드레스를 대여합니다.',
     'hero.cta': '드레스 보러가기',
     'why.1.title': '100벌 이상의 드레스',
@@ -12,10 +12,10 @@ window.LS_TEXT = {
     'why.3.title': '간편한 문의',
     'why.3.body': '인스타그램 DM이나 전화나 문자로 편하게 물어보세요.',
 
-    'list.sub': '마음에 드는 드레스를 골라 문의해 주세요.',
+    'list.sub': '마음에 드는 의상을 골라 문의해 주세요.',
     'list.count': '{n}벌',
     'filter.title': '필터', 'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
-    'list.empty': '조건에 맞는 드레스가 없어요.',
+    'list.empty': '조건에 맞는 의상이 없어요.',
     'list.reset': '필터 초기화',
 
     'd.size': '사이즈', 'd.color': '색상', 'd.price': '대여료', 'd.status': '상태',
@@ -53,7 +53,7 @@ window.LS_TEXT = {
     'lang.toggle': 'EN'
   },
   en: {
-    'nav.home': 'Home', 'nav.dresses': 'Dresses', 'nav.guide': 'Rental Guide', 'nav.directions': 'Directions', 'menu.contact': 'Contact',
+    'nav.home': 'Home', 'nav.dresses': 'Dresses', 'nav.men': "Men's", 'kind.dress': 'Dresses', 'kind.men': "Men's", 'd.backMen': "All men's costumes", 'd.moreMen': "More men's costumes", 'nav.guide': 'Rental Guide', 'nav.directions': 'Directions', 'menu.contact': 'Contact',
     'hero.lead': 'Competition and performance dresses, available to rent.',
     'hero.cta': 'Browse dresses',
     'why.1.title': '100+ dresses',
@@ -63,10 +63,10 @@ window.LS_TEXT = {
     'why.3.title': 'Easy to reach',
     'why.3.body': 'Ask us anything by Instagram DM, phone or text.',
 
-    'list.sub': 'Find a dress you love and send us a message.',
+    'list.sub': 'Find a costume you love and send us a message.',
     'list.count': '{n} dresses',
     'filter.title': 'Filter', 'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
-    'list.empty': 'No dresses match these filters.',
+    'list.empty': 'Nothing matches these filters.',
     'list.reset': 'Clear filters',
 
     'd.size': 'Size', 'd.color': 'Color', 'd.price': 'Rental fee', 'd.status': 'Status',
