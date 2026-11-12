@@ -9,7 +9,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="LS">
   <meta property="og:title" content="LS | 피겨 스케이팅 드레스 대여">
-  <meta property="og:description" content="대회와 공연을 위한 피겨 드레스를 대여합니다. 공연 날짜로 예약 가능한 드레스를 찾아보세요.">
+  <meta property="og:description" content="대회와 공연을 위한 피겨 의상을 대여합니다. 공연 날짜로 예약 가능한 드레스를 찾아보세요.">
   <meta property="og:url" content="https://sungjaim.github.io/Testsite/">
   <meta property="og:image" content="https://sungjaim.github.io/Testsite/images/dresses/ls-01/1.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+KR:wght@400;600&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=20261112g">
+  <link rel="stylesheet" href="css/style.css?v=20261113a">
 </head>
 <body>
   <div id="site-header"></div>
@@ -28,20 +28,24 @@
       <div class="hero-text fade">
         <p class="eyebrow">Figure Skating Dress Rental</p>
         <h1>Made to shine<br>on the ice.</h1>
-        <p class="lead" data-i18n="hero.lead">대회와 공연을 위한 피겨 드레스를 대여합니다.</p>
-        <a class="btn btn-primary" href="dresses.html" data-i18n="hero.cta">의상 보러가기</a>
-      </div>
-      <!-- 슬라이드쇼: data/dresses.js 에서 featured: true 인 드레스가 자동으로 나옵니다. -->
-      <figure class="slides fade" id="slides">
-        <a class="slide-link" href="dresses.html">
-          <div class="mat"><div class="slides-frame ph"></div></div>
-          <div class="slide-caption">
-            <span class="slide-no"></span>
-            <span class="slide-name"></span>
+        <p class="lead" data-i18n="hero.lead">대회와 공연을 위한 피겨 의상을 대여합니다.</p>
+        <!-- 공연 날짜를 고르고 버튼을 누르면, 그 날짜에 예약 가능한 의상 목록으로 가요 -->
+        <div class="hero-find">
+          <label class="hero-find-label" for="home-date" data-i18n="hero.find">공연 날짜로 예약 가능한 의상 찾기</label>
+          <div class="hero-find-row">
+            <span class="date-wrap"><input type="date" id="home-date" class="date-input" required></span>
+            <a class="btn btn-primary" href="dresses.html" data-i18n="hero.cta">의상 보러가기</a>
           </div>
-        </a>
-        <div class="slide-dots"></div>
-      </figure>
+        </div>
+      </div>
+      <!-- 의상 레일: 의상 사진이 옆으로 천천히 흘러가요. 시트에서 '홈 슬라이드'를 체크한 의상이 맨 앞에 나와요. (js/home.js) -->
+      <div class="rail-wrap fade">
+        <div class="rail-head">
+          <span class="eyebrow">Collection</span>
+          <a class="text-link" href="dresses.html" id="rail-all"></a>
+        </div>
+        <div class="rail" id="rail" tabindex="0"><div class="rail-track"></div></div>
+      </div>
     </section>
 
     <!-- 서비스 장점: 문구는 js/i18n.js 의 why.* 에서 고칩니다. -->
@@ -61,7 +65,7 @@
         <li class="fade">
           <p class="why-label">Contact</p>
           <h3 data-i18n="why.3.title">간편한 문의</h3>
-          <p data-i18n="why.3.body">인스타그램 DM이나 전화나 문자로 편하게 물어보세요.</p>
+          <p data-i18n="why.3.body">인스타그램 DM, 전화, 문자로 문의하실 수 있습니다.</p>
         </li>
       </ul>
     </section>
@@ -69,7 +73,7 @@
     <!-- 마무리: 문의 -->
     <section class="contact fade">
       <h2 class="section-title">Contact</h2>
-      <p data-i18n="contact.body">마음에 드는 드레스가 있으면 편하게 문의해 주세요.</p>
+      <p data-i18n="contact.body">마음에 드는 의상이 있다면 문의해 주세요.</p>
       <div class="actions">
         <a class="btn btn-primary js-insta" href="#" data-i18n="btn.insta">인스타그램으로 문의</a>
         <a class="btn btn-ghost js-tel" href="#" data-i18n="btn.tel">전화로 문의</a>
@@ -78,11 +82,11 @@
   </main>
 
   <div id="site-footer"></div>
-  <script src="js/config.js?v=20261112g"></script>
-  <script src="data/dresses.js?v=20261112g"></script>
-  <script src="js/sheet.js?v=20261112g"></script>
-  <script src="js/i18n.js?v=20261112g"></script>
-  <script src="js/main.js?v=20261112g"></script>
-  <script src="js/home.js?v=20261112g"></script>
+  <script src="js/config.js?v=20261113a"></script>
+  <script src="data/dresses.js?v=20261113a"></script>
+  <script src="js/sheet.js?v=20261113a"></script>
+  <script src="js/i18n.js?v=20261113a"></script>
+  <script src="js/main.js?v=20261113a"></script>
+  <script src="js/home.js?v=20261113a"></script>
 </body>
 </html>

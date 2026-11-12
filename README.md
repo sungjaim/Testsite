@@ -8,7 +8,7 @@
 
 | 파일 | 하는 일 |
 |---|---|
-| `index.html` | 홈 (슬라이드쇼, 서비스 장점) |
+| `index.html` | 홈 (공연 날짜 찾기, 의상 레일, 서비스 장점) |
 | `dresses.html` | 드레스 목록과 사이즈·색상 필터 |
 | `dress.html` | 드레스 상세. 주소 끝의 `#ls-01`로 어떤 드레스인지 정해요 |
 | `guide.html` | 대여 안내. **본문을 이 파일에서 직접 고쳐요** |
@@ -35,7 +35,7 @@
   status: 'available',      // 'available' 대여 가능 / 'servicing' 준비 중
   price: 80000,             // 숫자만. 모르면 null
   photos: ['images/dresses/ls-07/1.jpg', 'images/dresses/ls-07/2.jpg'],
-  featured: true            // 홈 슬라이드쇼에 넣으려면 true
+  featured: true            // 홈 의상 레일 맨 앞에 넣으려면 true
 },
 ```
 
