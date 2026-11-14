@@ -12,10 +12,15 @@ LS.whenReady(function () {
 
   // 날짜별 예약 가능 여부: 고른 공연 날짜의 결과 + 예약이 잡힌 기간
   function avail(d) {
-    var date = LS.getDate(), ranges = LS.blockedRanges(d);
-    var h = '<div class="avail"><h2 class="events-title">' + LS.t('av.title') + '</h2>' +
+    var date = LS.getDate();
+    return '<div class="avail"><h2 class="events-title">' + LS.t('av.title') + '</h2>' +
       '<div class="date-row"><span class="date-wrap" data-ph="' + LS.t('date.ph') + '"><input type="date" class="date-input" id="d-date" required value="' + date + '" min="' + LS.iso(LS.today()) + '" aria-label="' + LS.t('av.pick') + '"></span>' +
-      (date ? '<button type="button" class="btn btn-ghost btn-sm" id="d-date-clear">' + LS.t('date.clear') + '</button>' : '') + '</div>';
+      '<button type="button" class="btn btn-ghost btn-sm" id="d-date-clear"' + (date ? '' : ' hidden') + '>' + LS.t('date.clear') + '</button></div>' +
+      '<div class="avail-body">' + availBody(d) + '</div></div>';
+  }
+  // 날짜 칸 아래의 결과 부분 (날짜를 바꾸면 이 부분만 다시 그려요)
+  function availBody(d) {
+    var date = LS.getDate(), ranges = LS.blockedRanges(d), h = '';
     if (date) {
       var ok = LS.availableOn(d, date);
       h += '<p class="avail-result">' + LS.t('av.result', { d: LS.fmtDate(date) }) + ' ' +
@@ -32,20 +37,22 @@ LS.whenReady(function () {
     else h += '<ul class="ev-list rng-list">' + ranges.map(function (r) {
       return '<li><span class="ev-name">' + LS.dot(r.from) + ' ~ ' + LS.dot(r.to) + '</span><span class="status s-booked">' + LS.t('av.no') + '</span></li>';
     }).join('') + '</ul>';
-    return h + '<p class="ev-other">' + LS.t('av.rule', { b: LS.rule.before, a: LS.rule.after }) + '</p></div>';
+    return h + '<p class="ev-other">' + LS.t('av.rule', { b: LS.rule.before, a: LS.rule.after }) + '</p>';
   }
 
   // 날짜를 바꾸면 "예약 가능 날짜" 부분만 바꿔요 (사진·글이 다시 그려지며 깜빡이지 않게)
   function bindAvail(d) {
     var di = document.getElementById('d-date'), dc = document.getElementById('d-date-clear');
+    // 날짜 칸은 그대로 두고 결과만 바꿔요. 날짜 칸을 새로 만들면 아이폰에서 달력이 바로 닫혀요.
     function refresh() {
-      var box = root.querySelector('.avail'), tmp = document.createElement('div');
-      tmp.innerHTML = avail(d); var nb = tmp.firstChild;
-      nb.classList.add('swap'); box.parentNode.replaceChild(nb, box); bindAvail(d);
+      var box = root.querySelector('.avail'), body = box.querySelector('.avail-body');
+      body.innerHTML = availBody(d);
+      box.classList.remove('swap'); void box.offsetWidth; box.classList.add('swap');
+      dc.hidden = !LS.getDate();
       others(d);                                                            // 아래 추천도 새 날짜로
     }
     di.addEventListener('change', function () { LS.setDate(di.value); refresh(); });
-    if (dc) dc.addEventListener('click', function () { LS.setDate(''); refresh(); });
+    dc.addEventListener('click', function () { LS.setDate(''); di.value = ''; refresh(); });
   }
 
   // 아래 추천: 날짜를 골랐으면 그 날짜에 예약 가능한 드레스를 보여 줘요
