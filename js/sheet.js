@@ -79,6 +79,8 @@
   // 날짜 글자 → 'YYYY-MM-DD'. "2026-12-20", "2026. 12. 20", "2026/12/20", "2026년 12월 20일" 모두 돼요
   function normDate(v) {
     var m = String(v || '').match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+    var us = !m && String(v || '').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);     // 12/20/2026 꼴
+    if (us) m = [0, us[3], us[1], us[2]];
     if (!m) return '';
     return m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
   }
@@ -100,8 +102,14 @@
   }
   function toBookings(rows) {
     need(rows, BOOK_HEAD, ['dress', 'date']);
-    return table(rows, BOOK_HEAD).map(function (o) { return { dress: dressNo(o.dress), date: normDate(o.date) }; })
-      .filter(function (b) { return b.dress && b.date; });
+    var out = [];
+    table(rows, BOOK_HEAD).forEach(function (o) {
+      var date = normDate(o.date); if (!date) return;
+      // 한 칸에 의상이 여러 벌이면("69번,49번", "5/7 번") 각각 예약으로 봐요. "54번-1" 은 54번이에요.
+      var text = String(o.dress || '').replace(/(\d)\s*번?\s*-\s*\d+(?!\d|\s*번)/g, '$1');
+      (text.match(/\d+/g) || []).forEach(function (n) { out.push({ dress: dressNo(n), date: date }); });
+    });
+    return out;
   }
   // "대회" 탭: 대회 이름 | 날짜
   var EVENT_HEAD = { '대회이름': 'name', '대회': 'name', '이름': 'name', 'name': 'name', 'event': 'name',

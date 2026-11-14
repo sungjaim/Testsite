@@ -212,7 +212,7 @@
     '<div><div class="brand">LS <span>Love Ur Skating</span></div>' +
     '<div data-i18n="footer.inquiry"></div>' +
     '<div class="foot-addr" data-i18n="footer.addr"></div>' +
-    '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a><a href="directions.html" data-i18n="nav.directions"></a><a href="admin.html" class="foot-admin">Admin</a></nav></div>' +
+    '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a><a href="directions.html" data-i18n="nav.directions"></a></nav></div>' +
     '<div>Instagram <a href="' + SITE.insta + '" target="_blank" rel="noopener">' + SITE.instaName + '</a><br>' +
     'Tel <a href="tel:' + SITE.tel.replace(/-/g, '') + '">' + SITE.tel + '</a></div>' +
     '</div></footer>';

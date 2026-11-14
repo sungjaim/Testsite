@@ -117,6 +117,7 @@ img { display: block; max-width: 100%; }
 .eyebrow { margin: 0 0 14px; font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
 .hero h1 { margin: 0; font-size: 46px; line-height: 1.06; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -0.015em; text-wrap: balance; }
 .lead { margin: 18px 0 0; color: var(--muted); font-family: var(--font-display); font-size: 18px; text-wrap: balance; }
+.hero-cta { margin-top: 30px; }
 .hero-find { margin: 30px auto 0; max-width: 400px; display: grid; gap: 10px; }
 .hero-find-label { font-size: 13px; color: var(--muted); letter-spacing: 0; }
 .hero-find-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -269,9 +270,9 @@ img { display: block; max-width: 100%; }
 .empty[hidden] { display: none; }
 
 /* 드레스 상세 */
-.back { justify-self: start; margin-bottom: -8px; font-size: 13px; color: var(--muted); padding: 6px 0; }
-.back::before { content: "\2039"; margin-right: 6px; }
-.back:hover { color: var(--text); }
+.back { justify-self: start; margin-bottom: -4px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; color: var(--text); }
+.back::before { content: "\2039"; font-size: 26px; line-height: 1; margin-top: -3px; }
+.back:hover { opacity: .6; }
 .detail { display: grid; gap: 28px; }
 .gallery { min-width: 0; }
 .gallery-track {

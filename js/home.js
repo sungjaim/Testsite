@@ -1,19 +1,6 @@
-/* 홈: 공연 날짜로 찾기 + 의상 레일.
+/* 홈: 의상 레일.
    레일에는 '홈 슬라이드'를 체크한(featured) 의상이 먼저 나오고, 나머지는 전체에서 고르게 뽑아 채워요. */
 LS.whenReady(function () {
-  // ── 공연 날짜: 고른 날짜를 기억해 두면 의상 목록이 그 날짜로 열려요 ──
-  var input = document.getElementById('home-date');
-  if (input) {
-    function sync() {
-      input.value = LS.getDate();
-      input.min = LS.iso(LS.today());
-      input.parentNode.setAttribute('data-ph', LS.t('date.ph'));
-    }
-    input.addEventListener('change', function () { LS.setDate(input.value); document.dispatchEvent(new Event('ls:data')); });
-    document.addEventListener('ls:lang', sync);
-    sync();
-  }
-
   // ── 의상 레일 ──
   var rail = document.getElementById('rail');
   if (!rail) return;
@@ -38,7 +25,7 @@ LS.whenReady(function () {
   }
   function render() {
     var list = pick();
-    document.getElementById('rail-all').textContent = LS.t('hero.all', { n: (LS.dresses || []).length });
+    document.getElementById('rail-all').textContent = LS.t('hero.all');
     if (!list.length) { rail.parentNode.hidden = true; return; }
     rail.parentNode.hidden = false;
     var key = list.map(function (d) { return d.id + d.name; }).join('|');

@@ -27,19 +27,6 @@ LS.whenReady(function () {
       b.addEventListener('click', function () { state[key] = b.getAttribute('data-v'); render(); });
     });
   }
-  // 다가오는 대회: 누르면 그 날짜가 공연 날짜로 들어가요
-  function eventChips(date) {
-    var evs = LS.upcomingEvents(), box = document.getElementById('ev-chips');
-    document.getElementById('ev-pick').hidden = !evs.length;
-    box.innerHTML = evs.map(function (e) {
-      return '<button type="button" class="chip" data-date="' + LS.esc(LS.iso(LS.toDate(e.date))) + '" aria-pressed="' + (LS.iso(LS.toDate(e.date)) === date) + '">' +
-        LS.esc(e.name) + ' · ' + LS.eventDate(e, true) + '</button>';
-    }).join('');
-    box.querySelectorAll('.chip').forEach(function (b) {
-      b.addEventListener('click', function () { var v = b.getAttribute('data-date'); LS.setDate(v === LS.getDate() ? '' : v); render(); });
-    });
-  }
-
   // 드레스 / 남자 의상 탭 (남자 의상이 하나도 없으면 탭을 숨겨요)
   function kindTabs() {
     var box = document.getElementById('kinds');
@@ -69,7 +56,6 @@ LS.whenReady(function () {
     input.parentNode.setAttribute('data-ph', LS.t('date.ph'));
     input.min = LS.iso(LS.today());
     clearBtn.hidden = !date;
-    eventChips(date);
 
     chips('f-size', 'size', uniq('size'), function (v) { return v; });
     chips('f-color', 'color', uniq('color'), LS.colorName);
