@@ -19,5 +19,5 @@ window.LS_BLOCK_AFTER = 5;
    두 칸을 채우면: 예약은 구글 시트의 '예약' 탭 대신 여기서 읽고, admin.html 에서 로그인해 예약을 관리해요.
    비워 두면: 지금처럼 구글 시트의 '예약' 탭을 써요.
    (이 키는 공개돼도 되는 '공개용 키'예요. 손님 정보는 로그인한 관리자만 볼 수 있게 잠겨 있어요.) */
-window.LS_SUPABASE_URL = '';
-window.LS_SUPABASE_KEY = '';
+window.LS_SUPABASE_URL = 'https://uqijwruyonirrnyrpqhd.supabase.co';
+window.LS_SUPABASE_KEY = 'sb_publishable_qo2cUw6smxmilpAcwSpTZQ_TZojMsp9';
