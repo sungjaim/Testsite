@@ -394,6 +394,43 @@ button.btn:hover { background: var(--placeholder); }
 .site-footer .brand span { font-weight: 500; color: var(--muted); margin-left: 6px; }
 .foot-nav { display: flex; gap: 18px; margin-top: 12px; }
 
+/* 관리자 화면 */
+.admin { max-width: 760px; }
+.adm-box { border: 1px solid var(--line); padding: 22px 20px; margin-bottom: 20px; }
+.adm-h { margin: 0 0 16px; font-family: var(--font-display); font-weight: var(--display-weight); font-size: 22px; }
+.adm-count { font-family: var(--font-body); font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 6px; font-variant-numeric: tabular-nums; }
+.adm-form { display: grid; gap: 8px; }
+.adm-form label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.adm-form input, .adm-form select {
+  width: 100%; min-height: 46px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text);
+  font: inherit; font-size: 16px; -webkit-appearance: none; appearance: none;
+}
+.adm-form input:focus-visible, .adm-form select:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
+.adm-form .btn { width: 100%; cursor: pointer; font-family: inherit; margin-top: 6px; }
+button.btn.btn-primary { background: var(--text); color: #fff; }
+button.btn.btn-primary:hover { background: var(--text); opacity: .8; }
+button.btn:disabled { opacity: .4; cursor: default; }
+#adm-login { max-width: 420px; margin-left: auto; margin-right: auto; }
+.adm-grid { grid-template-columns: 1fr; gap: 12px; }
+.adm-msg { margin: 4px 0 0; min-height: 1.4em; font-size: 14px; color: var(--text); }
+.adm-msg:empty { min-height: 0; margin: 0; }
+.adm-note { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+.adm-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; font-size: 14px; color: var(--muted); }
+.adm-bar span { min-width: 0; overflow-wrap: anywhere; }
+.adm-list { list-style: none; margin: 0; padding: 0; }
+.adm-list li { display: grid; gap: 4px; padding: 14px 0; border-top: 1px solid var(--line); }
+.adm-row-main { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.adm-date { font-weight: 600; font-variant-numeric: tabular-nums; }
+.adm-dress { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 19px; font-variant-numeric: lining-nums; }
+.adm-row-sub { font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
+.adm-row-sub a { text-decoration: underline; text-underline-offset: 3px; }
+.adm-row-act { margin-top: 6px; font-size: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.adm-confirm { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.adm-empty { color: var(--muted); font-size: 15px; }
+.adm-past { margin-top: 8px; border-top: 1px solid var(--line); padding-top: 14px; }
+.adm-past summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-size: 15px; }
+@media (min-width: 700px) { .adm-grid { grid-template-columns: 1fr 1fr; } .adm-grid .wide { grid-column: 1 / -1; } .adm-form .btn { width: auto; min-width: 180px; } #adm-login .btn { width: 100%; } }
+
 /* 부드러운 페이드 */
 /* 기본은 보이는 상태. 화면에 들어올 때만 살짝 떠오르며 나타납니다. */
 .fade.in { animation: rise .9s ease both; }

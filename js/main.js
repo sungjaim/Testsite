@@ -127,6 +127,19 @@
         return LS_SHEET.parseCSV(text);
       });
   }
+  // 예약을 어디서 읽을지: Supabase 를 설정했으면 거기서(번호와 날짜만 공개), 아니면 시트의 '예약' 탭에서
+  function bookingsSource() {
+    var url = window.LS_SUPABASE_URL, key = window.LS_SUPABASE_KEY;
+    if (url && key) {
+      var ctl = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctl) ctl.abort(); }, window.LS_SHEET_TIMEOUT || 5000);
+      return fetch(url.replace(/\/$/, '') + '/rest/v1/public_bookings?select=dress,date', { headers: { apikey: key }, signal: ctl ? ctl.signal : undefined })
+        .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (rows) { return rows.map(function (b) { return { dress: String(b.dress), date: String(b.date).slice(0, 10) }; }); });
+    }
+    if (window.LS_BOOKINGS_URL) return fetchCSV(window.LS_BOOKINGS_URL).then(LS_SHEET.toBookings);
+    return Promise.resolve(null);
+  }
   if (useSheet) {
     var cache = {}; try { cache = JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch (e) {}
     // 저장해 둔 예약은 하루가 지나면 믿지 않아요 (오래된 내용으로 "예약 가능"이라고 잘못 보여 주지 않게)
@@ -149,7 +162,7 @@
         var list = LS_SHEET.toDresses(rows, window.LS_STATUS || {}, window.LS_COLORS || {});
         if (!list.length) throw new Error('empty'); return list;
       }).catch(none),
-      window.LS_BOOKINGS_URL ? fetchCSV(window.LS_BOOKINGS_URL).then(LS_SHEET.toBookings).catch(none) : null,
+      bookingsSource().catch(none),
       window.LS_EVENTS_URL ? fetchCSV(window.LS_EVENTS_URL).then(LS_SHEET.toEvents).catch(none) : null
     ]).then(function (res) {
       // 못 읽은 것은 저장해 둔 내용으로 대신해요 (드레스는 그것도 없으면 data/dresses.js)
@@ -199,7 +212,7 @@
     '<div><div class="brand">LS <span>Love Ur Skating</span></div>' +
     '<div data-i18n="footer.inquiry"></div>' +
     '<div class="foot-addr" data-i18n="footer.addr"></div>' +
-    '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a><a href="directions.html" data-i18n="nav.directions"></a></nav></div>' +
+    '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a><a href="directions.html" data-i18n="nav.directions"></a><a href="admin.html" class="foot-admin">Admin</a></nav></div>' +
     '<div>Instagram <a href="' + SITE.insta + '" target="_blank" rel="noopener">' + SITE.instaName + '</a><br>' +
     'Tel <a href="tel:' + SITE.tel.replace(/-/g, '') + '">' + SITE.tel + '</a></div>' +
     '</div></footer>';

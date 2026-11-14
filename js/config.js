@@ -14,3 +14,10 @@ window.LS_EVENTS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUzFJCP
    앞 8일 = 대회일 일주일 전 택배 발송 + 하루 여유, 뒤 5일 = 반납 택배·상태 확인·정리 */
 window.LS_BLOCK_BEFORE = 8;
 window.LS_BLOCK_AFTER = 5;
+
+/* 관리자 로그인과 예약 저장소 (Supabase). 설정 방법은 admin/README.md 를 보세요.
+   두 칸을 채우면: 예약은 구글 시트의 '예약' 탭 대신 여기서 읽고, admin.html 에서 로그인해 예약을 관리해요.
+   비워 두면: 지금처럼 구글 시트의 '예약' 탭을 써요.
+   (이 키는 공개돼도 되는 '공개용 키'예요. 손님 정보는 로그인한 관리자만 볼 수 있게 잠겨 있어요.) */
+window.LS_SUPABASE_URL = '';
+window.LS_SUPABASE_KEY = '';
