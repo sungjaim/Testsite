@@ -88,7 +88,7 @@
       '<div class="mat mat-sm"><div class="frame ph">' + photo(d.photos[0], d.name) + '</div></div>' +
       '<div class="card-meta"><span class="card-no">No. ' + esc(d.number) + '</span>' +
       '<span class="card-name">' + esc(d.name) + '</span>' +
-      '<span class="card-sub">' + esc([d.size, d.color && colorName(d.color)].filter(Boolean).join(' · ')) + '</span>' +
+      (d.size ? '<span class="card-sub">' + esc(d.size) + '</span>' : '') +   // 색은 사진으로 보여서 빼고, 사이즈가 있으면만
       (typeof d.price === 'number' ? '<span class="card-price">' + esc(priceText(d)) + '</span>' : '') +   // 대여료가 적혀 있을 때만
       cardBadge(d) + '</div></a>';
   }
