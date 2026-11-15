@@ -49,10 +49,69 @@ LS.whenReady(function () {
       body.innerHTML = availBody(d);
       box.classList.remove('swap'); void box.offsetWidth; box.classList.add('swap');
       dc.hidden = !LS.getDate();
+      var m = document.getElementById('ask-msg'); if (m) bindAskText(d);
       others(d);                                                            // 아래 추천도 새 날짜로
     }
     di.addEventListener('change', function () { LS.setDate(di.value); refresh(); });
     dc.addEventListener('click', function () { LS.setDate(''); di.value = ''; refresh(); });
+  }
+
+  // ── 대여 문의: 손님이 칸을 채우면 누나에게 보낼 메시지를 만들어 줘요 ──
+  // (키·몸무게를 다시 묻는 DM 왕복을 줄이려고. 적은 값은 이 창을 닫을 때까지 기억해요)
+  var ASK_KEY = 'ls-ask';
+  function askSaved() { try { return JSON.parse(sessionStorage.getItem(ASK_KEY)) || {}; } catch (e) { return {}; } }
+  function ask() {
+    var v = askSaved(), f = function (id, key, unit, extra) {
+      return '<div class="ask-f' + (extra ? ' wide' : '') + '"><label for="' + id + '">' + LS.t(key) + '</label><span class="ask-in"><input id="' + id + '" type="text" inputmode="decimal" autocomplete="off" value="' + LS.esc(v[id] || '') + '"><span>' + unit + '</span></span>' + (extra || '') + '</div>';
+    };
+    return '<section class="ask" aria-labelledby="ask-title"><h2 class="events-title" id="ask-title">' + LS.t('ask.title') + '</h2>' +
+      '<p class="ask-hint">' + LS.t('ask.hint') + '</p>' +
+      '<div class="ask-grid">' + f('ask-h', 'ask.h', 'cm') + f('ask-w', 'ask.w', 'kg') +
+      f('ask-g', 'ask.g', 'cm', '<small>' + LS.t('ask.gHelp') + '</small>') +
+      '<label class="ask-check wide"><input type="checkbox" id="ask-t"' + (v['ask-t'] ? ' checked' : '') + '> ' + LS.t('ask.t') + '</label></div>' +
+      '<p class="avail-sub">' + LS.t('ask.msgLabel') + '</p><p class="ask-msg" id="ask-msg"></p>' +
+      '<div class="actions">' +
+      '<a class="btn btn-primary" id="ask-insta" href="https://ig.me/m/' + LS.site.instaName.replace('@', '') + '" target="_blank" rel="noopener">' + LS.t('ask.insta') + '</a>' +
+      '<a class="btn btn-ghost" id="ask-sms" href="#">' + LS.t('ask.sms') + '</a></div>' +
+      '<p class="ask-done" id="ask-done" role="status"></p>' +
+      '<p class="d-tel">' + LS.t('ask.call') + ' <a href="tel:' + LS.site.tel.replace(/-/g, '') + '">' + LS.site.tel + '</a></p></section>';
+  }
+  function askText(d) {
+    var g = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+    var date = LS.toDate(LS.getDate()), lines = ['[LS 대여 문의]', '의상: No. ' + d.number + ' ' + d.name];
+    lines.push('대회 날짜: ' + (date ? date.getFullYear() + '년 ' + (date.getMonth() + 1) + '월 ' + date.getDate() + '일' : '미정'));
+    var body = [g('ask-h') && '키 ' + g('ask-h') + 'cm', g('ask-w') && '몸무게 ' + g('ask-w') + 'kg', g('ask-g') && '온몸둘레 ' + g('ask-g') + 'cm'].filter(Boolean);
+    if (body.length) lines.push(body.join(' / '));
+    if (document.getElementById('ask-t') && document.getElementById('ask-t').checked) lines.push('스타킹 대여 희망');
+    return lines.join('\n');
+  }
+  function bindAsk(d) {
+    var ids = ['ask-h', 'ask-w', 'ask-g', 'ask-t'];
+    function update() {
+      var v = {}; ids.forEach(function (id) { var el = document.getElementById(id); v[id] = el.type === 'checkbox' ? el.checked : el.value; });
+      try { sessionStorage.setItem(ASK_KEY, JSON.stringify(v)); } catch (e) {}
+      var text = askText(d);
+      document.getElementById('ask-msg').textContent = text;
+      document.getElementById('ask-sms').href = 'sms:' + LS.site.tel.replace(/-/g, '') + '?&body=' + encodeURIComponent(text);
+      document.getElementById('ask-done').textContent = '';
+    }
+    ids.forEach(function (id) { var el = document.getElementById(id); el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', update); });
+    // 인스타그램은 미리 글을 넣어 줄 수 없어서, 메시지를 복사해 두고 DM 창을 열어요
+    document.getElementById('ask-insta').addEventListener('click', function () {
+      var text = askText(d), done = document.getElementById('ask-done');
+      function ok() { done.textContent = LS.t('ask.copied'); }
+      function fallback() {
+        var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (x) {} document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    });
+    update();
+  }
+  function bindAskText(d) {
+    var text = askText(d);
+    document.getElementById('ask-msg').textContent = text;
+    document.getElementById('ask-sms').href = 'sms:' + LS.site.tel.replace(/-/g, '') + '?&body=' + encodeURIComponent(text);
   }
 
   // 아래 추천: 날짜를 골랐으면 그 날짜에 예약 가능한 드레스를 보여 줘요
@@ -73,7 +132,7 @@ LS.whenReady(function () {
       document.getElementById('more').hidden = true;
       return;
     }
-    document.title = 'No. ' + d.number + ' ' + d.name + ' | LS';
+    document.title = 'No. ' + d.number + ' ' + d.name + ' | 엘에스(LS) 피겨 의상 대여';
 
     var slots = d.photos.slice();
     while (slots.length < MIN_SLOTS) slots.push(null);
@@ -96,18 +155,15 @@ LS.whenReady(function () {
       '<div><dt>' + LS.t('d.price') + '</dt><dd>' + LS.esc(LS.priceText(d)) + '</dd></div>' +
       '</dl>' +
       avail(d) +
-      '<div class="actions">' +
-      '<a class="btn btn-primary" href="' + LS.site.insta + '" target="_blank" rel="noopener">' + LS.t('btn.insta') + '</a>' +
-      '<a class="btn btn-ghost" href="tel:' + LS.site.tel.replace(/-/g, '') + '">' + LS.t('btn.tel') + '</a>' +
-      '</div>' +
+      ask() +
       '<p class="d-note">' + LS.t('d.note') + ' <a href="guide.html">' + LS.t('d.guide') + '</a></p>' +
-      '<p class="d-tel">Tel ' + LS.site.tel + ' · Instagram ' + LS.site.instaName + '</p>' +
       '</div>';
 
     var men = d.kind === 'men';
     var back = '<a class="back" href="dresses.html' + (men ? '#men' : '') + '">' + LS.t(men ? 'd.backMen' : 'd.back') + '</a>';
     root.innerHTML = back + gallery + info;
     bindAvail(d);
+    bindAsk(d);
 
     // 폰에서 옆으로 넘길 때 "1 / 4" 표시 갱신
     var track = document.getElementById('track'), gcount = document.getElementById('gcount');

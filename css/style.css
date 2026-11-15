@@ -275,7 +275,7 @@ img { display: block; max-width: 100%; }
 .back { justify-self: start; margin-bottom: -4px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; color: var(--text); }
 .back::before { content: "\2039"; font-size: 26px; line-height: 1; margin-top: -3px; }
 .back:hover { opacity: .6; }
-.detail { display: grid; gap: 28px; }
+.detail { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .gallery { min-width: 0; }
 .gallery-track {
   display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
@@ -294,6 +294,23 @@ img { display: block; max-width: 100%; }
 .specs dt { color: var(--muted); font-size: 15px; }
 .specs dd { margin: 0; font-size: 15px; text-align: right; }
 .actions { display: grid; gap: 10px; }
+/* 대여 문의 */
+.ask { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); text-align: left; }
+.ask-hint { margin: 0 0 16px; font-size: 14px; color: var(--muted); }
+.ask-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+.ask-grid .wide { grid-column: 1 / -1; }
+.ask-f label { display: block; margin-bottom: 4px; font-size: 13px; color: var(--muted); }
+.ask-in { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding-right: 12px; background: var(--bg); }
+.ask-in:focus-within { outline: 2px solid var(--text); outline-offset: 1px; }
+.ask-in input { flex: 1; width: 0; min-width: 0; min-height: 46px; padding: 0 12px; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 16px; outline: none; }
+.ask-in span { font-size: 14px; color: var(--muted); }
+.ask-f small { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.ask-check { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px; cursor: pointer; }
+.ask-check input { width: 20px; height: 20px; accent-color: var(--text); }
+.ask-msg { margin: 0 0 16px; padding: 14px 16px; background: var(--placeholder); border-radius: 10px; font-size: 14px; line-height: 1.7; white-space: pre-line; overflow-wrap: anywhere; }
+.ask .actions { grid-template-columns: 1fr !important; }
+.ask-done { margin: 10px 0 0; font-size: 14px; }
+.ask-done:empty { display: none; }
 .d-note { margin: 20px 0 0; font-size: 14px; color: var(--muted); }
 .d-note a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
 .d-tel { margin: 8px 0 0; font-size: 13px; color: var(--muted); }

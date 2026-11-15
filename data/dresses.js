@@ -213,12 +213,20 @@ window.LS_DRESSES = [
     photos: ['images/dresses/ls-74/1.jpg', 'images/dresses/ls-74/2.jpg'], featured: false },   // 도미노
   { id: 'ls-75', number: '75', name: 'Bijou d\'Orient', size: null, color: 'blue', status: 'available', price: null,
     photos: ['images/dresses/ls-75/1.jpg', 'images/dresses/ls-75/2.jpg'], featured: false },   // 동방의 보석
+  { id: 'ls-76', number: '76', name: 'Grenadine', size: null, color: 'pink', status: 'available', price: null,
+    photos: ['images/dresses/ls-76/1.jpg', 'images/dresses/ls-76/2.jpg'], featured: false },   // 석류 시럽
   { id: 'ls-77', number: '77', name: 'Voie Lactée', size: null, color: 'navy', status: 'available', price: null,
     photos: ['images/dresses/ls-77/1.jpg', 'images/dresses/ls-77/2.jpg'], featured: false },   // 은하수
   { id: 'ls-78', number: '78', name: 'Lilas', size: null, color: 'purple', status: 'available', price: null,
     photos: ['images/dresses/ls-78/1.jpg', 'images/dresses/ls-78/2.jpg'], featured: true },   // 라일락
   { id: 'ls-79', number: '79', name: 'Flamant Rose', size: null, color: 'pink', status: 'available', price: null,
     photos: ['images/dresses/ls-79/1.jpg', 'images/dresses/ls-79/2.jpg'], featured: false },   // 홍학
+  { id: 'ls-80', number: '80', name: 'Mimosa', size: null, color: 'yellow', status: 'available', price: null,
+    photos: ['images/dresses/ls-80/1.jpg', 'images/dresses/ls-80/2.jpg'], featured: false },   // 미모사 꽃
+  { id: 'ls-81', number: '81', name: 'Lumière', size: null, color: 'yellow', status: 'available', price: null,
+    photos: ['images/dresses/ls-81/1.jpg', 'images/dresses/ls-81/2.jpg'], featured: false },   // 빛
+  { id: 'ls-82', number: '82', name: 'Étincelle', size: null, color: 'gray', status: 'available', price: null,
+    photos: ['images/dresses/ls-82/1.jpg', 'images/dresses/ls-82/2.jpg'], featured: false },   // 불꽃 반짝임
   { id: 'ls-101', number: '101', name: 'Ruban Rouge', size: null, color: 'white', status: 'available', price: null,
     photos: ['images/dresses/ls-101/1.jpg', 'images/dresses/ls-101/2.jpg'], featured: false, kind: 'men' },   // 빨간 리본
   { id: 'ls-102', number: '102', name: 'Ombre', size: null, color: 'black', status: 'available', price: null,
