@@ -1,7 +1,7 @@
 /* 드레스 목록: 공연 날짜로 찾기 + 사이즈/색상/상태 필터.
    날짜를 고르지 않으면 모든 드레스가 보이고, 고르면 그 날짜 공연에 예약 가능한 드레스만 보여요. */
 LS.whenReady(function () {
-  var state = { size: '', color: '', kind: location.hash === '#men' ? 'men' : 'dress' };
+  var state = { size: '', color: '', price: '', kind: location.hash === '#men' ? 'men' : 'dress' };
   var grid = document.getElementById('grid');
   var count = document.getElementById('count');
   var empty = document.getElementById('empty');
@@ -9,6 +9,11 @@ LS.whenReady(function () {
   var clearBtn = document.getElementById('date-clear');
   var result = document.getElementById('date-result');
 
+  function priceLabel(v) {
+    var n = +v;
+    if (LS.getLang() === 'ko' && n % 10000 === 0) return (n / 10000) + '만 원';
+    return LS.priceText({ price: n });
+  }
   function ofKind() { return LS.dresses.filter(function (d) { return (d.kind || 'dress') === state.kind; }); }
   function uniq(key) {
     var seen = {}, out = [];
@@ -22,7 +27,7 @@ LS.whenReady(function () {
       html += '<button type="button" class="chip" data-v="' + LS.esc(v) + '" aria-pressed="' + (state[key] === v) + '">' + LS.esc(label(v)) + '</button>';
     });
     box.innerHTML = html;
-    box.parentNode.hidden = !values.length;   // 고를 값이 없으면 줄을 숨겨요
+    box.parentNode.hidden = values.length < 2;   // 고를 값이 하나뿐이면 줄을 숨겨요 (예: 남자 의상이 모두 같은 가격)
     box.querySelectorAll('.chip').forEach(function (b) {
       b.addEventListener('click', function () { state[key] = b.getAttribute('data-v'); render(); });
     });
@@ -44,7 +49,7 @@ LS.whenReady(function () {
   }
   function setKind(k) {
     if (k === state.kind) return;
-    state.kind = k; state.size = ''; state.color = '';
+    state.kind = k; state.size = ''; state.color = ''; state.price = '';
     history.replaceState(null, '', k === 'men' ? '#men' : location.pathname + location.search);
     try { window.dispatchEvent(new HashChangeEvent('hashchange')); } catch (e) {}   // 메뉴의 현재 위치 표시도 맞춰요
     render();
@@ -58,12 +63,15 @@ LS.whenReady(function () {
     input.min = LS.iso(LS.today());
     clearBtn.hidden = !date;
 
+    // 대여료: 싼 것부터, '7만 원'처럼 짧게
+    var prices = uniq('price').filter(function (v) { return typeof v === 'number'; }).sort(function (a, b) { return a - b; }).map(String);
+    chips('f-price', 'price', prices, priceLabel);
     chips('f-size', 'size', uniq('size'), function (v) { return v; });
     chips('f-color', 'color', uniq('color'), LS.colorName);
 
     var unknown = !!date && LS.bookings === null;      // 예약 현황을 못 읽었으면 날짜로 거르지 않아요
     var list = ofKind().filter(function (d) {
-      return (!state.size || d.size === state.size) && (!state.color || d.color === state.color) &&
+      return (!state.size || d.size === state.size) && (!state.color || d.color === state.color) && (!state.price || String(d.price) === state.price) &&
         (!date || unknown || LS.availableOn(d, date) === true);
     });
     grid.innerHTML = list.map(LS.card).join('');
@@ -77,12 +85,12 @@ LS.whenReady(function () {
     result.classList.toggle('on', !!date);
 
     // 접혀 있어도 어떤 필터가 걸려 있는지 보이게
-    var on = [state.size, state.color && LS.colorName(state.color)].filter(Boolean);
+    var on = [state.price && priceLabel(state.price), state.size, state.color && LS.colorName(state.color)].filter(Boolean);
     document.getElementById('active').textContent = on.join(', ');
   }
   input.addEventListener('change', function () { LS.setDate(input.value); render(); });
   clearBtn.addEventListener('click', function () { LS.setDate(''); render(); });
-  document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; LS.setDate(''); render(); });
+  document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; state.price = ''; LS.setDate(''); render(); });
   document.getElementById('filters').open = !!(window.matchMedia && matchMedia('(min-width: 900px)').matches);
   window.addEventListener('hashchange', function () { setKind(location.hash === '#men' ? 'men' : 'dress'); });
   document.addEventListener('ls:lang', render);
