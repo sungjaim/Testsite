@@ -40,6 +40,7 @@ LS.whenReady(function () {
       b.addEventListener('click', function () { setKind(b.getAttribute('data-k')); });
     });
     document.getElementById('page-title').textContent = state.kind === 'men' ? "Men's" : 'Dresses';
+    document.getElementById('page-sub').textContent = LS.t(state.kind === 'men' ? 'list.subMen' : 'list.subDress');
   }
   function setKind(k) {
     if (k === state.kind) return;
@@ -69,7 +70,7 @@ LS.whenReady(function () {
     count.textContent = LS.t('list.count', { n: list.length });
     empty.hidden = list.length > 0;
 
-    var msg = !date ? LS.t('date.hint') : unknown ? LS.t('date.unknown') : LS.t('date.result', { d: LS.fmtDate(date), n: list.length });
+    var msg = !date ? '' : unknown ? LS.t('date.unknown') : LS.t('date.result', { d: LS.fmtDate(date), n: list.length });
     var soon = date && LS.toDate(date) - LS.today() < LS.rule.before * 86400000;
     var text = msg + (soon ? ' ' + LS.t('date.soon', { b: LS.rule.before }) : '');
     if (result.textContent !== text) { result.textContent = text; result.style.animation = 'none'; void result.offsetWidth; result.style.animation = ''; }

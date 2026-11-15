@@ -78,9 +78,13 @@
 | 73 | Smoking | 턱시도 | 블랙 |
 | 74 | Domino | 도미노 | 블랙 |
 | 75 | Bijou d'Orient | 동방의 보석 | 블루 |
+| 76 | Grenadine | 석류 시럽 | 핑크 |
 | 77 | Voie Lactée | 은하수 | 네이비 |
 | 78 | Lilas | 라일락 | 퍼플 |
 | 79 | Flamant Rose | 홍학 | 핑크 |
+| 80 | Mimosa | 미모사 꽃 | 옐로 |
+| 81 | Lumière | 빛 | 옐로 |
+| 82 | Étincelle | 불꽃 반짝임 | 그레이 |
 | 101 | Ruban Rouge | 빨간 리본 | 화이트 |
 | 102 | Ombre | 그림자 | 블랙 |
 | 103 | Prince Noir | 검은 왕자 | 블랙 |
