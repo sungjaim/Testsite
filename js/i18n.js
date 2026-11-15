@@ -15,7 +15,7 @@ window.LS_TEXT = {
 
     'list.subDress': '대회와 공연을 위한 피겨 드레스입니다.', 'list.subMen': '남자 피겨·발레 의상입니다.',
     'list.count': '{n}벌',
-    'filter.title': '필터', 'filter.price': '대여료', 'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
+    'filter.title': '필터', 'filter.price': '대여료', 'filter.reset': '초기화', 'filter.done': '{n}벌 보기', 'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
     'list.empty': '조건에 맞는 의상이 없습니다.',
     'list.reset': '필터 초기화',
 
@@ -75,7 +75,7 @@ window.LS_TEXT = {
 
     'list.subDress': 'Figure skating dresses for competitions and shows.', 'list.subMen': 'Figure skating and ballet costumes for boys and men.',
     'list.count': '{n} dresses',
-    'filter.title': 'Filter', 'filter.price': 'Price', 'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
+    'filter.title': 'Filter', 'filter.price': 'Price', 'filter.reset': 'Reset', 'filter.done': 'Show {n}', 'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
     'list.empty': 'Nothing matches these filters.',
     'list.reset': 'Clear filters',
 

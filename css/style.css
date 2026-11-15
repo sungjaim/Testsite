@@ -192,6 +192,10 @@ img { display: block; max-width: 100%; }
 .filters[open] .filters-toggle::after { content: "\2212"; }
 .filters-active { color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .filters-body { display: grid; gap: 10px; padding: 6px 0 18px; }
+.filters-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-top: 10px; }
+.filters-actions .btn { width: 100%; cursor: pointer; font-family: inherit; }
+.filters-actions .btn:disabled { opacity: .35; cursor: default; }
+@media (min-width: 900px) { .filters-actions { grid-template-columns: auto auto; justify-content: start; } .filters-actions .btn { width: auto; min-width: 140px; } }
 .filter-row { display: flex; align-items: flex-start; gap: 12px; min-width: 0; }
 .filter-label { flex: none; width: 3.5em; font-size: 13px; color: var(--muted); line-height: 36px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
