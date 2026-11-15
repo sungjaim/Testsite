@@ -8,6 +8,15 @@ LS.whenReady(function () {
   var input = document.getElementById('date');
   var clearBtn = document.getElementById('date-clear');
   var result = document.getElementById('date-result');
+  var filters = document.getElementById('filters');
+
+  // 고른 필터는 이 창을 닫기 전까지 기억해요 (의상을 보고 돌아와도 그대로)
+  var SAVE = 'ls-filters', BACK = 'ls-list-scroll';
+  try {
+    var saved = JSON.parse(sessionStorage.getItem(SAVE)) || {};
+    if (saved.kind === state.kind) { state.size = saved.size || ''; state.color = saved.color || ''; state.price = saved.price || ''; }
+  } catch (e) {}
+  function save() { try { sessionStorage.setItem(SAVE, JSON.stringify(state)); } catch (e) {} }
 
   function priceLabel(v) {
     var n = +v;
@@ -87,13 +96,36 @@ LS.whenReady(function () {
     // 접혀 있어도 어떤 필터가 걸려 있는지 보이게
     var on = [state.price && priceLabel(state.price), state.size, state.color && LS.colorName(state.color)].filter(Boolean);
     document.getElementById('active').textContent = on.join(', ');
+    document.getElementById('f-reset').disabled = !on.length;
+    document.getElementById('f-done').textContent = LS.t('filter.done', { n: list.length });
+    save();
   }
   input.addEventListener('change', function () { LS.setDate(input.value); render(); });
   clearBtn.addEventListener('click', function () { LS.setDate(''); render(); });
   document.getElementById('reset').addEventListener('click', function () { state.size = ''; state.color = ''; state.price = ''; LS.setDate(''); render(); });
-  document.getElementById('filters').open = !!(window.matchMedia && matchMedia('(min-width: 900px)').matches);
+  filters.open = !!(window.matchMedia && matchMedia('(min-width: 900px)').matches);
+  // 필터 패널 아래 버튼
+  document.getElementById('f-reset').addEventListener('click', function () { state.size = ''; state.color = ''; state.price = ''; render(); });
+  document.getElementById('f-done').addEventListener('click', function () {
+    filters.open = false;
+    var top = filters.getBoundingClientRect().top + window.scrollY - 70;     // 헤더 아래로 결과가 바로 보이게
+    if (window.scrollY > top) window.scrollTo({ top: top, behavior: 'smooth' });
+  });
+  // 의상을 눌러 들어갈 때 보던 위치를 기억했다가, 돌아오면 그 자리로
+  grid.addEventListener('click', function (e) {
+    if (!e.target.closest('a')) return;
+    try { sessionStorage.setItem(BACK, JSON.stringify({ y: window.scrollY, kind: state.kind, at: Date.now() })); } catch (x) {}
+  });
   window.addEventListener('hashchange', function () { setKind(location.hash === '#men' ? 'men' : 'dress'); });
   document.addEventListener('ls:lang', render);
   document.addEventListener('ls:data', render);     // 시트에서 새 내용이 오면 다시 그려요
   render();
+  try {
+    var back = JSON.parse(sessionStorage.getItem(BACK));
+    sessionStorage.removeItem(BACK);
+    if (back && back.kind === state.kind && Date.now() - back.at < 30 * 60 * 1000) {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      requestAnimationFrame(function () { window.scrollTo(0, back.y); });
+    }
+  } catch (e) {}
 });
