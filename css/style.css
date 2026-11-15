@@ -413,6 +413,9 @@ button.btn:hover { background: var(--placeholder); }
 .site-footer .inner { max-width: var(--max); margin: 0 auto; padding: 32px var(--gutter) 40px; display: grid; gap: 6px; }
 .site-footer a { color: var(--text); }
 .site-footer a:hover { text-decoration: underline; }
+.foot-contact { display: grid; }
+.foot-contact a { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; }
+.foot-contact a span { min-width: 72px; font-size: 13px; color: var(--muted); }
 .foot-addr { margin-top: 2px; }
 .site-footer .brand { color: var(--text); font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.2; margin-bottom: 6px; }
 .site-footer .brand span { font-weight: 500; color: var(--muted); margin-left: 6px; }

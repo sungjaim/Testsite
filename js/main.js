@@ -1,7 +1,7 @@
 /* 공통: 헤더/푸터, 언어 전환, 메뉴, 페이드, 드레스 카드 */
 (function () {
   // 연락처: 바뀌면 여기만 고치세요.
-  var SITE = { insta: 'https://instagram.com/loveurskating', instaName: '@loveurskating', tel: '010-4342-8908' };
+  var SITE = { insta: 'https://instagram.com/love.ur.skating', instaName: '@love.ur.skating', tel: '010-4342-8908' };
   var lang = 'ko';
   try { lang = localStorage.getItem('ls-lang') || 'ko'; } catch (e) {}
   if (!window.LS_TEXT[lang]) lang = 'ko';
@@ -213,8 +213,9 @@
     '<div data-i18n="footer.inquiry"></div>' +
     '<div class="foot-addr" data-i18n="footer.addr"></div>' +
     '<nav class="foot-nav"><a href="dresses.html" data-i18n="nav.dresses"></a><a href="guide.html" data-i18n="nav.guide"></a><a href="directions.html" data-i18n="nav.directions"></a></nav></div>' +
-    '<div>Instagram <a href="' + SITE.insta + '" target="_blank" rel="noopener">' + SITE.instaName + '</a><br>' +
-    'Tel <a href="tel:' + SITE.tel.replace(/-/g, '') + '">' + SITE.tel + '</a></div>' +
+    // 연락처: 줄 전체가 눌리도록 (폰에서 손가락으로 누르기 쉽게)
+    '<div class="foot-contact"><a href="' + SITE.insta + '" target="_blank" rel="noopener"><span>Instagram</span>' + SITE.instaName + '</a>' +
+    '<a href="tel:' + SITE.tel.replace(/-/g, '') + '"><span>Tel</span>' + SITE.tel + '</a></div>' +
     '</div></footer>';
 
   // 문의 버튼(.js-insta, .js-tel)에 연락처 연결
