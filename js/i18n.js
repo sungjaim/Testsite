@@ -13,7 +13,7 @@ window.LS_TEXT = {
     'why.3.title': '간편한 문의',
     'why.3.body': '인스타그램 DM, 전화, 문자로 문의하실 수 있습니다.',
 
-    'list.sub': '마음에 드는 의상을 골라 문의해 주세요.',
+    'list.subDress': '대회와 공연을 위한 피겨 드레스입니다.', 'list.subMen': '남자 피겨·발레 의상입니다.',
     'list.count': '{n}벌',
     'filter.title': '필터', 'filter.size': '사이즈', 'filter.color': '색상', 'filter.status': '상태', 'filter.all': '전체',
     'list.empty': '조건에 맞는 의상이 없습니다.',
@@ -73,7 +73,7 @@ window.LS_TEXT = {
     'why.3.title': 'Easy to reach',
     'why.3.body': 'Ask us anything by Instagram DM, phone or text.',
 
-    'list.sub': 'Find a costume you love and send us a message.',
+    'list.subDress': 'Figure skating dresses for competitions and shows.', 'list.subMen': 'Figure skating and ballet costumes for boys and men.',
     'list.count': '{n} dresses',
     'filter.title': 'Filter', 'filter.size': 'Size', 'filter.color': 'Color', 'filter.status': 'Status', 'filter.all': 'All',
     'list.empty': 'Nothing matches these filters.',

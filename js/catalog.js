@@ -40,6 +40,7 @@ LS.whenReady(function () {
       b.addEventListener('click', function () { setKind(b.getAttribute('data-k')); });
     });
     document.getElementById('page-title').textContent = state.kind === 'men' ? "Men's" : 'Dresses';
+    document.getElementById('page-sub').textContent = LS.t(state.kind === 'men' ? 'list.subMen' : 'list.subDress');
   }
   function setKind(k) {
     if (k === state.kind) return;
