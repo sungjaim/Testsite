@@ -295,20 +295,24 @@ img { display: block; max-width: 100%; }
 .specs dd { margin: 0; font-size: 15px; text-align: right; }
 .actions { display: grid; gap: 10px; }
 /* 대여 문의 */
-.ask { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); text-align: left; }
+/* 대여 문의는 손님이 직접 채우는 도구라 연한 회색 카드로 따로 묶어요 (그림자는 아주 약하게) */
+.ask { margin-top: 32px; padding: 24px 20px; background: #f5f5f7; border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05); text-align: left; }
+.ask .events-title { margin-bottom: 4px; }
 .ask-hint { margin: 0 0 16px; font-size: 14px; color: var(--muted); }
 .ask-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
 .ask-grid .wide { grid-column: 1 / -1; }
 .ask-f label { display: block; margin-bottom: 4px; font-size: 13px; color: var(--muted); }
-.ask-in { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding-right: 12px; background: var(--bg); }
+.ask-in { display: flex; align-items: center; border: 1px solid #e3e3e8; border-radius: 10px; padding-right: 12px; background: #fff; }
 .ask-in:focus-within { outline: 2px solid var(--text); outline-offset: 1px; }
 .ask-in input { flex: 1; width: 0; min-width: 0; min-height: 46px; padding: 0 12px; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 16px; outline: none; }
 .ask-in span { font-size: 14px; color: var(--muted); }
 .ask-f small { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); line-height: 1.5; }
 .ask-check { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px; cursor: pointer; }
 .ask-check input { width: 20px; height: 20px; accent-color: var(--text); }
-.ask-msg { margin: 0 0 16px; padding: 14px 16px; background: var(--placeholder); border-radius: 10px; font-size: 14px; line-height: 1.7; white-space: pre-line; overflow-wrap: anywhere; }
+.ask-msg { margin: 0 0 16px; padding: 14px 16px; background: #fff; border: 1px solid #e3e3e8; border-radius: 12px; font-size: 14px; line-height: 1.7; white-space: pre-line; overflow-wrap: anywhere; }
 .ask .actions { grid-template-columns: 1fr !important; }
+.ask .btn-ghost { background: #fff; }
+.ask .btn { padding: 0 16px; }
 .ask-done { margin: 10px 0 0; font-size: 14px; }
 .ask-done:empty { display: none; }
 .d-note { margin: 20px 0 0; font-size: 14px; color: var(--muted); }
@@ -460,6 +464,7 @@ button.btn:disabled { opacity: .4; cursor: default; }
 }
 
 @media (min-width: 900px) {
+  .ask { padding: 28px; }
   /* 상단 메뉴를 한 줄로 펼치고, 메뉴 버튼은 숨겨요 */
   .site-header .inner { height: 64px; }
   .top-nav { display: flex; align-items: center; gap: 36px; margin-left: auto; margin-right: 20px; }
