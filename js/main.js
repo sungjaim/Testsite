@@ -1,7 +1,7 @@
 /* 공통: 헤더/푸터, 언어 전환, 메뉴, 페이드, 드레스 카드 */
 (function () {
   // 연락처: 바뀌면 여기만 고치세요.
-  var SITE = { insta: 'https://instagram.com/loveurskating', instaName: '@loveurskating', tel: '010-4342-8908' };
+  var SITE = { insta: 'https://instagram.com/love.ur.skating', instaName: '@love.ur.skating', tel: '010-4342-8908' };
   var lang = 'ko';
   try { lang = localStorage.getItem('ls-lang') || 'ko'; } catch (e) {}
   if (!window.LS_TEXT[lang]) lang = 'ko';
