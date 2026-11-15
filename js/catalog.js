@@ -69,7 +69,7 @@ LS.whenReady(function () {
     count.textContent = LS.t('list.count', { n: list.length });
     empty.hidden = list.length > 0;
 
-    var msg = !date ? LS.t('date.hint') : unknown ? LS.t('date.unknown') : LS.t('date.result', { d: LS.fmtDate(date), n: list.length });
+    var msg = !date ? '' : unknown ? LS.t('date.unknown') : LS.t('date.result', { d: LS.fmtDate(date), n: list.length });
     var soon = date && LS.toDate(date) - LS.today() < LS.rule.before * 86400000;
     var text = msg + (soon ? ' ' + LS.t('date.soon', { b: LS.rule.before }) : '');
     if (result.textContent !== text) { result.textContent = text; result.style.animation = 'none'; void result.offsetWidth; result.style.animation = ''; }

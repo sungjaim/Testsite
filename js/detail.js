@@ -31,13 +31,12 @@ LS.whenReady(function () {
     } else {
       h += '<p class="avail-result muted">' + LS.t('av.pickHint') + '</p>';
     }
-    h += '<p class="avail-sub">' + LS.t('av.ranges') + '</p>';
+    // 예약된 기간은 있을 때만 보여 줘요
     if (ranges === null) h += '<p class="ev-none">' + LS.t('av.unknown') + '</p>';
-    else if (!ranges.length) h += '<p class="ev-none">' + LS.t('av.none') + '</p>';
-    else h += '<ul class="ev-list rng-list">' + ranges.map(function (r) {
+    else if (ranges.length) h += '<p class="avail-sub">' + LS.t('av.ranges') + '</p><ul class="ev-list rng-list">' + ranges.map(function (r) {
       return '<li><span class="ev-name">' + LS.dot(r.from) + ' ~ ' + LS.dot(r.to) + '</span><span class="status s-booked">' + LS.t('av.no') + '</span></li>';
     }).join('') + '</ul>';
-    return h + '<p class="ev-other">' + LS.t('av.rule', { b: LS.rule.before, a: LS.rule.after }) + '</p>';
+    return h;
   }
 
   // 날짜를 바꾸면 "예약 가능 날짜" 부분만 바꿔요 (사진·글이 다시 그려지며 깜빡이지 않게)
@@ -156,7 +155,6 @@ LS.whenReady(function () {
       '</dl>' +
       avail(d) +
       ask() +
-      '<p class="d-note">' + LS.t('d.note') + ' <a href="guide.html">' + LS.t('d.guide') + '</a></p>' +
       '</div>';
 
     var men = d.kind === 'men';
