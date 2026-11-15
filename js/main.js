@@ -89,6 +89,7 @@
       '<div class="card-meta"><span class="card-no">No. ' + esc(d.number) + '</span>' +
       '<span class="card-name">' + esc(d.name) + '</span>' +
       '<span class="card-sub">' + esc([d.size, d.color && colorName(d.color)].filter(Boolean).join(' · ')) + '</span>' +
+      (typeof d.price === 'number' ? '<span class="card-price">' + esc(priceText(d)) + '</span>' : '') +   // 대여료가 적혀 있을 때만
       cardBadge(d) + '</div></a>';
   }
 
