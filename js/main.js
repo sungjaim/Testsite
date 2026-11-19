@@ -178,7 +178,9 @@
     }).catch(function () { done(); });
   } else done();
 
+  // 지금 페이지 이름 (Cloudflare 는 주소에서 .html 을 빼고 보여 줘서 둘 다 받아요: /dresses, /dresses.html)
   var page = location.pathname.split('/').pop() || 'index.html';
+  if (!/\.html$/.test(page)) page += '.html';
   function cur(p) { return page === p || (p === 'dresses.html' && page === 'dress.html') ? ' aria-current="page"' : ''; }
   document.getElementById('site-header').innerHTML =
     '<header class="site-header"><div class="inner">' +
