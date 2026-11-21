@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://sungjaim.github.io/loveurskating/sitemap.xml
+Sitemap: https://loveurskating.com/sitemap.xml
