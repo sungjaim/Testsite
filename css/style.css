@@ -130,6 +130,14 @@ img { display: block; max-width: 100%; }
 .rail-head .eyebrow { margin: 0; }
 .rail-head .text-link { font-size: 14px; white-space: nowrap; }
 .rail { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+/* 움직이는 레일: 스크롤 대신 줄 전체를 옮겨요. 세로 스크롤은 그대로 되고, 가로로 끌면 레일이 넘어가요 */
+@media (prefers-reduced-motion: no-preference) {
+  .rail { overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+  .rail:active { cursor: grabbing; }
+  .rail-track { will-change: transform; }
+  .rail img, .rail a { -webkit-user-drag: none; }
+  .rail img { pointer-events: none; }
+}
 .rail::-webkit-scrollbar { display: none; }
 .rail:focus-visible { outline: 2px solid var(--text); outline-offset: -2px; }
 .rail-track { display: flex; width: max-content; }

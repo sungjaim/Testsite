@@ -6,8 +6,8 @@ LS.whenReady(function () {
   if (!rail) return;
   var track = rail.querySelector('.rail-track');
   var MAX = 14;                     // 레일에 올릴 의상 수
-  var SPEED = 22;                   // 흐르는 속도 (1초에 몇 px)
-  var pos = 0, half = 0, last = 0, paused = false, timer = null, shown = '';
+  var SPEED = 24;                   // 흐르는 속도 (1초에 몇 px)
+  var anim = null, half = 0, timer = null, shown = '';
   var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function pick() {
@@ -36,34 +36,54 @@ LS.whenReady(function () {
       (still ? '' : list.map(function (d) { return card(d, true); }).join(''));
     // 처음 보이는 사진들은 바로 불러와요
     track.querySelectorAll('img').forEach(function (img, i) { if (i < 4) img.loading = 'eager'; });
-    half = 0;
+    if (anim) requestAnimationFrame(start);
   }
-  function tick(now) {
-    requestAnimationFrame(tick);
-    var dt = Math.min(now - last, 100); last = now;
-    if (paused || document.hidden) return;
-    if (!half) { half = track.scrollWidth / 2; if (!half) return; }   // 화면에 없을 때는 너비가 0
-    pos += SPEED * dt / 1000;
-    if (pos >= half) pos -= half;
-    rail.scrollLeft = pos;
+  /* 움직임: 스크롤 위치를 1px씩 옮기면 폰에서 툭툭 끊겨 보여서,
+     줄 전체를 transform 으로 옮겨요(그래픽 처리라 소수점 단위로 부드럽게 움직여요).
+     같은 줄을 두 번 놓았으니 절반만큼 가면 처음과 똑같은 모습이라 끊김 없이 반복돼요. */
+  function start() {
+    if (still) return;
+    var w = track.scrollWidth / 2;
+    if (!w) return;                                  // 화면에 아직 안 그려졌으면 다음 기회에
+    var progress = anim && half ? (anim.currentTime % (half / SPEED * 1000)) / (half / SPEED * 1000) : 0;
+    if (anim) anim.cancel();
+    half = w;
+    var dur = half / SPEED * 1000;
+    anim = track.animate([{ transform: 'translate3d(0,0,0)' }, { transform: 'translate3d(' + (-half) + 'px,0,0)' }],
+      { duration: dur, iterations: Infinity });
+    anim.currentTime = progress * dur;
   }
-  // 손으로 넘기거나 마우스를 올리면 멈췄다가, 잠시 뒤 그 자리에서 다시 흘러요
-  function hold() { paused = true; clearTimeout(timer); }
-  function release(ms) {
-    clearTimeout(timer);
-    timer = setTimeout(function () { pos = half ? rail.scrollLeft % half : rail.scrollLeft; paused = false; }, ms);
-  }
+  function pause() { clearTimeout(timer); if (anim) anim.pause(); }
+  function resume(ms) { clearTimeout(timer); timer = setTimeout(function () { if (anim && !drag) anim.play(); }, ms); }
+
+  // 손가락이나 마우스로 끌면 그만큼 넘어가고, 놓으면 잠시 뒤 다시 흘러요
+  var drag = null, moved = false;
+  rail.addEventListener('pointerdown', function (e) {
+    if (!anim || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    pause(); moved = false;
+    drag = { x: e.clientX, t: anim.currentTime };
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!drag || !anim) return;
+    var dx = e.clientX - drag.x;
+    if (Math.abs(dx) > 6) moved = true;
+    var dur = half / SPEED * 1000;
+    anim.currentTime = ((drag.t - dx / half * dur) % dur + dur) % dur;
+  });
+  function endDrag() { if (!drag) return; drag = null; resume(moved ? 2500 : 1200); }
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+  rail.addEventListener('dragstart', function (e) { e.preventDefault(); });   // 링크·사진을 끌어 옮기는 브라우저 기본 동작은 막아요
+  // 끌다가 손을 뗀 건 의상을 누른 걸로 치지 않아요
+  rail.addEventListener('click', function (e) { if (moved) { e.preventDefault(); moved = false; } }, true);
+  rail.addEventListener('mouseenter', function () { if (!drag) pause(); });
+  rail.addEventListener('mouseleave', function () { if (!drag) resume(300); });
+  rail.addEventListener('focusin', function () { pause(); resume(4000); });
+  document.addEventListener('visibilitychange', function () { if (!anim) return; if (document.hidden) anim.pause(); else resume(0); });
+  var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(start, 200); });
+
   render();
-  if (!still) {
-    ['touchstart', 'pointerdown', 'wheel', 'focusin'].forEach(function (ev) {
-      rail.addEventListener(ev, function () { hold(); release(3000); }, { passive: true });
-    });
-    rail.addEventListener('touchend', function () { release(3000); }, { passive: true });
-    rail.addEventListener('mouseenter', hold);
-    rail.addEventListener('mouseleave', function () { release(400); });
-    window.addEventListener('resize', function () { half = 0; });
-    requestAnimationFrame(function (t) { last = t; requestAnimationFrame(tick); });
-  }
+  requestAnimationFrame(start);
   document.addEventListener('ls:lang', render);
   document.addEventListener('ls:data', render);
 });
